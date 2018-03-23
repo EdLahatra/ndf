@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">app/components/select.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/DepenseCommuneNavBar.js~DepenseCommuneNavBar.html">DepenseCommuneNavBar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/NavBar.js~NavBar.html">NavBar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/datepicker-field-factory.js~DatePicker.html">DatePicker</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/datepicker.js~DatePicker.html">DatePicker</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/distance.js~Distance.html">Distance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/icon-field-factory.js~IconFieldFactory.html">IconFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/image-field-factory.js~ImageFieldFactory.html">ImageFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/list-edit-with-menu.js~ListEditWithMenu.html">ListEditWithMenu</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/list-edit.js~ListEdit.html">ListEdit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/place-autocomplete.js~PlaceAutocomplete.html">PlaceAutocomplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/realm-form.js~RealmForm.html">RealmForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/select-field-factory.js~SelectFieldFactory.html">SelectFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/select.js~Select.html">Select</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/textbox-field-factory.js~Textbox.html">Textbox</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/valeursAnalytiques-autocomplete.js~PlaceAutocomplete.html">PlaceAutocomplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Component">Component</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">errors</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ApiServiceAccess">ApiServiceAccess</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">lib</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/lib/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createIconSet">createIconSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">routes</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseForm.js~CategorieDepenseForm.html">CategorieDepenseForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseListe.js~CategorieDepenseListe.html">CategorieDepenseListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseSelection.js~CategorieDepenseSelection.html">CategorieDepenseSelection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Chargement.js~Chargement.html">Chargement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Connexion.js~Connexion.html">Connexion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseCommuneHistoriqueListe.js~DepenseCommuneHistoriqueListe.html">DepenseCommuneHistoriqueListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseCommuneListe.js~DepenseCommuneListe.html">DepenseCommuneListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseForm.js~DepenseCommuneForm.html">DepenseCommuneForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/FichePersonnelleForm.js~FichePersonnelleForm.html">FichePersonnelleForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/IndemniteKilometriqueForm.js~IndemniteKilometriqueForm.html">IndemniteKilometriqueForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Login.js~Login.html">Login</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/NoteDeFraisListe.js~NoteDeFraisListe.html">NoteDeFraisListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Presentation.js~Presentation.html">Presentation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/VehiculeForm.js~VehiculeForm.html">VehiculeForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/VehiculeListe.js~VehiculeListe.html">VehiculeListe</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">schemas</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/AxeAnalytique.js~AxeAnalytique.html">AxeAnalytique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/BaremeKilometrique.js~BaremeKilometrique.html">BaremeKilometrique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/CategorieDepense.js~CategorieDepense.html">CategorieDepense</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/CompteSecure.js~CompteSecure.html">CompteSecure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Configuration.js~Configuration.html">Configuration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Depense.js~Depense.html">Depense</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/FichePersonnelle.js~FichePersonnelle.html">FichePersonnelle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Identifiant.js~Identifiant.html">Identifiant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/IndemniteKilometrique.js~IndemniteKilometrique.html">IndemniteKilometrique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Justificatif.js~Justificatif.html">Justificatif</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/KilometreAnnuel.js~KilometreAnnuel.html">KilometreAnnuel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/NoteDeFrais.js~NoteDeFrais.html">NoteDeFrais</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Regulation.js~Regulation.html">Regulation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Seuil.js~Seuil.html">Seuil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/ValeurAnalytique.js~ValeurAnalytique.html">ValeurAnalytique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Vehicule.js~Vehicule.html">Vehicule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-TYPES">TYPES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STATUTS">STATUTS</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ApiService.js~ApiService.html">ApiService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/AxeAnalytiqueService.js~AxeAnalytiqueService.html">AxeAnalytiqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/BaremeKilometriqueService.js~BaremeKilometriqueService.html">BaremeKilometriqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CategorieDepenseService.js~CategorieDepenseService.html">CategorieDepenseService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CompteSecureService.js~CompteSecureService.html">CompteSecureService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CompteService.js~CompteService.html">CompteService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ConfigurationService.js~ConfigurationService.html">ConfigurationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/DepenseService.js~DepenseService.html">DepenseService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/EntityService.js~EntityService.html">EntityService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/FichePersonnelleService.js~FichePersonnelleService.html">FichePersonnelleService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/IndemniteKilometriqueService.js~IndemniteKilometriqueService.html">IndemniteKilometriqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/JustificatifService.js~JustificatifService.html">JustificatifService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/NoteDeFraisService.js~NoteDeFraisService.html">NoteDeFraisService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/RealmService.js~RealmService.html">RealmService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ValeurAnalytiqueService.js~ValeurAnalytiqueService.html">ValeurAnalytiqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/VehiculeService.js~VehiculeService.html">VehiculeService</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">styles</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Style">Style</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/components/select.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import React, { Component } from &apos;react&apos;;
+import {
+  View,
+  Text,
+  Image,
+  Modal,
+  TouchableHighlight,
+  Platform,
+  Animated,
+  Picker
+} from &apos;react-native&apos;;
+import MaterialIcons from &apos;react-native-vector-icons/MaterialIcons&apos;
+import { IconSize, Style, Colors } from &apos;../styles/style&apos;;
+import DatepickerStyle from &apos;../styles/datepicker-style&apos;;
+import PlatformHelper from &apos;../lib/platform-helper&apos;;
+
+class Select extends Component {
+
+  /**
+   * Initialisation de l&apos;&#xE9;tat du composant.
+   * Initialisation de l&apos;ensemble des services utiles pour le chargement des donn&#xE9;es.
+   */
+  constructor (props) {
+    super(props);
+    this.state = {
+      value: this.props.value,
+      modalVisible: false,
+      disabled: this.props.disabled,
+      animatedHeight: new Animated.Value(0)
+    };
+
+    this.valuePicked = this.valuePicked.bind(this);
+    this.submitEditing = this.submitEditing.bind(this);
+    this.onPressValue = this.onPressValue.bind(this);
+    this.onPressCancel = this.onPressCancel.bind(this);
+    this.onPressConfirm = this.onPressConfirm.bind(this);
+    this.onValuePicked = this.onValuePicked.bind(this);
+    this.setModalVisible = this.setModalVisible.bind(this);
+  }
+
+  componentWillMount () {
+    // ignore the warning of Failed propType for date of DatePickerIOS, will remove after being fixed by official
+    console.ignoredYellowBox = [
+      &apos;Warning: Failed propType&apos;
+      // Other warnings you don&apos;t want like &apos;jsSchedulingOverhead&apos;,
+    ];
+  }
+
+  setModalVisible (visible) {
+    this.setState({ modalVisible: visible });
+
+    // slide animation
+    if (visible) {
+      Animated.timing(
+          this.state.animatedHeight,
+          {
+            toValue: this.props.height,
+            duration: this.props.duration
+          }
+      ).start();
+    }
+    else {
+      this.setState({
+        animatedHeight: new Animated.Value(0)
+      });
+    }
+  }
+
+  onPressCancel () {
+    this.setModalVisible(false);
+  }
+
+  onPressConfirm () {
+    this.valuePicked();
+    this.setModalVisible(false);
+    this.submitEditing();
+  }
+
+  valuePicked () {
+    if (typeof this.props.onValuePicked === &apos;function&apos;) {
+      this.props.onValuePicked(this.state.value);
+    }
+  }
+
+  focus () {
+    this.onPressValue();
+  }
+
+  submitEditing () {
+    if (typeof this.props.onSubmitEditing === &apos;function&apos;) {
+      setTimeout(() =&gt; {
+        this.props.onSubmitEditing();
+      }, this.props.duration);
+    }
+  }
+
+  getTitleElement () {
+    const { value, placeholder } = this.props;
+    if (!value &amp;&amp; placeholder) {
+      return &lt;Text style={[Style.input, Style.placeholder, this.props.textboxStyle]}&gt;{placeholder}&lt;/Text&gt;
+    }
+    return &lt;Text style={[Style.input, this.props.textboxStyle]}&gt;{this._getText(value)}&lt;/Text&gt;;
+  }
+
+  _getText (value) {
+    return this.props.options.filter((o) =&gt; o.value === value).map((o) =&gt; o.text)[0];
+  }
+
+  onValuePicked ({ value }) {
+    this.setState({
+      value
+    });
+    this.valuePicked();
+  }
+
+  onPressValue () {
+    if (this.state.disabled) {
+      return true;
+    }
+
+    if (Platform.OS === &apos;ios&apos;) {
+      this.setModalVisible(true);
+    }
+
+  }
+
+  getPicker () {
+    const options = this.props.options.map(({ value, text }) =&gt; &lt;Picker.Item key={value} value={value} label={text}/&gt;);
+
+    const onValueChange = (value) =&gt; {
+      this.setState({ value });
+
+      if (PlatformHelper.isAndroid()) {
+        if (typeof this.props.onValuePicked === &apos;function&apos;) {
+          this.props.onValuePicked(value);
+        }
+        this.submitEditing();
+      }
+    };
+
+    return &lt;Picker
+        style={[Style.select, this.props.textboxStyle]}
+        mode=&apos;dropdown&apos;
+        selectedValue={this.state.value}
+        onValueChange={(value) =&gt; onValueChange(value)}&gt;
+      {options}
+    &lt;/Picker&gt;
+
+  }
+
+  /**
+   * M&#xE9;thode &#xE9;x&#xE9;cut&#xE9; lors du rendu du composant.
+   *
+   * @function render
+   * @return react~Component
+   */
+  render () {
+
+    let customStyles = this.props.customStyles;
+    if (PlatformHelper.isAndroid()) {
+      return &lt;TouchableHighlight
+          ref=&quot;button&quot;
+          style={[this.props.style]}
+          underlayColor={&apos;transparent&apos;}
+          onPress={this.onPressValue.bind(this)}&gt;
+
+        &lt;View style={[Style.formRow, Style.inline, formGroupStyle]}&gt;
+
+          { this.props.icon &amp;&amp; &lt;MaterialIcons name={this.props.icon}
+                                              size={IconSize.medium}
+                                              style={[Colors.greyDarker.color()]}/&gt; }
+
+          {this.getPicker()}
+
+          &lt;MaterialIcons name=&quot;arrow-drop-down&quot; size={IconSize.medium}
+                         style={[Colors.greyDarker.color(), { marginRight: 5 }]}/&gt;
+
+        &lt;/View&gt;
+
+      &lt;/TouchableHighlight&gt;
+    }
+
+    return (&lt;TouchableHighlight
+            ref=&quot;button&quot;
+            style={[this.props.style]}
+            underlayColor={&apos;transparent&apos;}
+            onPress={this.onPressValue.bind(this)}&gt;
+
+          &lt;View style={{ flex: 1, flexDirection: &apos;row&apos;, alignItems: &apos;center&apos;, justifyContent: &apos;center&apos; }}&gt;
+
+            { this.props.icon &amp;&amp; &lt;MaterialIcons name={this.props.icon} size={IconSize.medium}
+                                                style={[Colors.greyDarker.color(), { marginRight: 5 }]}/&gt; }
+
+            {this.getTitleElement()}
+
+            &lt;MaterialIcons name=&quot;arrow-drop-down&quot; size={IconSize.medium}
+                           style={[Colors.greyDarker.color(), { marginRight: 5 }]}/&gt;
+
+            &lt;Modal transparent={true}
+                   visible={this.state.modalVisible}
+                   onRequestClose={() =&gt; {
+                     this.setModalVisible(false);
+                   }}&gt;
+
+              &lt;TouchableHighlight
+                  style={DatepickerStyle.datePickerMask}
+                  activeOpacity={1}
+                  underlayColor={&apos;#00000077&apos;}
+                  onPress={this.onPressCancel}&gt;
+                &lt;TouchableHighlight underlayColor={&apos;#fff&apos;} style={{ flex: 1 }}&gt;
+                  &lt;Animated.View
+                      style={[DatepickerStyle.datePickerCon, { height: this.state.animatedHeight }, customStyles.datePickerCon]}&gt;
+
+                    {this.getPicker()}
+
+                    &lt;TouchableHighlight
+                        underlayColor={&apos;transparent&apos;}
+                        onPress={this.onPressCancel}
+                        style={[DatepickerStyle.btnText, DatepickerStyle.btnCancel, customStyles.btnCancel]}&gt;
+                      &lt;Text
+                          style={[DatepickerStyle.btnTextText, DatepickerStyle.btnTextCancel, customStyles.btnTextCancel]}&gt;
+                        {this.props.cancelBtnText}
+                      &lt;/Text&gt;
+                    &lt;/TouchableHighlight&gt;
+                    &lt;TouchableHighlight
+                        underlayColor={&apos;transparent&apos;}
+                        onPress={this.onPressConfirm}
+                        style={[DatepickerStyle.btnText, DatepickerStyle.btnConfirm, customStyles.btnConfirm]}&gt;
+                      &lt;Text
+                          style={[DatepickerStyle.btnTextText, customStyles.btnTextConfirm]}&gt;{this.props.confirmBtnText}&lt;/Text&gt;
+                    &lt;/TouchableHighlight&gt;
+                  &lt;/Animated.View&gt;
+                &lt;/TouchableHighlight&gt;
+              &lt;/TouchableHighlight&gt;
+            &lt;/Modal&gt;
+
+
+          &lt;/View&gt;
+        &lt;/TouchableHighlight&gt;
+    );
+  }
+}
+
+Select.defaultProps = {
+  height: 259,
+
+  // slide animation duration time, default to 300ms, IOS only
+  duration: 300,
+  confirmBtnText: &apos;Ok&apos;,
+  cancelBtnText: &apos;Cancel&apos;,
+  customStyles: {},
+
+  // whether or not show the icon
+  showIcon: false,
+  disabled: false,
+  placeholder: &apos;&apos;
+};
+
+Select.propTypes = {
+  height: React.PropTypes.number,
+  duration: React.PropTypes.number,
+  confirmBtnText: React.PropTypes.string,
+  cancelBtnText: React.PropTypes.string,
+  customStyles: React.PropTypes.object,
+  showIcon: React.PropTypes.bool,
+  disabled: React.PropTypes.bool,
+  onValueChange: React.PropTypes.func,
+  placeholder: React.PropTypes.string
+};
+
+export default Select;
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">app/services/CompteSecureService.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/DepenseCommuneNavBar.js~DepenseCommuneNavBar.html">DepenseCommuneNavBar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/NavBar.js~NavBar.html">NavBar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/datepicker-field-factory.js~DatePicker.html">DatePicker</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/datepicker.js~DatePicker.html">DatePicker</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/distance.js~Distance.html">Distance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/icon-field-factory.js~IconFieldFactory.html">IconFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/image-field-factory.js~ImageFieldFactory.html">ImageFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/list-edit-with-menu.js~ListEditWithMenu.html">ListEditWithMenu</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/list-edit.js~ListEdit.html">ListEdit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/place-autocomplete.js~PlaceAutocomplete.html">PlaceAutocomplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/realm-form.js~RealmForm.html">RealmForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/select-field-factory.js~SelectFieldFactory.html">SelectFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/select.js~Select.html">Select</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/textbox-field-factory.js~Textbox.html">Textbox</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/valeursAnalytiques-autocomplete.js~PlaceAutocomplete.html">PlaceAutocomplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Component">Component</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">errors</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ApiServiceAccess">ApiServiceAccess</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">lib</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/lib/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createIconSet">createIconSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">routes</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseForm.js~CategorieDepenseForm.html">CategorieDepenseForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseListe.js~CategorieDepenseListe.html">CategorieDepenseListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseSelection.js~CategorieDepenseSelection.html">CategorieDepenseSelection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Chargement.js~Chargement.html">Chargement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Connexion.js~Connexion.html">Connexion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseCommuneHistoriqueListe.js~DepenseCommuneHistoriqueListe.html">DepenseCommuneHistoriqueListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseCommuneListe.js~DepenseCommuneListe.html">DepenseCommuneListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseForm.js~DepenseCommuneForm.html">DepenseCommuneForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/FichePersonnelleForm.js~FichePersonnelleForm.html">FichePersonnelleForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/IndemniteKilometriqueForm.js~IndemniteKilometriqueForm.html">IndemniteKilometriqueForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Login.js~Login.html">Login</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/NoteDeFraisListe.js~NoteDeFraisListe.html">NoteDeFraisListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Presentation.js~Presentation.html">Presentation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/VehiculeForm.js~VehiculeForm.html">VehiculeForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/VehiculeListe.js~VehiculeListe.html">VehiculeListe</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">schemas</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/AxeAnalytique.js~AxeAnalytique.html">AxeAnalytique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/BaremeKilometrique.js~BaremeKilometrique.html">BaremeKilometrique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/CategorieDepense.js~CategorieDepense.html">CategorieDepense</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/CompteSecure.js~CompteSecure.html">CompteSecure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Configuration.js~Configuration.html">Configuration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Depense.js~Depense.html">Depense</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/FichePersonnelle.js~FichePersonnelle.html">FichePersonnelle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Identifiant.js~Identifiant.html">Identifiant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/IndemniteKilometrique.js~IndemniteKilometrique.html">IndemniteKilometrique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Justificatif.js~Justificatif.html">Justificatif</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/KilometreAnnuel.js~KilometreAnnuel.html">KilometreAnnuel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/NoteDeFrais.js~NoteDeFrais.html">NoteDeFrais</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Regulation.js~Regulation.html">Regulation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Seuil.js~Seuil.html">Seuil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/ValeurAnalytique.js~ValeurAnalytique.html">ValeurAnalytique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Vehicule.js~Vehicule.html">Vehicule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-TYPES">TYPES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STATUTS">STATUTS</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ApiService.js~ApiService.html">ApiService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/AxeAnalytiqueService.js~AxeAnalytiqueService.html">AxeAnalytiqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/BaremeKilometriqueService.js~BaremeKilometriqueService.html">BaremeKilometriqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CategorieDepenseService.js~CategorieDepenseService.html">CategorieDepenseService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CompteSecureService.js~CompteSecureService.html">CompteSecureService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CompteService.js~CompteService.html">CompteService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ConfigurationService.js~ConfigurationService.html">ConfigurationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/DepenseService.js~DepenseService.html">DepenseService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/EntityService.js~EntityService.html">EntityService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/FichePersonnelleService.js~FichePersonnelleService.html">FichePersonnelleService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/IndemniteKilometriqueService.js~IndemniteKilometriqueService.html">IndemniteKilometriqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/JustificatifService.js~JustificatifService.html">JustificatifService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/NoteDeFraisService.js~NoteDeFraisService.html">NoteDeFraisService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/RealmService.js~RealmService.html">RealmService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ValeurAnalytiqueService.js~ValeurAnalytiqueService.html">ValeurAnalytiqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/VehiculeService.js~VehiculeService.html">VehiculeService</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">styles</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Style">Style</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">app/services/CompteSecureService.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import Utils from &apos;../lib/utils&apos;;
+
+import CompteSecure  from &apos;../schemas/CompteSecure&apos;;
+import CategorieDepense  from &apos;../schemas/CategorieDepense&apos;;
+import Vehicule  from &apos;../schemas/Vehicule&apos;;
+import AxeAnalytique  from &apos;../schemas/AxeAnalytique&apos;;
+import NoteDeFrais  from &apos;../schemas/NoteDeFrais&apos;;
+import ValeurAnalytique  from &apos;../schemas/ValeurAnalytique&apos;;
+import IndemniteKilometrique  from &apos;../schemas/IndemniteKilometrique&apos;;
+import Justificatif  from &apos;../schemas/Justificatif&apos;;
+import Depense  from &apos;../schemas/Depense&apos;;
+import moment from &apos;moment&apos;;
+import I18n from &apos;../i18n/translations&apos;;
+import RealmService  from &apos;./RealmService&apos;;
+
+import { TYPES } from &apos;../schemas/Compte&apos;;
+import _ from &apos;underscore&apos;;
+
+/**
+ * Service de gestion des comptes s&#xE9;curis&#xE9;s
+ */
+export default class CompteSecureService {
+
+  /**
+   * Initialisation du service
+   * Initialisation de l&apos;ensemble des services utiles pour le chargement des donn&#xE9;es.
+   */
+  constructor () {
+    /** @type {RealmService.service} */
+    this.db = RealmService.service;
+  }
+
+  find (id) {
+    return this.findAll().filter((compteSecure)=&gt;compteSecure.id === id)[0];
+  }
+
+  findAll () {
+    return _.toArray(this.db.objects(CompteSecure.schema.name));
+  }
+
+  _unsetSelectedAccounts () {
+    const allSelected = this.db.objects(CompteSecure.schema.name).filtered(&apos;isSelected = true&apos;);
+    _.toArray(allSelected).forEach((s)=&gt; {
+      s.isSelected = false;
+    });
+  }
+
+  setSelected (compteSecure) {
+    this.db.write(()=&gt; {
+      this._unsetSelectedAccounts();
+      compteSecure.isSelected = true;
+    });
+
+  }
+
+  attachCompte (compteSecureId, compte) {
+    const compteSecure = this.find(compteSecureId);
+    this.db.write(()=&gt; {
+      compteSecure.compte = compte;
+    });
+  }
+
+  update ({ id }, { access_token, expires_in }) {
+    const expirationDate = moment().add(expires_in, &apos;s&apos;).toDate();
+    const data = { id, access_token, expirationDate, isSelected: true };
+    this.db.write(()=&gt; {
+      this._unsetSelectedAccounts();
+      this.db.create(CompteSecure.schema.name, data, true);
+    });
+
+    return id;
+  }
+
+  create ({ access_token, expires_in }, typeCompte = TYPES.AUTONOME, keychain = null) {
+
+    if (keychain) {
+      const exist = this.find(keychain);
+      if (exist) {
+        if (access_token &amp;&amp; expires_in) {
+          const expirationDate = moment().add(expires_in, &apos;s&apos;).toDate();
+          const data = { id: keychain, access_token, expirationDate, isSelected: true };
+          this.db.write(()=&gt; {
+            this._unsetSelectedAccounts();
+            this.db.create(CompteSecure.schema.name, data, true);
+          });
+        }
+        return keychain;
+      }
+    }
+
+    if (access_token &amp;&amp; expires_in) {
+
+      const generatedId = keychain || Utils.uuid();
+      const expirationDate = moment().add(expires_in, &apos;s&apos;).toDate();
+      const data = { id: generatedId, access_token, expirationDate, isSelected: true, typeCompte };
+      this.db.write(()=&gt; {
+        this._unsetSelectedAccounts();
+        this.db.create(CompteSecure.schema.name, data);
+      });
+      return generatedId;
+    }
+    else {
+
+      let compteAutonome = this.db.objects(&apos;Compte&apos;).filtered(`typeCompte = &quot;${TYPES.AUTONOME}&quot;`)[0];
+      let idCompte = null;
+      if (compteAutonome) {
+        idCompte = compteAutonome.id;
+      }
+      else {
+        idCompte = Utils.uuid();
+        this.db.write(() =&gt; {
+          this.db.create(&apos;Compte&apos;, { id: idCompte });
+        });
+        compteAutonome = this.db.objects(&apos;Compte&apos;).filtered(`id = &quot;${idCompte}&quot;`)[0];
+      }
+
+      const filtered = this.findAll().filter((secure)=&gt; secure.compte.id === idCompte);
+
+      if (filtered &amp;&amp; filtered[0]) {
+        return filtered[0].id;
+      }
+
+      const generatedId = Utils.uuid();
+
+      const defaultCategories = this._getDefaultCategories();
+
+      this.db.write(()=&gt; {
+        defaultCategories.forEach((categorie)=&gt; {
+          categorie.idCompte = idCompte;
+          this.db.create(CategorieDepense.schema.name, categorie, true);
+        });
+      });
+
+      const compteSecure = { id: generatedId, isSelected: true, compte: compteAutonome, typeCompte };
+      this.db.write(()=&gt; {
+        this._unsetSelectedAccounts();
+        this.db.create(CompteSecure.schema.name, compteSecure);
+      });
+
+      return generatedId;
+    }
+
+  }
+
+  shouldManageCategories () {
+    const compteSecure = this.getSelectedAccount();
+    return compteSecure ? compteSecure.typeCompte === TYPES.AUTONOME : false;
+  }
+
+  shouldSkipAuthentication () {
+    const compteSecure = this.getSelectedAccount();
+    if (compteSecure) {
+      return this.shouldUseApiServiceWith(compteSecure) || compteSecure.compte !== null &amp;&amp; !!compteSecure.compte.idFichePersonnelle;
+    }
+    return false;
+  }
+
+  shouldUseApiService () {
+    const compteSecure = this.getSelectedAccount();
+    return this.shouldUseApiServiceWith(compteSecure);
+  }
+
+  shouldUseApiServiceWith (compteSecure) {
+    if (compteSecure) {
+      return compteSecure.compte === null || (compteSecure.typeCompte === TYPES.COMPTACOM || compteSecure.typeCompte === TYPES.GESCAB)
+          &amp;&amp; !!compteSecure.access_token;
+    }
+    return false;
+  }
+
+  getSelectedAccount () {
+    return this.db.objects(CompteSecure.schema.name).filtered(&apos;isSelected = true&apos;)[0];
+  }
+
+  shouldFetchAll () {
+    if (this.shouldUseApiService()) {
+      const compteSecure = this.getSelectedAccount();
+      const lastFetchAll = compteSecure.lastFetchAll;
+      if (lastFetchAll) {
+        const previousWeek = moment().subtract(7, &apos;days&apos;);
+        return moment(lastFetchAll).isBefore(previousWeek);
+      }
+      else {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  delete (compteSecure) {
+
+    const idCompte = compteSecure.compte.id;
+
+    const filterByIdCompte = `idCompte = &quot;${idCompte}&quot;`;
+    this.db.write(()=&gt; {
+      // Suppression des cat&#xE9;gories
+      this.db.delete(this.db.objects(CategorieDepense.schema.name).filtered(filterByIdCompte));
+
+      // Suppression des v&#xE9;hicules
+      const vehicules = this.db.objects(Vehicule.schema.name).filtered(filterByIdCompte);
+      vehicules.forEach((vehicule)=&gt; {
+        this.db.delete(vehicule.kilometreAnnuel);
+      });
+      this.db.delete(vehicules);
+
+      // Suppression des v&#xE9;hicules
+      const axes = this.db.objects(AxeAnalytique.schema.name).filtered(filterByIdCompte);
+      axes.forEach((axe)=&gt; {
+        this.db.delete(this.db.objects(ValeurAnalytique.schema.name).filtered(`idAxeAnalytique = &quot;${axe.id}&quot;`));
+        this.db.delete(axe.valeurAnalytiques);
+      });
+      this.db.delete(axes);
+
+      // Suppression des ndf
+      const ndfs = this.db.objects(NoteDeFrais.schema.name).filtered(filterByIdCompte);
+      ndfs.forEach((ndf)=&gt; {
+        const filterByIdNdf = `idNoteDeFrais = &quot;${ndf.id}&quot;`;
+        // Suppression des ik
+        this.db.delete(this.db.objects(IndemniteKilometrique.schema.name).filtered(filterByIdNdf));
+        this.db.delete(ndf.indemnitesKilometriques);
+        // Suppression des depenses
+        const depenses = this.db.objects(Depense.schema.name).filtered(filterByIdNdf);
+        depenses.forEach((depense)=&gt; {
+          this.db.delete(this.db.objects(Justificatif.schema.name).filtered(`idDepense = &quot;${depense.id}&quot;`));
+        });
+        this.db.delete(depenses);
+        this.db.delete(ndf.depenses);
+      });
+      this.db.delete(ndfs);
+
+      // Suppression des comptes
+      this.db.delete(compteSecure.compte);
+      this.db.delete(compteSecure);
+    });
+    const all = this.findAll();
+    if (all &amp;&amp; all[0]) {
+      this.setSelected(all[0]);
+      return all[0];
+    }
+    return null;
+  }
+
+  setFetchAll (date) {
+    const compteSecure = this.getSelectedAccount();
+    this.db.write(()=&gt; {
+      compteSecure.lastFetchAll = date;
+    });
+  }
+
+  getAccessToken () {
+    const compteSecure = this.getSelectedAccount();
+    if (compteSecure &amp;&amp; compteSecure.access_token) {
+      return compteSecure.access_token;
+    }
+    throw new Error([&apos;[CompteSecureService]&apos;, &apos;No access token found for&apos;, compteSecure.id].join(&apos; &apos;));
+  }
+
+  hasExpiredToken () {
+    const compteSecure = this.getSelectedAccount();
+    if (compteSecure &amp;&amp; compteSecure.expirationDate) {
+      return moment(compteSecure.expirationDate).isBefore(moment());
+    }
+    return true;
+  }
+
+  _lastFetchAllKey (name) {
+    return `lastFetchAll${name}`;
+  }
+
+  getLastFetchAll (name) {
+    return this.getSelectedAccount()[this._lastFetchAllKey(name)];
+  }
+
+  setLastFetchAll (name, date) {
+    this.db.write(() =&gt; {
+      this.getSelectedAccount()[this._lastFetchAllKey(name)] = date;
+    });
+  }
+
+  _getDefaultCategories () {
+
+    return [
+      {
+        id: &apos;categories.addRestaurant&apos;,
+        nom: I18n.t(&apos;categories.addRestaurant&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-cutlery&apos;,
+        tva: 10
+      }, {
+        id: &apos;categories.gasFees&apos;,
+        nom: I18n.t(&apos;categories.gasFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-gas-station&apos;,
+        tva: 20
+      }, {
+        id: &apos;categories.roadFees&apos;,
+        nom: I18n.t(&apos;categories.roadFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-road&apos;,
+        tva: 20
+      }, {
+        id: &apos;categories.giftFees&apos;,
+        nom: I18n.t(&apos;categories.giftFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-gift&apos;,
+        tva: 20
+      }, {
+        id: &apos;categories.bedFees&apos;,
+        nom: I18n.t(&apos;categories.bedFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-bed-alt&apos;,
+        tva: 10
+      }, {
+        id: &apos;categories.parkingFees&apos;,
+        nom: I18n.t(&apos;categories.parkingFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-parking-meter&apos;,
+        tva: 20
+      }, {
+        id: &apos;categories.taxiFees&apos;,
+        nom: I18n.t(&apos;categories.taxiFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-taxi&apos;,
+        tva: 0
+      }, {
+        id: &apos;categories.postFees&apos;,
+        nom: I18n.t(&apos;categories.postFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-envelope&apos;,
+        tva: 0
+      }, {
+        id: &apos;categories.trainFees&apos;,
+        nom: I18n.t(&apos;categories.trainFees&apos;),
+        derniereModification: new Date(),
+        icone: &apos;glyphicons-train&apos;,
+        tva: 0
+      }];
+  }
+
+}</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

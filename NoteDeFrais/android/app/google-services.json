@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "521942746637",
+    "project_id": "ethicus-notedefrais"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:521942746637:android:04a259fe308bbd7b",
+        "android_client_info": {
+          "package_name": "com.notedefrais"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "521942746637-oip7hn70v4jcre370lhiejprlfn4al14.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.notedefrais",
+            "certificate_hash": "5B41909935B0A10A3C91126098D40689B2EB23E8"
+          }
+        },
+        {
+          "client_id": "521942746637-oip7hn70v4jcre370lhiejprlfn4al14.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvhuRVGQTDR47QvNJoP4371TX2xXSikjI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

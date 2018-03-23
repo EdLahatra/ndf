@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">unit/services/CompteSecureService-test.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/index.js~Index.html">Index</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">components</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/DepenseCommuneNavBar.js~DepenseCommuneNavBar.html">DepenseCommuneNavBar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/NavBar.js~NavBar.html">NavBar</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/datepicker-field-factory.js~DatePicker.html">DatePicker</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/datepicker.js~DatePicker.html">DatePicker</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/distance.js~Distance.html">Distance</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/icon-field-factory.js~IconFieldFactory.html">IconFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/image-field-factory.js~ImageFieldFactory.html">ImageFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/list-edit-with-menu.js~ListEditWithMenu.html">ListEditWithMenu</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/list-edit.js~ListEdit.html">ListEdit</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/place-autocomplete.js~PlaceAutocomplete.html">PlaceAutocomplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/realm-form.js~RealmForm.html">RealmForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/select-field-factory.js~SelectFieldFactory.html">SelectFieldFactory</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/select.js~Select.html">Select</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/textbox-field-factory.js~Textbox.html">Textbox</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/components/valeursAnalytiques-autocomplete.js~PlaceAutocomplete.html">PlaceAutocomplete</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Component">Component</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">errors</div><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-ApiServiceAccess">ApiServiceAccess</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">lib</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/lib/Logger.js~Logger.html">Logger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createIconSet">createIconSet</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">routes</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseForm.js~CategorieDepenseForm.html">CategorieDepenseForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseListe.js~CategorieDepenseListe.html">CategorieDepenseListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/CategorieDepenseSelection.js~CategorieDepenseSelection.html">CategorieDepenseSelection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Chargement.js~Chargement.html">Chargement</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Connexion.js~Connexion.html">Connexion</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseCommuneHistoriqueListe.js~DepenseCommuneHistoriqueListe.html">DepenseCommuneHistoriqueListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseCommuneListe.js~DepenseCommuneListe.html">DepenseCommuneListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/DepenseForm.js~DepenseCommuneForm.html">DepenseCommuneForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/FichePersonnelleForm.js~FichePersonnelleForm.html">FichePersonnelleForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/IndemniteKilometriqueForm.js~IndemniteKilometriqueForm.html">IndemniteKilometriqueForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Login.js~Login.html">Login</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/NoteDeFraisListe.js~NoteDeFraisListe.html">NoteDeFraisListe</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/Presentation.js~Presentation.html">Presentation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/VehiculeForm.js~VehiculeForm.html">VehiculeForm</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/routes/VehiculeListe.js~VehiculeListe.html">VehiculeListe</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">schemas</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/AxeAnalytique.js~AxeAnalytique.html">AxeAnalytique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/BaremeKilometrique.js~BaremeKilometrique.html">BaremeKilometrique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/CategorieDepense.js~CategorieDepense.html">CategorieDepense</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/CompteSecure.js~CompteSecure.html">CompteSecure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Configuration.js~Configuration.html">Configuration</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Depense.js~Depense.html">Depense</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/FichePersonnelle.js~FichePersonnelle.html">FichePersonnelle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Identifiant.js~Identifiant.html">Identifiant</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/IndemniteKilometrique.js~IndemniteKilometrique.html">IndemniteKilometrique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Justificatif.js~Justificatif.html">Justificatif</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/KilometreAnnuel.js~KilometreAnnuel.html">KilometreAnnuel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/NoteDeFrais.js~NoteDeFrais.html">NoteDeFrais</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Regulation.js~Regulation.html">Regulation</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Seuil.js~Seuil.html">Seuil</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/ValeurAnalytique.js~ValeurAnalytique.html">ValeurAnalytique</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/schemas/Vehicule.js~Vehicule.html">Vehicule</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-TYPES">TYPES</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STATUTS">STATUTS</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">services</div><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ApiService.js~ApiService.html">ApiService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/AxeAnalytiqueService.js~AxeAnalytiqueService.html">AxeAnalytiqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/BaremeKilometriqueService.js~BaremeKilometriqueService.html">BaremeKilometriqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CategorieDepenseService.js~CategorieDepenseService.html">CategorieDepenseService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CompteSecureService.js~CompteSecureService.html">CompteSecureService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/CompteService.js~CompteService.html">CompteService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ConfigurationService.js~ConfigurationService.html">ConfigurationService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/DepenseService.js~DepenseService.html">DepenseService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/EntityService.js~EntityService.html">EntityService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/FichePersonnelleService.js~FichePersonnelleService.html">FichePersonnelleService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/IndemniteKilometriqueService.js~IndemniteKilometriqueService.html">IndemniteKilometriqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/JustificatifService.js~JustificatifService.html">JustificatifService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/NoteDeFraisService.js~NoteDeFraisService.html">NoteDeFraisService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/RealmService.js~RealmService.html">RealmService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/ValeurAnalytiqueService.js~ValeurAnalytiqueService.html">ValeurAnalytiqueService</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/app/services/VehiculeService.js~VehiculeService.html">VehiculeService</a></span></span></li>
+<li data-ice="doc"><div data-ice="dirPath" class="nav-dir-path">styles</div><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-style">style</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-Style">Style</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">unit/services/CompteSecureService-test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { describe, it } from &apos;mocha&apos;;
+import { assert, expect } from &apos;chai&apos;;
+
+import CompteSecureService  from &apos;../../../app/services/CompteSecureService&apos;;
+import RealmService  from &apos;../../../app/services/RealmService&apos;;
+
+import moment from &apos;moment&apos;;
+import _ from &apos;underscore&apos;;
+
+describe(&apos;CompteSecureService&apos;, () =&gt; {
+
+  let db, compteSecureService;
+
+  beforeEach(function () {
+    compteSecureService = new CompteSecureService();
+    db = RealmService.service;
+  });
+
+  afterEach(function () {
+
+    db.write(()=&gt; {
+      db.delete(db.objects(&apos;CompteSecure&apos;));
+      db.delete(db.objects(&apos;Compte&apos;));
+      db.delete(db.objects(&apos;Vehicule&apos;));
+      db.delete(db.objects(&apos;AxeAnalytique&apos;));
+      db.delete(db.objects(&apos;ValeurAnalytique&apos;));
+      db.delete(db.objects(&apos;Depense&apos;));
+      db.delete(db.objects(&apos;NoteDeFrais&apos;));
+      db.delete(db.objects(&apos;IndemniteKilometrique&apos;));
+    });
+
+  });
+
+  it(&apos;should get default categories&apos;, () =&gt; {
+    assert.isNotNull(compteSecureService._getDefaultCategories());
+  });
+
+  it(&apos;should find by id&apos;, () =&gt; {
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos; });
+    });
+
+    assert.isNotNull(compteSecureService.find(&apos;foobar&apos;));
+
+  });
+
+  it(&apos;should find by all&apos;, () =&gt; {
+    db.write(()=&gt; {
+      for (let i = 0; i &lt; 10; i++) {
+        db.create(&apos;CompteSecure&apos;, { id: `foobar${i}` });
+      }
+
+    });
+
+    const all = compteSecureService.findAll();
+    assert.isNotNull(all);
+    assert.equal(_.toArray(all).length, 10);
+
+  });
+
+  it(&apos;should get/set selected&apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos; });
+    });
+
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    assert.notDeepEqual(foobar, compteSecureService.getSelectedAccount());
+
+    compteSecureService.setSelected(foobar);
+
+    assert.deepEqual(foobar, compteSecureService.getSelectedAccount());
+  });
+
+  it(&apos;should check if selected account can manage categories&apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos; });
+    });
+
+    assert.equal(false, compteSecureService.shouldManageCategories());
+
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    compteSecureService.setSelected(foobar);
+
+    assert.equal(true, compteSecureService.shouldManageCategories());
+
+  });
+
+  it(&apos;should check if selected account should use api service &apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos; });
+    });
+
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    assert.equal(true, compteSecureService.shouldUseApiServiceWith(foobar));
+
+    db.write(()=&gt; {
+      foobar.compte = { id: &apos;compte&apos; };
+    });
+
+    assert.equal(false, compteSecureService.shouldUseApiServiceWith(foobar));
+
+    db.write(()=&gt; {
+      foobar.typeCompte = &apos;ComptaCom&apos;;
+    });
+
+    assert.equal(false, compteSecureService.shouldUseApiServiceWith(foobar));
+
+    db.write(()=&gt; {
+      foobar.access_token = &apos;user&apos;;
+    });
+
+    assert.equal(true, compteSecureService.shouldUseApiServiceWith(foobar));
+
+    db.write(()=&gt; {
+      foobar.typeCompte = &apos;Gescab&apos;;
+    });
+
+    assert.equal(true, compteSecureService.shouldUseApiServiceWith(foobar));
+
+  });
+
+  it(&apos;should skip authentification&apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos; });
+    });
+
+    assert.equal(false, compteSecureService.shouldSkipAuthentication());
+
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    compteSecureService.setSelected(foobar);
+
+    assert.equal(true, compteSecureService.shouldSkipAuthentication());
+
+    db.write(()=&gt; {
+      foobar.compte = { id: &apos;compte&apos; };
+    });
+
+    assert.equal(false, compteSecureService.shouldSkipAuthentication());
+
+    db.write(()=&gt; {
+      foobar.compte.idFichePersonnelle = &apos;fiche&apos;;
+    });
+
+    assert.equal(true, compteSecureService.shouldSkipAuthentication());
+
+  });
+
+  it(&apos;should delete all in cascade&apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;future&apos;, compte: { id: &apos;futureCompte&apos; } });
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos;, compte: { id: &apos;compte&apos; } });
+      db.create(&apos;Vehicule&apos;, {
+        id: &apos;foobar&apos;,
+        nom: &apos;tesla&apos;,
+        immatriculation: &apos;ae-dc-32&apos;,
+        typeVehicule: &apos;Voiture&apos;,
+        puissanceFiscale: 15,
+        idCompte: &apos;compte&apos;
+      });
+
+      db.create(&apos;AxeAnalytique&apos;, {
+        id: &apos;axe&apos;,
+        idCompte: &apos;compte&apos;,
+        description: &apos;&apos;,
+        valeurAnalytiques: [{ id: &apos;valeur&apos; }]
+      });
+      db.create(&apos;ValeurAnalytique&apos;, { id: &apos;valeur&apos;, idAxeAnalytique: &apos;axe&apos;, description: &apos;&apos;, code: &apos;ZZ&apos; });
+      db.create(&apos;NoteDeFrais&apos;, { id: &apos;ndf&apos;, idCompte: &apos;compte&apos; });
+      db.create(&apos;Depense&apos;, {
+        id: &apos;dep&apos;,
+        idNoteDeFrais: &apos;ndf&apos;,
+        description: &apos;&apos;,
+        date: new Date(),
+        idCategorieDepense: &apos;ddd&apos;
+      });
+      db.create(&apos;IndemniteKilometrique&apos;, {
+        id: &apos;ik&apos;,
+        idNoteDeFrais: &apos;ndf&apos;,
+        description: &apos;&apos;,
+        date: new Date(),
+        _depart: &apos;Lille&apos;,
+        lieu: &apos;Laval&apos;,
+        idVehicule: &apos;xxx&apos;
+      });
+    });
+
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    compteSecureService.delete(foobar);
+
+    assert.equal(&apos;future&apos;, compteSecureService.getSelectedAccount().id);
+
+    const future = compteSecureService.find(&apos;future&apos;);
+    compteSecureService.delete(future);
+    assert.isNotOk(compteSecureService.getSelectedAccount());
+  });
+
+  it(&apos;should create compte secure&apos;, () =&gt; {
+
+    const id = &apos;81cc6e07-b726-4325-b02c-f96a82753724&apos;;
+    db.write(()=&gt; {
+      db.create(&apos;Compte&apos;, {
+        id,
+        typeCompte: &apos;Autonome&apos;
+      });
+    });
+
+    const compteSecureId = compteSecureService.create({});
+    assert.equal(id, compteSecureService.find(compteSecureId).compte.id);
+  });
+
+  it(&apos;should attach compte to compte secure&apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos; });
+    });
+
+    const compte = { id: &apos;compte&apos; };
+    compteSecureService.attachCompte(&apos;foobar&apos;, compte);
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    assert.isNotNull(foobar.compte);
+
+  });
+
+  it(&apos;should unselect all selected account&apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos;, isSelected: true });
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar2&apos;, isSelected: true });
+    });
+
+    let all = _.toArray(db.objects(&apos;CompteSecure&apos;).filtered(&apos;isSelected = true&apos;));
+    assert.equal(2, all.length);
+
+    db.write(()=&gt; {
+      compteSecureService._unsetSelectedAccounts();
+    });
+
+    all = _.toArray(db.objects(&apos;CompteSecure&apos;).filtered(&apos;isSelected = true&apos;));
+    assert.equal(0, all.length);
+    assert.isNotOk(compteSecureService.getSelectedAccount());
+
+  });
+
+  it(&apos;should check if compte secure has expired token&apos;, () =&gt; {
+
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos; });
+    });
+    assert.equal(true, compteSecureService.hasExpiredToken());
+
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    db.write(()=&gt; {
+      foobar.isSelected = true;
+    });
+    assert.equal(true, compteSecureService.hasExpiredToken());
+
+    db.write(()=&gt; {
+      foobar.expirationDate = moment().subtract(&apos;1&apos;, &apos;minute&apos;).toDate();
+    });
+    assert.equal(true, compteSecureService.hasExpiredToken());
+
+    db.write(()=&gt; {
+      foobar.expirationDate = moment().add(&apos;1&apos;, &apos;hour&apos;).toDate();
+    });
+    assert.equal(false, compteSecureService.hasExpiredToken());
+
+  });
+
+  it(&apos;should get access_token from select compte secure&apos;, () =&gt; {
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos;, isSelected: true });
+    });
+
+    expect(compteSecureService.getAccessToken.bind(compteSecureService)).to.throw(Error, &apos;[CompteSecureService] No access token found for foobar&apos;);
+
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    db.write(()=&gt; {
+      foobar.access_token = &apos;token&apos;;
+    });
+
+    assert.equal(&apos;token&apos;, compteSecureService.getAccessToken());
+
+  });
+
+  it(&apos;should get/set fetch all property&apos;, () =&gt; {
+    db.write(()=&gt; {
+      db.create(&apos;CompteSecure&apos;, { id: &apos;foobar&apos;, isSelected: true });
+    });
+    expect(false, compteSecureService.shouldFetchAll());
+
+    compteSecureService.setFetchAll(new Date());
+
+    expect(false, compteSecureService.shouldFetchAll());
+    const foobar = compteSecureService.find(&apos;foobar&apos;);
+    db.write(()=&gt; {
+      foobar.compte = { id: &apos;compte&apos; };
+      foobar.typeCompte = &apos;ComptaCom&apos;;
+    });
+    expect(false, compteSecureService.shouldFetchAll());
+
+  });
+
+  it(&apos;should create only one compte secure &quot;AUTONOME&quot;&apos;, () =&gt; {
+    const compteSecureId = compteSecureService.create({});
+    assert.isNotNull(compteSecureId);
+    const compteSecure = compteSecureService.find(compteSecureId);
+    assert.isNotNull(compteSecure);
+    assert.equal(compteSecure.typeCompte, &apos;Autonome&apos;);
+    assert.equal(compteSecure.isSelected, true);
+    assert.isNotNull(compteSecure.compte);
+    assert.equal(compteSecureId, compteSecureService.create({}));
+  });
+
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

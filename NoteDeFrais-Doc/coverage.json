@@ -1,0 +1,639 @@
+{
+  "coverage": "50.21%",
+  "expectCount": 474,
+  "actualCount": 238,
+  "files": {
+    "app/services/ApiService.js": {
+      "expectCount": 13,
+      "actualCount": 13,
+      "undocumentLines": []
+    },
+    "app/errors/ApiServiceAccess.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "app/schemas/AxeAnalytique.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        16
+      ]
+    },
+    "app/services/AxeAnalytiqueService.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "app/schemas/BaremeKilometrique.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/services/BaremeKilometriqueService.js": {
+      "expectCount": 4,
+      "actualCount": 4,
+      "undocumentLines": []
+    },
+    "app/schemas/CategorieDepense.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        13
+      ]
+    },
+    "app/routes/CategorieDepenseForm.js": {
+      "expectCount": 9,
+      "actualCount": 9,
+      "undocumentLines": []
+    },
+    "app/routes/CategorieDepenseListe.js": {
+      "expectCount": 13,
+      "actualCount": 12,
+      "undocumentLines": [
+        99
+      ]
+    },
+    "app/routes/CategorieDepenseSelection.js": {
+      "expectCount": 11,
+      "actualCount": 11,
+      "undocumentLines": []
+    },
+    "app/services/CategorieDepenseService.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "app/routes/Chargement.js": {
+      "expectCount": 16,
+      "actualCount": 16,
+      "undocumentLines": []
+    },
+    "app/components/datepicker-field-factory.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        4,
+        10,
+        16,
+        12
+      ]
+    },
+    "app/schemas/CompteSecure.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "app/services/CompteSecureService.js": {
+      "expectCount": 21,
+      "actualCount": 3,
+      "undocumentLines": [
+        56,
+        74,
+        190,
+        33,
+        37,
+        250,
+        270,
+        171,
+        258,
+        243,
+        274,
+        48,
+        175,
+        145,
+        150,
+        158,
+        163,
+        63
+      ]
+    },
+    "app/services/CompteService.js": {
+      "expectCount": 5,
+      "actualCount": 3,
+      "undocumentLines": [
+        24,
+        28
+      ]
+    },
+    "app/schemas/Configuration.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/services/ConfigurationService.js": {
+      "expectCount": 7,
+      "actualCount": 1,
+      "undocumentLines": [
+        24,
+        10,
+        15,
+        19,
+        12,
+        11
+      ]
+    },
+    "app/routes/Connexion.js": {
+      "expectCount": 10,
+      "actualCount": 10,
+      "undocumentLines": []
+    },
+    "app/components/datepicker.js": {
+      "expectCount": 19,
+      "actualCount": 2,
+      "undocumentLines": [
+        25,
+        55,
+        131,
+        34,
+        93,
+        122,
+        147,
+        155,
+        173,
+        185,
+        83,
+        87,
+        194,
+        164,
+        63,
+        36,
+        137
+      ]
+    },
+    "app/schemas/Depense.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    },
+    "app/routes/DepenseForm.js": {
+      "expectCount": 15,
+      "actualCount": 11,
+      "undocumentLines": [
+        27,
+        131,
+        123,
+        140
+      ]
+    },
+    "app/routes/DepenseCommuneHistoriqueListe.js": {
+      "expectCount": 7,
+      "actualCount": 4,
+      "undocumentLines": [
+        59,
+        56,
+        62
+      ]
+    },
+    "app/routes/DepenseCommuneListe.js": {
+      "expectCount": 16,
+      "actualCount": 10,
+      "undocumentLines": [
+        107,
+        150,
+        91,
+        111,
+        88,
+        49
+      ]
+    },
+    "app/components/DepenseCommuneNavBar.js": {
+      "expectCount": 7,
+      "actualCount": 7,
+      "undocumentLines": []
+    },
+    "app/services/DepenseService.js": {
+      "expectCount": 9,
+      "actualCount": 3,
+      "undocumentLines": [
+        111,
+        82,
+        45,
+        36,
+        31,
+        62
+      ]
+    },
+    "app/components/distance.js": {
+      "expectCount": 3,
+      "actualCount": 0,
+      "undocumentLines": [
+        18,
+        24,
+        20
+      ]
+    },
+    "app/services/EntityService.js": {
+      "expectCount": 24,
+      "actualCount": 24,
+      "undocumentLines": []
+    },
+    "app/schemas/FichePersonnelle.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        54
+      ]
+    },
+    "app/routes/FichePersonnelleForm.js": {
+      "expectCount": 12,
+      "actualCount": 4,
+      "undocumentLines": [
+        53,
+        66,
+        38,
+        43,
+        82,
+        74,
+        86,
+        78
+      ]
+    },
+    "app/services/FichePersonnelleService.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "app/components/icon-field-factory.js": {
+      "expectCount": 4,
+      "actualCount": 0,
+      "undocumentLines": [
+        8,
+        20,
+        14,
+        10
+      ]
+    },
+    "app/schemas/Identifiant.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/components/image-field-factory.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        10,
+        12
+      ]
+    },
+    "app/schemas/IndemniteKilometrique.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/routes/IndemniteKilometriqueForm.js": {
+      "expectCount": 17,
+      "actualCount": 10,
+      "undocumentLines": [
+        158,
+        211,
+        167,
+        55,
+        196,
+        220,
+        204
+      ]
+    },
+    "app/services/IndemniteKilometriqueService.js": {
+      "expectCount": 10,
+      "actualCount": 5,
+      "undocumentLines": [
+        78,
+        58,
+        49,
+        29,
+        73
+      ]
+    },
+    "app/index.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "app/schemas/Justificatif.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/services/JustificatifService.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "app/schemas/KilometreAnnuel.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/components/list-edit.js": {
+      "expectCount": 12,
+      "actualCount": 2,
+      "undocumentLines": [
+        23,
+        59,
+        54,
+        40,
+        68,
+        81,
+        144,
+        153,
+        140,
+        50
+      ]
+    },
+    "app/components/list-edit-with-menu.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        6,
+        8
+      ]
+    },
+    "app/lib/Logger.js": {
+      "expectCount": 3,
+      "actualCount": 3,
+      "undocumentLines": []
+    },
+    "app/routes/Login.js": {
+      "expectCount": 11,
+      "actualCount": 5,
+      "undocumentLines": [
+        128,
+        83,
+        205,
+        167,
+        79,
+        135
+      ]
+    },
+    "app/components/NavBar.js": {
+      "expectCount": 15,
+      "actualCount": 15,
+      "undocumentLines": []
+    },
+    "app/schemas/NoteDeFrais.js": {
+      "expectCount": 2,
+      "actualCount": 0,
+      "undocumentLines": [
+        22,
+        3
+      ]
+    },
+    "app/routes/NoteDeFraisListe.js": {
+      "expectCount": 11,
+      "actualCount": 5,
+      "undocumentLines": [
+        96,
+        86,
+        102,
+        90,
+        53,
+        82
+      ]
+    },
+    "app/services/NoteDeFraisService.js": {
+      "expectCount": 27,
+      "actualCount": 9,
+      "undocumentLines": [
+        45,
+        71,
+        153,
+        49,
+        341,
+        149,
+        56,
+        157,
+        164,
+        345,
+        353,
+        313,
+        193,
+        189,
+        185,
+        123,
+        114,
+        199
+      ]
+    },
+    "app/components/place-autocomplete.js": {
+      "expectCount": 6,
+      "actualCount": 2,
+      "undocumentLines": [
+        10,
+        19,
+        18,
+        20
+      ]
+    },
+    "app/components/valeursAnalytiques-autocomplete.js": {
+      "expectCount": 10,
+      "actualCount": 2,
+      "undocumentLines": [
+        11,
+        20,
+        55,
+        51,
+        19,
+        29,
+        22,
+        21
+      ]
+    },
+    "app/routes/Presentation.js": {
+      "expectCount": 9,
+      "actualCount": 3,
+      "undocumentLines": [
+        54,
+        35,
+        44,
+        59,
+        40,
+        50
+      ]
+    },
+    "app/components/realm-form.js": {
+      "expectCount": 15,
+      "actualCount": 4,
+      "undocumentLines": [
+        91,
+        216,
+        100,
+        161,
+        130,
+        256,
+        264,
+        220,
+        268,
+        260,
+        72
+      ]
+    },
+    "app/services/RealmService.js": {
+      "expectCount": 1,
+      "actualCount": 1,
+      "undocumentLines": []
+    },
+    "app/schemas/Regulation.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/components/select.js": {
+      "expectCount": 15,
+      "actualCount": 2,
+      "undocumentLines": [
+        17,
+        41,
+        85,
+        127,
+        97,
+        69,
+        73,
+        116,
+        109,
+        49,
+        25,
+        89,
+        79
+      ]
+    },
+    "app/components/select-field-factory.js": {
+      "expectCount": 9,
+      "actualCount": 0,
+      "undocumentLines": [
+        22,
+        40,
+        71,
+        36,
+        58,
+        44,
+        32,
+        24,
+        52
+      ]
+    },
+    "app/schemas/Seuil.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/styles/style.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        49
+      ]
+    },
+    "app/schemas/Compte.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
+      ]
+    },
+    "app/components/textbox-field-factory.js": {
+      "expectCount": 7,
+      "actualCount": 0,
+      "undocumentLines": [
+        18,
+        49,
+        57,
+        41,
+        37,
+        30,
+        20
+      ]
+    },
+    "app/schemas/ValeurAnalytique.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        14
+      ]
+    },
+    "app/services/ValeurAnalytiqueService.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "app/schemas/Vehicule.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        7
+      ]
+    },
+    "app/routes/VehiculeForm.js": {
+      "expectCount": 7,
+      "actualCount": 1,
+      "undocumentLines": [
+        44,
+        27,
+        22,
+        33,
+        49,
+        37
+      ]
+    },
+    "app/routes/VehiculeListe.js": {
+      "expectCount": 12,
+      "actualCount": 4,
+      "undocumentLines": [
+        63,
+        47,
+        38,
+        43,
+        67,
+        73,
+        53,
+        59
+      ]
+    },
+    "app/services/VehiculeService.js": {
+      "expectCount": 8,
+      "actualCount": 3,
+      "undocumentLines": [
+        60,
+        20,
+        34,
+        39,
+        56
+      ]
+    },
+    "app/lib/create-icon-set.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        26
+      ]
+    },
+    "app/styles/datepicker-style.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        3
+      ]
+    }
+  }
+}
