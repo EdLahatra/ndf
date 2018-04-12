@@ -4249,9 +4249,9 @@
                                         "column": 94
                                       }
                                     },
-                                    "value": "https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1/test/id?foo=bar",
-                                    "rawValue": "https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1/test/id?foo=bar",
-                                    "raw": "'https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1/test/id?foo=bar'"
+                                    "value": "https://test.compta.com/API/rest/notesDeFrais/v1/test/id?foo=bar",
+                                    "rawValue": "https://test.compta.com/API/rest/notesDeFrais/v1/test/id?foo=bar",
+                                    "raw": "'https://test.compta.com/API/rest/notesDeFrais/v1/test/id?foo=bar'"
                                   }
                                 ]
                               }

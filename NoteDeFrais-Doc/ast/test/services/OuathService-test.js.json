@@ -1335,9 +1335,9 @@
                                                 "column": 66
                                               }
                                             },
-                                            "value": "https://test.compta.com/ComptaWeb/rest/token",
-                                            "rawValue": "https://test.compta.com/ComptaWeb/rest/token",
-                                            "raw": "'https://test.compta.com/ComptaWeb/rest/token'"
+                                            "value": "https://test.compta.com/API/rest/token",
+                                            "rawValue": "https://test.compta.com/API/rest/token",
+                                            "raw": "'https://test.compta.com/API/rest/token'"
                                           },
                                           {
                                             "type": "Literal",

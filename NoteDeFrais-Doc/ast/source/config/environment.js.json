@@ -809,9 +809,9 @@
                                       "column": 69
                                     }
                                   },
-                                  "value": "https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1",
-                                  "rawValue": "https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1",
-                                  "raw": "'https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1'"
+                                  "value": "https://test.compta.com/API/rest/notesDeFrais/v1",
+                                  "rawValue": "https://test.compta.com/API/rest/notesDeFrais/v1",
+                                  "raw": "'https://test.compta.com/API/rest/notesDeFrais/v1'"
                                 },
                                 "kind": "init"
                               },
@@ -1178,9 +1178,9 @@
                                   "column": 57
                                 }
                               },
-                              "value": "https://test.compta.com/ComptaWeb/rest/token",
-                              "rawValue": "https://test.compta.com/ComptaWeb/rest/token",
-                              "raw": "'https://test.compta.com/ComptaWeb/rest/token'"
+                              "value": "https://test.compta.com/API/rest/token",
+                              "rawValue": "https://test.compta.com/API/rest/token",
+                              "raw": "'https://test.compta.com/API/rest/token'"
                             },
                             "kind": "init"
                           },
@@ -1457,9 +1457,9 @@
                                       "column": 69
                                     }
                                   },
-                                  "value": "https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1",
-                                  "rawValue": "https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1",
-                                  "raw": "'https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1'"
+                                  "value": "https://test.compta.com/API/rest/notesDeFrais/v1",
+                                  "rawValue": "https://test.compta.com/API/rest/notesDeFrais/v1",
+                                  "raw": "'https://test.compta.com/API/rest/notesDeFrais/v1'"
                                 },
                                 "kind": "init"
                               },

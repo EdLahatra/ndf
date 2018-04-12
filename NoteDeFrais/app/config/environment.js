@@ -22,7 +22,7 @@ const environment = {
     oauth: {},
     api: [
       {
-        url: 'https://www.www.compta.com.com/ComptaWeb/rest/notesDeFrais/v1',
+        url: 'https://www.www.compta.com.com/API/rest/notesDeFrais/v1',
         pathUnsecured: ['baremesKilometriques']
       }, {
         url: 'httpss://www.www.compta.com.com/Gestemps/rest/notesDeFrais/v1',
@@ -33,14 +33,14 @@ const environment = {
 
   ComptaCom: {
     oauth: {
-      url: 'https://www.compta.com/ComptaWeb/rest/token',
+      url: 'https://www.compta.com/API/rest/token',
       grant_type: 'password',
       client_id: 'oauth2clientid',
       client_secret: 'oauth2clientsecret'
     },
     api: [
       {
-        url: 'https://www.compta.com/ComptaWeb/rest/notesDeFrais/v1',
+        url: 'https://www.compta.com/API/rest/notesDeFrais/v1',
         pathUnsecured: ['baremesKilometriques']
       }
     ]

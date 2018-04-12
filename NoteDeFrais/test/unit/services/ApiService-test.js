@@ -49,7 +49,7 @@ describe('ApiService', () => {
     });
 
     const url = apiService.buildUrl('test', ['id'], { foo: 'bar' });
-    assert.equal(url, 'https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1/test/id?foo=bar');
+    assert.equal(url, 'https://test.compta.com/API/rest/notesDeFrais/v1/test/id?foo=bar');
   });
 
 });

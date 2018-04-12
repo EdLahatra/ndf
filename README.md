@@ -157,7 +157,7 @@ Les valeurs à mettre dans le fichier sont :
     oauth: {},
     api: [
       {
-        url: 'https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1',
+        url: 'https://test.compta.com/API/rest/notesDeFrais/v1',
         pathUnsecured: ['baremesKilometriques']
       }, {
         url: 'https://test.compta.com/Gestemps/rest/notesDeFrais/v1',
@@ -168,14 +168,14 @@ Les valeurs à mettre dans le fichier sont :
 
   ComptaCom: {
     oauth: {
-      url: 'https://test.compta.com/ComptaWeb/rest/token',
+      url: 'https://test.compta.com/API/rest/token',
       grant_type: 'password',
       client_id: 'oauth2clientid',
       client_secret: 'oauth2clientsecret'
     },
     api: [
       {
-        url: 'https://test.compta.com/ComptaWeb/rest/notesDeFrais/v1',
+        url: 'https://test.compta.com/API/rest/notesDeFrais/v1',
         pathUnsecured: ['baremesKilometriques']
       }
     ]

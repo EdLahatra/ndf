@@ -16,7 +16,7 @@ describe('OuathService', () => {
 
   it('should build url for ouath', () => {
     const url = service.buildAuthUrl({ username: 'foo', password: 'bar' });
-    const result = ['https://test.compta.com/ComptaWeb/rest/token',
+    const result = ['https://test.compta.com/API/rest/token',
       '?grant_type=password&client_id=oauth2clientid',
       '&client_secret=oauth2clientsecret&username=foo&password=bar'].join('')
     assert.equal(result, url);
