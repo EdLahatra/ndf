@@ -1,28 +1,14 @@
-'use strict';
-
-import React, {
-  Component,
-} from 'react';
-
-import {
-  Text,
-  View,
-  Image,
-  Linking,
-  TouchableNativeFeedback,
-  ListView,
-  ScrollView
-} from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
+import GoogleAnalytics from 'react-native-google-analytics-bridge';
+import { Actions } from 'react-native-router-flux';
 
 import Glyphicons from '../Glyphicons';
-
-import { Actions, } from 'react-native-router-flux';
 import { Style, IconSize, Colors } from '../styles/style';
-
 import CompteSecureService from '../services/CompteSecureService';
 import CategorieDepenseService from '../services/CategorieDepenseService';
 import ListEdit from '../components/list-edit-with-menu';
-import GoogleAnalytics from 'react-native-google-analytics-bridge';
+
 
 /**
  * Page de la liste de dépenses
@@ -31,12 +17,11 @@ import GoogleAnalytics from 'react-native-google-analytics-bridge';
  * @override app/components/ListEdit
  */
 export default class CategorieDepenseListe extends ListEdit {
-
   /**
    * Initialisation de l'état du composant.
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     super();
     /** @type {CompteSecureService} */
     this.compteSecureService = new CompteSecureService();
@@ -47,7 +32,7 @@ export default class CategorieDepenseListe extends ListEdit {
   /**
    * Méthode invoquée une fois que le DOM est chargée.
    */
-  async componentDidMount () {
+  async componentDidMount() {
     super.componentDidMount();
     this.onRefresh();
     GoogleAnalytics.trackScreenView('CategorieDepenseListe');
@@ -57,7 +42,7 @@ export default class CategorieDepenseListe extends ListEdit {
    * Méthode pour supprimer la liste des éléments sélectionnés lors d'un LongPress
    * @param selected
    */
-  static deleteAll (selected) {
+  static deleteAll(selected) {
     new CategorieDepenseService().deleteAll(Object.keys(selected));
     Actions.refresh({ selected: {} });
   }
@@ -66,7 +51,7 @@ export default class CategorieDepenseListe extends ListEdit {
    * Méthode qui permet de vérifier la possibilité de supprimer une catégorie de dépense
    * @returns {*}
    */
-  static shouldDelete () {
+  static shouldDelete() {
     return new CompteSecureService().shouldManageCategories();
   }
 
@@ -74,7 +59,7 @@ export default class CategorieDepenseListe extends ListEdit {
    * Méthode qui permet de vérifier la possibilité d'ajouter une catégorie de dépense
    * @returns {*}
    */
-  shouldAdd () {
+  shouldAdd() {
     return this.compteSecureService.shouldManageCategories();
   }
 
@@ -82,21 +67,21 @@ export default class CategorieDepenseListe extends ListEdit {
    * Méthode qui retoure la liste des éléments à afficher dans la liste
    * @returns {*}
    */
-  getElements () {
-    return this.categorieDepenseService.findAllForAccount(this.compteSecureService.getSelectedAccount().compte.id);
+  getElements() {
+    return this.categorieDepenseService.findAllForAccount(
+      this.compteSecureService.getSelectedAccount().compte.id);
   }
 
   /**
    * Méthode pour rafraîchir les données
    */
-  async onRefresh () {
+  async onRefresh() {
     if (this.compteSecureService.shouldUseApiService()) {
       await this.categorieDepenseService.mergeAll();
     }
-
   }
 
-  add () {
+  add() {
     Actions.categorieDepenseForm();
   }
 
@@ -105,7 +90,7 @@ export default class CategorieDepenseListe extends ListEdit {
    * @param category
    * @param isSelected
    */
-  onLongPress (category, isSelected = false) {
+  onLongPress(category, isSelected = false) {
     if (this.compteSecureService.shouldManageCategories()) {
       super.onLongPress(category, isSelected);
     }
@@ -116,7 +101,7 @@ export default class CategorieDepenseListe extends ListEdit {
    * @param category
    * @param isSelected
    */
-  onPress (category, isSelected = false) {
+  onPress(category, isSelected = false) {
     if (this.compteSecureService.shouldManageCategories()) {
       if (super.onPress(category, isSelected) && isSelected === false) {
         Actions.categorieDepenseForm({ category });
@@ -124,14 +109,16 @@ export default class CategorieDepenseListe extends ListEdit {
     }
   }
 
-  _renderRowContent (element) {
-
+  _renderRowContent(element) {
     const hasSelected = this.props.selected && this.props.selected[element.id];
 
-    const rowIcon = !hasSelected ? <View style={Style.imageListPreview}>
-      <Glyphicons name={element.icone} size={IconSize.small}
-                  style={[Colors.greyDarker.color()]}/>
-    </View> : null;
+    const rowIcon = !hasSelected ? (<View style={Style.imageListPreview}>
+      <Glyphicons
+        name={element.icone}
+        size={IconSize.small}
+        style={[Colors.greyDarker.color()]}
+      />
+    </View>) : null;
 
     return (<View style={{ flex: 1, flexDirection: 'row' }}>
 
@@ -147,5 +134,4 @@ export default class CategorieDepenseListe extends ListEdit {
 
     </View>);
   }
-
 }

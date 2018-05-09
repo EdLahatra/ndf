@@ -1,16 +1,13 @@
-import { Platform, } from 'react-native';
+import { Platform } from 'react-native';
 
 /**
  * Classe utilitaire pour gérer les différences entre les OS
  */
 export default {
-
-  isAndroid(){
+  isAndroid() {
     return Platform.OS === 'android';
   },
-
-  getSelectMarginRight(){
+  getSelectMarginRight() {
     return (this.isAndroid() ? -40 : 0);
   }
-
 };

@@ -1,7 +1,8 @@
 import _ from 'underscore';
+
 import ENV from '../config/environment';
 import fetch from '../lib/fetch';
-import { OauthServiceFactory } from './OauthService';
+import OauthServiceFactory from './OauthService';
 import CompteSecureService from './CompteSecureService';
 import ApiServiceAccess from '../errors/ApiServiceAccess';
 import NotFoundException from '../errors/NotFoundException';
@@ -11,12 +12,11 @@ import Logger from '../lib/Logger';
  * Service de communication avec l'API ComptaCom
  */
 export default class ApiService {
-
   /**
    * Initialisation du service
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     /** @type {CompteSecureService} */
     this.compteSecureService = new CompteSecureService();
   }
@@ -24,7 +24,7 @@ export default class ApiService {
   /**
    * Retourne la configuration en fonction du compte sélectionné
    */
-  getConfiguration () {
+  getConfiguration() {
     const selectedAccount = this.compteSecureService.getSelectedAccount();
     return ENV[selectedAccount.typeCompte];
   }
@@ -33,15 +33,15 @@ export default class ApiService {
    * Retourne la configuration de l'api
    * @returns {Array|string|string|string|*}
    */
-  getApiConfiguration () {
-    return this.getConfiguration().api
+  getApiConfiguration() {
+    return this.getConfiguration().api;
   }
 
   /**
    * Retourne une instance du service d'authentification
    * @returns {OauthService}
    */
-  getOauthService () {
+  getOauthService() {
     const selectedAccount = this.compteSecureService.getSelectedAccount();
     return OauthServiceFactory.getInstance(selectedAccount.typeCompte);
   }
@@ -51,10 +51,8 @@ export default class ApiService {
    * @param params
    * @returns {string}
    */
-  toQueryParams (params = {}) {
-    return _.map(params, (v, k) => {
-      return encodeURIComponent(k) + '=' + encodeURIComponent(v);
-    }).join('&');
+  toQueryParams(params = {}) {
+    return _.map(params, (v, k) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('&');
   }
 
   /**
@@ -62,9 +60,9 @@ export default class ApiService {
    * @param path
    * @returns {string|string|string|string|string|string|*}
    */
-  getBasePath (path) {
+  getBasePath(path) {
     const apiConfiguration = this.getApiConfiguration();
-    const filtered = this.getApiConfiguration().filter((api) => api.pathUnsecured.includes(path));
+    const filtered = this.getApiConfiguration().filter(api => api.pathUnsecured.includes(path));
     if (filtered.length > 0) {
       return filtered[0].url;
     }
@@ -78,41 +76,37 @@ export default class ApiService {
    * @param queryParams
    * @returns {string}
    */
-  buildUrl (path, pathParams = [], queryParams = {}) {
-    return `${this.getBasePath(path)}/${path}/${pathParams.join('/')}?${this.toQueryParams(queryParams)}`;
+  buildUrl(path, pathParams = [], queryParams = {}) {
+    return (
+      `${this.getBasePath(path)}/${path}/${pathParams.join('/')}?${this.toQueryParams(queryParams)}`
+    );
   }
 
-  _needAuthorization (path) {
-    const filtered = this.getApiConfiguration().filter((api) => api.pathUnsecured.includes(path));
+  _needAuthorization(path) {
+    const filtered = this.getApiConfiguration().filter(api => api.pathUnsecured.includes(path));
     return filtered.length === 0;
   }
 
-  async _getHeaders (apiPath) {
-
+  async _getHeaders(apiPath) {
     const headers = { 'Content-Type': 'application/json' };
 
     if (!this._needAuthorization(apiPath)) {
       return headers;
-    }
-
-    else if (!this.compteSecureService.shouldUseApiService()) {
+    } else if (!this.compteSecureService.shouldUseApiService()) {
       throw new ApiServiceAccess('Should not use with selectedAccount');
-    }
-    else {
-
+    } else {
       if (this.compteSecureService.hasExpiredToken()) {
         await this.getOauthService().reAuthenticate();
       }
 
       const accessToken = this.compteSecureService.getAccessToken();
 
-      headers['Authorization'] = `Bearer ${accessToken}`;
+      headers.Authorization = `Bearer ${accessToken}`;
       return headers;
     }
-
   }
 
-  async _fetch (url, options) {
+  async _fetch(url, options) {
     const cancelPromise = new Promise((resolve, reject) => setTimeout(reject, 15000));
     const promise = fetch(url, options);
     return Promise.race([cancelPromise, promise]);
@@ -125,25 +119,26 @@ export default class ApiService {
    * @param queryParams
    * @returns {*}
    */
-  async get (apiPath, pathParams = [], queryParams = {}) {
+  async get(apiPath, pathParams = [], queryParams = {}) {
     const headers = await this._getHeaders(apiPath);
     const url = this.buildUrl(apiPath, pathParams, queryParams);
     const response = await this._fetch(url, { method: 'GET', headers });
     if (response.ok) {
-      return await response.json();
-    }
-    else if (response.status === 401) {
+      const result = await response.json();
+      return result;
+    } else if (response.status === 401) {
       await this.getOauthService().reAuthenticate();
       return this.get(...arguments);
     }
 
     const json = await response.json();
-    const message = ['[', response.status, ']', response.statusText, 'for', url, json.error].join(' ');
+    const message = [
+      '[', response.status, ']', response.statusText, 'for', url, json.error
+    ].join(' ');
     Logger.error(message);
     if (response.status === 403) {
       throw new ApiServiceAccess(json.error);
-    }
-    else if (response.status === 404) {
+    } else if (response.status === 404) {
       throw new NotFoundException(text);
     }
     throw new Error(json.error);
@@ -157,15 +152,14 @@ export default class ApiService {
    * @param queryParams
    * @returns {*}
    */
-  async delete (apiPath, object, pathParams = [], queryParams = {}) {
+  async delete(apiPath, object, pathParams = [], queryParams = {}) {
     const headers = await this._getHeaders(apiPath);
     const url = this.buildUrl(apiPath, pathParams, queryParams);
     const body = JSON.stringify(object);
     const response = await this._fetch(url, { method: 'DELETE', headers, body });
     if (response.ok) {
       return true;
-    }
-    else if (response.status === 401) {
+    } else if (response.status === 401) {
       await this.getOauthService().reAuthenticate();
       return await this.delete(...arguments);
     }
@@ -174,8 +168,7 @@ export default class ApiService {
     Logger.error(message);
     if (response.status === 403) {
       throw new ApiServiceAccess(text);
-    }
-    else if (response.status === 404) {
+    } else if (response.status === 404) {
       throw new NotFoundException(text, object);
     }
     throw new Error(text);
@@ -189,15 +182,14 @@ export default class ApiService {
    * @param queryParams
    * @returns {*}
    */
-  async put (apiPath, object, pathParams = [], queryParams = {}) {
+  async put(apiPath, object, pathParams = [], queryParams = {}) {
     const headers = await this._getHeaders(apiPath);
     const url = this.buildUrl(apiPath, pathParams, queryParams);
     const body = JSON.stringify(object);
     const response = await this._fetch(url, { method: 'PUT', headers, body });
     if (response.ok) {
       return true;
-    }
-    else if (response.status === 401) {
+    } else if (response.status === 401) {
       await this.getOauthService().reAuthenticate();
       return await this.put(...arguments);
     }
@@ -206,8 +198,7 @@ export default class ApiService {
     Logger.error(message);
     if (response.status === 403) {
       throw new ApiServiceAccess(text);
-    }
-    else if (response.status === 404) {
+    } else if (response.status === 404) {
       throw new NotFoundException(text, object);
     }
     throw new Error(text);
@@ -221,15 +212,14 @@ export default class ApiService {
    * @param queryParams
    * @returns {*}
    */
-  async post (apiPath, object, pathParams = [], queryParams = {}) {
+  async post(apiPath, object, pathParams = [], queryParams = {}) {
     const headers = await this._getHeaders(apiPath);
     const url = this.buildUrl(apiPath, pathParams, queryParams);
     const body = JSON.stringify(object);
     const response = await this._fetch(url, { method: 'POST', headers, body });
     if (response.ok) {
       return true;
-    }
-    else if (response.status === 401) {
+    } else if (response.status === 401) {
       await this.getOauthService().reAuthenticate();
       return await this.post(...arguments);
     }
@@ -241,5 +231,4 @@ export default class ApiService {
     }
     throw new Error(text);
   }
-
 }

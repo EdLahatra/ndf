@@ -1,4 +1,4 @@
-import Realm from './RealmService'
+import Realm from './RealmService';
 import Configuration from '../schemas/Configuration';
 
 /**
@@ -6,25 +6,23 @@ import Configuration from '../schemas/Configuration';
  * @override {EntityService}
  */
 export default class ConfigurationService {
-
-  constructor () {
+  constructor() {
     this.realm = Realm.service;
     this.id = 'Configuration';
   }
 
-  getConfiguration () {
+  getConfiguration() {
     return this.realm.objects(Configuration.schema.name).filtered(`id="${this.id}"`)[0];
   }
 
-  hasAcceptedTermsOfUse () {
+  hasAcceptedTermsOfUse() {
     const Configuration = this.getConfiguration();
     return Configuration ? Configuration.isAcceptedTerms : false;
   }
 
-  acceptTermsOfUse () {
+  acceptTermsOfUse() {
     this.realm.write(() => {
       this.realm.create(Configuration.schema.name, { id: this.id, isAcceptedTerms: true });
     });
   }
-
 }

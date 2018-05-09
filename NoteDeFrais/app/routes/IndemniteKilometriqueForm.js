@@ -1,13 +1,8 @@
-'use strict';
-
-import React, { Component, } from 'react';
-
 import { Alert, } from 'react-native';
 import _ from 'underscore';
-import { Actions, } from 'react-native-router-flux';
+import { Actions } from 'react-native-router-flux';
 
 import I18n from '../i18n/translations';
-
 import CompteSecureService from '../services/CompteSecureService';
 import VehiculeService from '../services/VehiculeService';
 import CompteService from '../services/CompteService';
@@ -27,12 +22,11 @@ import ValeurAnalytiqueService from '../services/ValeurAnalytiqueService';
  * @override app/components/RealmForm
  */
 export default class IndemniteKilometriqueForm extends RealmForm {
-
   /**
    * Initialisation de l'état du composant.
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     super();
     /** @type {CompteSecureService} */
     this.compteSecureService = new CompteSecureService();
@@ -52,19 +46,18 @@ export default class IndemniteKilometriqueForm extends RealmForm {
     this.valeurAnalytiqueService = new ValeurAnalytiqueService();
   }
 
-  getStateValue (props) {
+  getStateValue() {
     const selectedAccount = this.compteSecureService.getSelectedAccount();
     const compte = selectedAccount.compte;
 
-    let indemniteKilometrique = _.clone(this.props.depenseCommune) || {};
+    const indemniteKilometrique = _.clone(this.props.depenseCommune) || {};
 
     const vehicules = this.vehiculeService.findAllForAccount(compte.id);
     let favori;
     if (vehicules.length === 1) {
       favori = vehicules[0];
-    }
-    else {
-      favori = vehicules.find((vehicule) => vehicule.favori === true);
+    } else {
+      favori = vehicules.find(vehicule => vehicule.favori === true);
     }
 
     if (favori) {
@@ -72,90 +65,83 @@ export default class IndemniteKilometriqueForm extends RealmForm {
     }
 
     if (vehicules === null || vehicules.length === 0) {
-
       Alert.alert(I18n.t('Alert.warning'), I18n.t('Alert.shouldAddVehicule'),
-          [
+        [
 
-            { text: I18n.t('Alert.cancel'), style: 'cancel' },
-            { text: I18n.t('Alert.ok'), onPress: () => Actions.vehiculeForm({ account: compte }) }
-          ]
-      )
-
+          { text: I18n.t('Alert.cancel'), style: 'cancel' },
+          { text: I18n.t('Alert.ok'), onPress: () => Actions.vehiculeForm({ account: compte }) }
+        ]
+      );
     }
 
     if (indemniteKilometrique.valeursAnalytiques) {
       indemniteKilometrique.valeursAnalytiques = _.toArray(indemniteKilometrique.valeursAnalytiques)
-                                                  .map((valeur)=> this.valeurAnalytiqueService.find(valeur.id));
+        .map(valeur => this.valeurAnalytiqueService.find(valeur.id));
     }
 
     return indemniteKilometrique;
   }
 
-  _onCallApi (inputId, apiId, param) {
+  _onCallApi(inputId, apiId, param) {
     super._onCallApi(inputId, apiId, param);
     if (apiId === 'places') {
       Actions.placeAutocomplete({ input: inputId });
-    }
-    else if (apiId === 'distance-matrix') {
-
+    } else if (apiId === 'distance-matrix') {
       const originFieldId = '_depart';
       const destinationFieldId = 'lieu';
       const origins = this.state.value[originFieldId];
       const destinations = this.state.value[destinationFieldId];
 
       if (origins && destinations) {
-        Distance.compute(origins, destinations).then((distance)=> {
+        Distance.compute(origins, destinations).then((distance) => {
           const data = param && typeof param === 'function' ? param(distance) : distance;
           Actions.refresh({ distance: { data, input: inputId } });
-        }).catch(()=> {
-
+        }).catch(() => {
           Alert.alert(I18n.t('Alert.warning'), I18n.t('Alert.notFoundPlaces'),
-              [
-                {
-                  text: I18n.t('Alert.changeOrigins', { origins }),
-                  onPress: () => this._onCallApi(originFieldId, 'places')
-                },
-                {
-                  text: I18n.t('Alert.changeDestinations', { destinations }),
-                  onPress: () => this._onCallApi(destinationFieldId, 'places')
-                },
-                { text: I18n.t('Alert.cancel'), style: 'cancel' }
-
-              ])
-
-        });
-      }
-      else if (!!origins === false) {
-        Alert.alert(I18n.t('Alert.warning'), I18n.t('Alert.addOriginPlace'),
             [
               {
-                text: I18n.t('Alert.useGooglePlaceApi'), onPress: () => this._onCallApi(originFieldId, 'places')
+                text: I18n.t('Alert.changeOrigins', { origins }),
+                onPress: () => this._onCallApi(originFieldId, 'places')
               },
               {
-                text: I18n.t('Alert.cancel'),
-                onPress: () => this.refs.form.getComponent(originFieldId).refs.input.focus(),
-                style: 'cancel'
-              }
-            ]
-        )
-      }
-      else if (!!destinations === false) {
-        Alert.alert(I18n.t('Alert.warning'), I18n.t('Alert.addDestinationPlace'),
-            [
-              { text: I18n.t('Alert.useGooglePlaceApi'), onPress: () => this._onCallApi(destinationFieldId, 'places') },
-              {
-                text: I18n.t('Alert.cancel'),
-                onPress: () => this.refs.form.getComponent(destinationFieldId).refs.input.focus(),
-                style: 'cancel'
-              }
-            ]
-        )
+                text: I18n.t('Alert.changeDestinations', { destinations }),
+                onPress: () => this._onCallApi(destinationFieldId, 'places')
+              },
+              { text: I18n.t('Alert.cancel'), style: 'cancel' }
 
+            ]);
+        });
+      } else if (!!origins === false) {
+        Alert.alert(I18n.t('Alert.warning'), I18n.t('Alert.addOriginPlace'),
+          [
+            {
+              text: I18n.t('Alert.useGooglePlaceApi'),
+              onPress: () => this._onCallApi(originFieldId, 'places')
+            },
+            {
+              text: I18n.t('Alert.cancel'),
+              onPress: () => this.refs.form.getComponent(originFieldId).refs.input.focus(),
+              style: 'cancel'
+            }
+          ]
+        );
+      } else if (!!destinations === false) {
+        Alert.alert(I18n.t('Alert.warning'), I18n.t('Alert.addDestinationPlace'),
+          [
+            { text: I18n.t('Alert.useGooglePlaceApi'),
+              onPress: () => this._onCallApi(destinationFieldId, 'places') },
+            {
+              text: I18n.t('Alert.cancel'),
+              onPress: () => this.refs.form.getComponent(destinationFieldId).refs.input.focus(),
+              style: 'cancel'
+            }
+          ]
+        );
       }
     }
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     if (nextProps.addCar) {
       const selectedAccount = this.compteSecureService.getSelectedAccount();
       const vehicules = this.vehiculeService.findAllForAccount(selectedAccount.compte.id);
@@ -164,17 +150,14 @@ export default class IndemniteKilometriqueForm extends RealmForm {
     super.componentWillReceiveProps(nextProps);
   }
 
-  getConfig () {
-
+  getConfig() {
     const selectedAccount = this.compteSecureService.getSelectedAccount();
-
     const vehicules = this.vehiculeService.findAllForAccount(selectedAccount.compte.id);
-    const vehiculesOptions = vehicules.map((vehicule) => {
-      return { value: vehicule.id, text: vehicule.nom }
-    });
-
+    const vehiculesOptions = vehicules.map(
+      vehicule => ({ value: vehicule.id, text: vehicule.nom }));
     if (this.compteSecureService.shouldUseApiService()) {
-      const axesAnalytiques = this.axeAnalytiqueService.findAllForAccount(selectedAccount.compte.id);
+      const axesAnalytiques = this.axeAnalytiqueService
+        .findAllForAccount(selectedAccount.compte.id);
       this.setState({ axesAnalytiques });
       return {
         schema: IndemniteKilometrique.schema,
@@ -183,17 +166,14 @@ export default class IndemniteKilometriqueForm extends RealmForm {
         formType: 'secure'
       };
     }
-    else {
-      return {
-        schema: IndemniteKilometrique.schema,
-        idVehicule: vehiculesOptions,
-        formType: 'autonome'
-      };
-    }
-
+    return {
+      schema: IndemniteKilometrique.schema,
+      idVehicule: vehiculesOptions,
+      formType: 'autonome'
+    };
   }
 
-  static getTitle (props) {
+  static getTitle(props) {
     return props.category.nom;
   }
 
@@ -201,44 +181,41 @@ export default class IndemniteKilometriqueForm extends RealmForm {
   static indemniteKilometriqueService = new IndemniteKilometriqueService();
   static noteDeFraisService = new NoteDeFraisService();
 
-  static shouldDelete (props) {
+  static shouldDelete(props) {
     if (props.depenseCommune) {
       return true;
     }
     return false;
   }
 
-  static delete (depenseCommune, props) {
+  static delete(depenseCommune) {
     const selectedAccount = this.compteSecureService.getSelectedAccount();
-    const ndf = this.noteDeFraisService.find(this.noteDeFraisService.findEnCours(selectedAccount.compte));
+    const ndf = this.noteDeFraisService
+      .find(this.noteDeFraisService.findEnCours(selectedAccount.compte));
     this.indemniteKilometriqueService.delete(depenseCommune, ndf);
     this.noteDeFraisService.updateTotal(ndf);
     const noteDeFrais = this.noteDeFraisService.find(ndf.id);
     Actions.pop({ refresh: { noteDeFrais } });
   }
 
-  static save (props, formValues) {
+  static save(props, formValues) {
     const selectedAccount = this.compteSecureService.getSelectedAccount();
 
-    const ndf = this.noteDeFraisService.find(this.noteDeFraisService.findEnCours(selectedAccount.compte));
+    const ndf = this.noteDeFraisService
+      .find(this.noteDeFraisService.findEnCours(selectedAccount.compte));
 
-    formValues.valeursAnalytiques = _.filter(formValues.valeursAnalytiques, (valeur) => valeur.id)
-                                     .map((valeur) => {
-                                       return { id: valeur.id }
-                                     });
+    formValues.valeursAnalytiques = _.filter(formValues.valeursAnalytiques, valeur => valeur.id)
+      .map(valeur => ({ id: valeur.id }));
     if (formValues.id) {
       this.indemniteKilometriqueService.update(formValues, ndf);
       this.noteDeFraisService.updateTotal(ndf);
       const noteDeFrais = this.noteDeFraisService.find(ndf.id);
       Actions.pop({ refresh: { noteDeFrais } });
-    }
-    else {
+    } else {
       this.indemniteKilometriqueService.create(formValues, ndf);
       this.noteDeFraisService.updateTotal(ndf);
       const noteDeFrais = this.noteDeFraisService.find(ndf.id);
       Actions.pop({ popNum: 2, refresh: { noteDeFrais } });
     }
-
   }
-
 }

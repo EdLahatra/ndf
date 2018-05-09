@@ -1,12 +1,14 @@
 const environment = {
 
   DistanceMatrix: {
-    url: 'httpss://maps.googleapis.com/maps/api/distancematrix/json?',
+    url: 'https://maps.googleapis.com/maps/api/distancematrix/json?',
     key: 'AIzaSyDL4X0q_crHnm2_8ECdOJVyrwdGCPUpFTw'
   },
 
   Places: {
-    key: 'AIzaSyDL4X0q_crHnm2_8ECdOJVyrwdGCPUpFTw'
+    // key: 'AIzaSyDL4X0q_crHnm2_8ECdOJVyrwdGCPUpFTw'
+    key: 'AIzaSyD6eIzwfy2fSLPKhEBQko8fnmecjlPYuS0',
+    newKey: 'AIzaSyDPlgW3AxwsuqkrgjqPS67W9UHIjLGnW5g'
   },
 
   Analytics: {
@@ -25,7 +27,7 @@ const environment = {
         url: 'https://www.www.compta.com.com/API/rest/notesDeFrais/v1',
         pathUnsecured: ['baremesKilometriques']
       }, {
-        url: 'httpss://www.www.compta.com.com/Gestemps/rest/notesDeFrais/v1',
+        url: 'https://www.www.compta.com.com/Gestemps/rest/notesDeFrais/v1',
         pathUnsecured: ['envoiNoteDeFrais']
       }
     ]
@@ -48,7 +50,7 @@ const environment = {
 
   Gescab: {
     oauth: {
-      url: 'httpss://www.gescab.fr/Gestemps/rest/token',
+      url: 'https://www.gescab.fr/Gestemps/rest/token',
       grant_type: 'password',
       client_id: 'oauth2clientid',
       client_secret: 'oauth2clientsecret'
@@ -76,5 +78,4 @@ const environment = {
 
 };
 
-module.exports = environment;
-
+export default environment;

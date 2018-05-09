@@ -1,7 +1,6 @@
 import { TYPES } from '../schemas/Compte';
 
 export default class CompteSecure {
-
   static schema = {
     name: 'CompteSecure',
     primaryKey: 'id',
@@ -26,5 +25,4 @@ export default class CompteSecure {
       lastFetchAllVehicule: { type: 'date', optional: true }
     }
   }
-
 }

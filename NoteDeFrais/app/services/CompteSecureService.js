@@ -1,66 +1,65 @@
-import Utils from '../lib/utils';
-
-import CompteSecure  from '../schemas/CompteSecure';
-import CategorieDepense  from '../schemas/CategorieDepense';
-import Vehicule  from '../schemas/Vehicule';
-import AxeAnalytique  from '../schemas/AxeAnalytique';
-import NoteDeFrais  from '../schemas/NoteDeFrais';
-import ValeurAnalytique  from '../schemas/ValeurAnalytique';
-import IndemniteKilometrique  from '../schemas/IndemniteKilometrique';
-import Justificatif  from '../schemas/Justificatif';
-import Depense  from '../schemas/Depense';
 import moment from 'moment';
-import I18n from '../i18n/translations';
-import RealmService  from './RealmService';
-
-import { TYPES } from '../schemas/Compte';
 import _ from 'underscore';
+
+import CompteSecure from '../schemas/CompteSecure';
+import CategorieDepense from '../schemas/CategorieDepense';
+import Vehicule from '../schemas/Vehicule';
+import AxeAnalytique from '../schemas/AxeAnalytique';
+import NoteDeFrais from '../schemas/NoteDeFrais';
+import ValeurAnalytique from '../schemas/ValeurAnalytique';
+import IndemniteKilometrique from '../schemas/IndemniteKilometrique';
+import Justificatif from '../schemas/Justificatif';
+import Depense from '../schemas/Depense';
+
+import I18n from '../i18n/translations';
+import RealmService from './RealmService';
+import { TYPES } from '../schemas/Compte';
+
+import Utils from '../lib/utils';
 
 /**
  * Service de gestion des comptes sécurisés
  */
 export default class CompteSecureService {
-
   /**
    * Initialisation du service
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     /** @type {RealmService.service} */
     this.db = RealmService.service;
   }
 
-  find (id) {
-    return this.findAll().filter((compteSecure) => compteSecure.id === id)[0];
+  find(id) {
+    return this.findAll().filter(compteSecure => compteSecure.id === id)[0];
   }
 
-  findAll () {
+  findAll() {
     return _.toArray(this.db.objects(CompteSecure.schema.name));
   }
 
-  _unsetSelectedAccounts () {
+  _unsetSelectedAccounts() {
     const allSelected = this.db.objects(CompteSecure.schema.name).filtered('isSelected = true');
     _.toArray(allSelected).forEach((s) => {
       s.isSelected = false;
     });
   }
 
-  setSelected (compteSecure) {
+  setSelected(compteSecure) {
     this.db.write(() => {
       this._unsetSelectedAccounts();
       compteSecure.isSelected = true;
     });
-
   }
 
-  attachCompte (compteSecureId, compte) {
+  attachCompte(compteSecureId, compte) {
     const compteSecure = this.find(compteSecureId);
     this.db.write(() => {
       compteSecure.compte = compte;
     });
   }
 
-  update ({ id }, { access_token, expires_in }) {
+  update({ id }, { access_token, expires_in }) {
     const expirationDate = moment().add(expires_in, 's').toDate();
     const data = { id, access_token, expirationDate, isSelected: true };
     this.db.write(() => {
@@ -71,8 +70,7 @@ export default class CompteSecureService {
     return id;
   }
 
-  create ({ access_token, expires_in }, typeCompte = TYPES.AUTONOME, compteSecureId = null) {
-
+  create({ access_token, expires_in }, typeCompte = TYPES.AUTONOME, compteSecureId = null) {
     if (compteSecureId) {
       const exist = this.find(compteSecureId);
       if (exist) {
@@ -89,7 +87,6 @@ export default class CompteSecureService {
     }
 
     if (access_token && expires_in) {
-
       const generatedId = compteSecureId || Utils.uuid();
       const expirationDate = moment().add(expires_in, 's').toDate();
       const data = { id: generatedId, access_token, expirationDate, isSelected: true, typeCompte };
@@ -99,68 +96,68 @@ export default class CompteSecureService {
       });
       return generatedId;
     }
-    else {
 
-      let compteAutonome = this.db.objects('Compte').filtered(`typeCompte = "${TYPES.AUTONOME}"`)[0];
-      let idCompte = null;
-      if (compteAutonome) {
-        idCompte = compteAutonome.id;
-      }
-      else {
-        idCompte = Utils.uuid();
-        this.db.write(() => {
-          this.db.create('Compte', { id: idCompte });
-        });
-        compteAutonome = this.db.objects('Compte').filtered(`id = "${idCompte}"`)[0];
-      }
 
-      const filtered = this.findAll().filter((secure) => secure.compte.id === idCompte);
-
-      if (filtered && filtered[0]) {
-        return filtered[0].id;
-      }
-
-      const generatedId = Utils.uuid();
-
-      const defaultCategories = this._getDefaultCategories();
-
+    let compteAutonome = this.db.objects('Compte').filtered(`typeCompte = "${TYPES.AUTONOME}"`)[0];
+    let idCompte = null;
+    if (compteAutonome) {
+      idCompte = compteAutonome.id;
+    } else {
+      idCompte = Utils.uuid();
       this.db.write(() => {
-        defaultCategories.forEach((categorie) => {
-          categorie.idCompte = idCompte;
-          this.db.create(CategorieDepense.schema.name, categorie, true);
-        });
+        this.db.create('Compte', { id: idCompte });
       });
-
-      const compteSecure = { id: generatedId, isSelected: true, compte: compteAutonome, typeCompte };
-      this.db.write(() => {
-        this._unsetSelectedAccounts();
-        this.db.create(CompteSecure.schema.name, compteSecure);
-      });
-
-      return generatedId;
+      compteAutonome = this.db.objects('Compte').filtered(`id = "${idCompte}"`)[0];
     }
 
+    const filtered = this.findAll().filter(secure => secure.compte.id === idCompte);
+
+    if (filtered && filtered[0]) {
+      return filtered[0].id;
+    }
+
+    const generatedId = Utils.uuid();
+
+    const defaultCategories = this._getDefaultCategories();
+
+    this.db.write(() => {
+      defaultCategories.forEach((categorie) => {
+        categorie.idCompte = idCompte;
+        this.db.create(CategorieDepense.schema.name, categorie, true);
+      });
+    });
+
+    const compteSecure = { id: generatedId, isSelected: true, compte: compteAutonome, typeCompte };
+    this.db.write(() => {
+      this._unsetSelectedAccounts();
+      this.db.create(CompteSecure.schema.name, compteSecure);
+    });
+
+    return generatedId;
   }
 
-  shouldManageCategories () {
+  shouldManageCategories() {
     const compteSecure = this.getSelectedAccount();
     return compteSecure ? compteSecure.typeCompte === TYPES.AUTONOME : false;
   }
 
-  shouldSkipAuthentication () {
+  shouldSkipAuthentication() {
     const compteSecure = this.getSelectedAccount();
     if (compteSecure) {
-      return this.shouldUseApiServiceWith(compteSecure) || compteSecure.compte !== null && !!compteSecure.compte.idFichePersonnelle;
+      return (
+        this.shouldUseApiServiceWith(compteSecure)
+        || (compteSecure.compte !== null && !!compteSecure.compte.idFichePersonnelle)
+      );
     }
     return false;
   }
 
-  shouldUseApiService () {
+  shouldUseApiService() {
     const compteSecure = this.getSelectedAccount();
     return this.shouldUseApiServiceWith(compteSecure);
   }
 
-  shouldUseApiServiceWith (compteSecure) {
+  shouldUseApiServiceWith(compteSecure) {
     if (compteSecure) {
       return compteSecure.compte === null || (compteSecure.typeCompte === TYPES.COMPTACOM || compteSecure.typeCompte === TYPES.GESCAB)
           && !!compteSecure.access_token;
@@ -168,11 +165,11 @@ export default class CompteSecureService {
     return false;
   }
 
-  getSelectedAccount () {
+  getSelectedAccount() {
     return this.db.objects(CompteSecure.schema.name).filtered('isSelected = true')[0];
   }
 
-  shouldFetchAll () {
+  shouldFetchAll() {
     if (this.shouldUseApiService()) {
       const compteSecure = this.getSelectedAccount();
       const lastFetchAll = compteSecure.lastFetchAll;
@@ -180,15 +177,13 @@ export default class CompteSecureService {
         const previousWeek = moment().subtract(7, 'days');
         return moment(lastFetchAll).isBefore(previousWeek);
       }
-      else {
-        return true;
-      }
+
+      return true;
     }
     return false;
   }
 
-  delete (compteSecure) {
-
+  delete(compteSecure) {
     let filterByIdCompte = null;
     if (compteSecure.compte) {
       const idCompte = compteSecure.compte.id;
@@ -196,7 +191,6 @@ export default class CompteSecureService {
     }
 
     this.db.write(() => {
-
       if (filterByIdCompte) {
         // Suppression des catégories
         this.db.delete(this.db.objects(CategorieDepense.schema.name).filtered(filterByIdCompte));
@@ -211,7 +205,8 @@ export default class CompteSecureService {
         // Suppression des véhicules
         const axes = this.db.objects(AxeAnalytique.schema.name).filtered(filterByIdCompte);
         axes.forEach((axe) => {
-          this.db.delete(this.db.objects(ValeurAnalytique.schema.name).filtered(`idAxeAnalytique = "${axe.id}"`));
+          this.db.delete(this.db.objects(ValeurAnalytique.schema.name)
+            .filtered(`idAxeAnalytique = "${axe.id}"`));
           this.db.delete(axe.valeurAnalytiques);
         });
         this.db.delete(axes);
@@ -221,12 +216,14 @@ export default class CompteSecureService {
         ndfs.forEach((ndf) => {
           const filterByIdNdf = `idNoteDeFrais = "${ndf.id}"`;
           // Suppression des ik
-          this.db.delete(this.db.objects(IndemniteKilometrique.schema.name).filtered(filterByIdNdf));
+          this.db.delete(this.db.objects(IndemniteKilometrique.schema.name)
+            .filtered(filterByIdNdf));
           this.db.delete(ndf.indemnitesKilometriques);
           // Suppression des depenses
           const depenses = this.db.objects(Depense.schema.name).filtered(filterByIdNdf);
           depenses.forEach((depense) => {
-            this.db.delete(this.db.objects(Justificatif.schema.name).filtered(`idDepense = "${depense.id}"`));
+            this.db.delete(this.db.objects(Justificatif.schema.name)
+              .filtered(`idDepense = "${depense.id}"`));
           });
           this.db.delete(depenses);
           this.db.delete(ndf.depenses);
@@ -246,22 +243,24 @@ export default class CompteSecureService {
     return null;
   }
 
-  setFetchAll (date) {
+  setFetchAll(date) {
     const compteSecure = this.getSelectedAccount();
     this.db.write(() => {
       compteSecure.lastFetchAll = date;
     });
   }
 
-  getAccessToken () {
+  getAccessToken() {
     const compteSecure = this.getSelectedAccount();
     if (compteSecure && compteSecure.access_token) {
       return compteSecure.access_token;
     }
-    throw new Error(['[CompteSecureService]', 'No access token found for', compteSecure.id].join(' '));
+    throw new Error(
+      ['[CompteSecureService]', 'No access token found for', compteSecure.id].join(' ')
+    );
   }
 
-  hasExpiredToken () {
+  hasExpiredToken() {
     const compteSecure = this.getSelectedAccount();
     if (compteSecure && compteSecure.expirationDate) {
       return moment(compteSecure.expirationDate).isBefore(moment());
@@ -269,22 +268,21 @@ export default class CompteSecureService {
     return true;
   }
 
-  _lastFetchAllKey (name) {
+  _lastFetchAllKey(name) {
     return `lastFetchAll${name}`;
   }
 
-  getLastFetchAll (name) {
+  getLastFetchAll(name) {
     return this.getSelectedAccount()[this._lastFetchAllKey(name)];
   }
 
-  setLastFetchAll (name, date) {
+  setLastFetchAll(name, date) {
     this.db.write(() => {
       this.getSelectedAccount()[this._lastFetchAllKey(name)] = date;
     });
   }
 
-  _getDefaultCategories () {
-
+  _getDefaultCategories() {
     return [
       {
         id: 'categories.addRestaurant',
@@ -342,5 +340,4 @@ export default class CompteSecureService {
         tva: 0
       }];
   }
-
 }

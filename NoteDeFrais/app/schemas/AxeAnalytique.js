@@ -1,5 +1,3 @@
-import { TYPE } from './Depense';
-
 const Schema = {
   name: 'AxeAnalytique',
   primaryKey: 'id',

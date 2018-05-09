@@ -4,7 +4,7 @@ const Schema = {
   properties: {
     code: { type: 'string' },
     description: { type: 'string' },
-    derniereModification: { type: 'date', optional: true  },
+    derniereModification: { type: 'date', optional: true },
     id: { type: 'string' },
     idAxeAnalytique: { type: 'string' },
     idGescabDossier: { type: 'string', optional: true }
@@ -12,9 +12,7 @@ const Schema = {
 };
 
 class ValeurAnalytique {
-
   static schema = Schema;
-
 }
 
 export default ValeurAnalytique;

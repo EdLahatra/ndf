@@ -1,5 +1,4 @@
 class KilometreAnnuel {
-
   static schema = {
     name: 'KilometreAnnuel',
     properties: {
@@ -7,7 +6,6 @@ class KilometreAnnuel {
       kilometrage: { type: 'float' }
     }
   };
-
 }
 
 export default KilometreAnnuel;

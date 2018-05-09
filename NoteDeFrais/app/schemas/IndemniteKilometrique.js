@@ -1,5 +1,4 @@
 export default class IndemniteKilometrique {
-
   static schema = {
     name: 'IndemniteKilometrique',
     primaryKey: 'id',
@@ -36,5 +35,4 @@ export default class IndemniteKilometrique {
       }
     }
   }
-
 }

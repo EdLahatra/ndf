@@ -1,5 +1,4 @@
 export default class BaremeKilometrique {
-
   static schema = {
     name: 'BaremeKilometrique',
     primaryKey: 'id',
@@ -12,7 +11,5 @@ export default class BaremeKilometrique {
       nom: { type: 'string', optional: true },
       seuils: { type: 'list', objectType: 'Seuil' }
     }
-
   }
-
 }

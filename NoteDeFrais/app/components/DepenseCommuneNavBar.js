@@ -1,6 +1,4 @@
-'use strict';
-
-import React, { Component, } from 'react';
+import React from 'react';
 import { Text, TouchableOpacity, InteractionManager, Modal, Alert } from 'react-native';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -15,7 +13,11 @@ import { STATUTS } from '../schemas/NoteDeFrais';
 
 import NavBar from './NavBar';
 
-const FILTRES = ['findAllDepenses', 'findAllIndemnitesKilometriquesWithRegulation', 'findAllAutresDepenses'];
+const FILTRES = [
+  'findAllDepenses',
+  'findAllIndemnitesKilometriquesWithRegulation',
+  'findAllAutresDepenses'
+];
 
 /**
  * NavBar spécifique à la liste des dépenses communes
@@ -24,12 +26,11 @@ const FILTRES = ['findAllDepenses', 'findAllIndemnitesKilometriquesWithRegulatio
  * @override {NavBar}
  */
 export default class DepenseCommuneNavBar extends NavBar {
-
   /**
    * Initialisation de l'état du composant.
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     /** @type {CompteSecureService} */
@@ -41,75 +42,75 @@ export default class DepenseCommuneNavBar extends NavBar {
       filtre: FILTRES[0],
       showMenu: false,
     };
-
+    this.validate = this.validate.bind(this);
   }
 
-  _getChecked (filtre) {
+  _getChecked(filtre) {
     if (this.state.filtre === filtre) {
-      return <MaterialIcons name="check" size={IconSize.small} style={Colors.yellowGreen.color()}/>
+      return (<MaterialIcons
+        name="check"
+        size={IconSize.small}
+        style={Colors.yellowGreen.color()}
+      />);
     }
-    return null
+    return null;
   }
 
-  _renderMenu () {
-
-    return FILTRES.map((filtre) => {
-      return <TouchableOpacity key={filtre}
-                               onPress={() => {
-                                 this.setState({ filtre });
-                                 InteractionManager.runAfterInteractions(() => {
-                                   this.setState({ showMenu: false });
-                                   Actions.refresh({ filtre: filtre });
-                                 });
-                               }}
-                               value={filtre}
-                               style={{ flex: 1, flexDirection: 'row' }}>
-        <View style={{ flex: 1 }}>{this._getChecked(filtre)}</View>
-        <Text style={{ fontSize: 18, margin: 2 }}>{I18n.t(`filters.${filtre}`)}</Text>
-      </TouchableOpacity>
-
-    })
-
+  _renderMenu() {
+    return FILTRES.map(filtre => (<TouchableOpacity
+      key={filtre}
+      onPress={() => {
+        this.setState({ filtre });
+        InteractionManager.runAfterInteractions(() => {
+          this.setState({ showMenu: false });
+          Actions.refresh({ filtre });
+        });
+      }}
+      value={filtre}
+      style={{ flex: 1, flexDirection: 'row' }}
+    >
+      <View style={{ flex: 1 }}>{this._getChecked(filtre)}</View>
+      <Text style={{ fontSize: 18, margin: 2 }}>{I18n.t(`filters.${filtre}`)}</Text>
+    </TouchableOpacity>));
   }
 
-  _validateAfterConfirm () {
+  _validateAfterConfirm() {
     try {
       const compteSecure = this.compteSecureService.getSelectedAccount();
-      const noteDeFrais = this.noteDeFraisService.find(this.noteDeFraisService.findEnCours(compteSecure.compte));
+      const noteDeFrais = this.noteDeFraisService.find(
+        this.noteDeFraisService.findEnCours(compteSecure.compte));
       this.noteDeFraisService.validate(compteSecure.compte, noteDeFrais);
 
-      let title = I18n.t('DepenseCommuneListe.afterValidate.title');
-      let message = I18n.t('DepenseCommuneListe.afterValidate.message');
+      const title = I18n.t('DepenseCommuneListe.afterValidate.title');
+      const message = I18n.t('DepenseCommuneListe.afterValidate.message');
 
       Alert.alert(title, message, [{
-        text: I18n.t('Alert.ok'), onPress: () => {
+        text: I18n.t('Alert.ok'),
+        onPress: () => {
           Actions.chargement();
         }
       }]);
-
     } catch (e) {
-      Alert.alert(I18n.t('Alert.warning'), e.message, [{ text: I18n.t('Alert.ok') }])
+      Alert.alert(I18n.t('Alert.warning'), e.message, [{ text: I18n.t('Alert.ok') }]);
     }
   }
 
   /**
    * Méthode de validation d'une note de frais.
    */
-  validate () {
-
-    let title = I18n.t('DepenseCommuneListe.confirm.title');
+  validate() {
+    const title = I18n.t('DepenseCommuneListe.confirm.title');
     let message = I18n.t('DepenseCommuneListe.confirm.validationSimple');
     if (this.compteSecureService.shouldUseApiService()) {
       message = I18n.t('DepenseCommuneListe.confirm.validation');
     }
 
     Alert.alert(title, message,
-        [
-          { text: I18n.t('Alert.ok'), onPress: this._validateAfterConfirm.bind(this) },
-          { text: I18n.t('Alert.cancel'), style: 'cancel' }
-        ]
+      [
+        { text: I18n.t('Alert.ok'), onPress: this._validateAfterConfirm.bind(this) },
+        { text: I18n.t('Alert.cancel'), style: 'cancel' }
+      ]
     );
-
   }
 
   /**
@@ -118,26 +119,31 @@ export default class DepenseCommuneNavBar extends NavBar {
    * @function render
    * @return react~Component
    */
-  render () {
-
+  render() {
     if (this.hasSelected()) {
       return this.renderWhenSelected();
     }
 
     const validateAction = this.props.noteDeFrais.statut === STATUTS.inProgress.key ?
-        <TouchableOpacity onPress={this.validate.bind(this)}>
-          <MaterialIcons name="playlist-add-check" size={IconSize.medium} style={[Style.navBarIcon]}/>
-        </TouchableOpacity> : null;
+      (<TouchableOpacity onPress={this.validate}>
+        <MaterialIcons
+          name="playlist-add-check"
+          size={IconSize.medium}
+          style={[Style.navBarIcon]}
+        />
+      </TouchableOpacity>) : null;
 
-    const sum = I18n.toCurrency(this.props.noteDeFrais.totalDepenses + this.props.noteDeFrais.totalIndemnitesKilometriques);
-    return <View style={Style.navBar}>
+    const sum = I18n.toCurrency(
+      this.props.noteDeFrais.totalDepenses + this.props.noteDeFrais.totalIndemnitesKilometriques);
+    return (<View style={Style.navBar}>
 
       <TouchableOpacity onPress={() => Actions.refresh({
         key: 'drawer',
         open: value => !value,
         onCloseStart: () => Actions.refresh({ selected: {} })
-      })}>
-        <MaterialIcons name="menu" size={IconSize.medium} style={[Style.navBarIcon]}/>
+      })}
+      >
+        <MaterialIcons name="menu" size={IconSize.medium} style={[Style.navBarIcon]} />
       </TouchableOpacity>
 
       <View style={[Style.flexRowCenter, Style.label]}>
@@ -148,18 +154,19 @@ export default class DepenseCommuneNavBar extends NavBar {
         <Text style={[Style.labelText]}>{sum}</Text>
       </View>
 
-
       <TouchableOpacity onPress={() => {
-        this.setState({ showMenu: !this.state.showMenu })
-      }}>
-        <MaterialIcons name="filter-list" size={IconSize.medium} style={[Style.navBarIcon]}/>
-        <Modal animationType={"fade"}
-               transparent={true}
-               visible={this.state.showMenu}
-               onRequestClose={() => {
-                 this.setState({ showMenu: !this.state.showMenu })
-               }}>
-
+        this.setState({ showMenu: !this.state.showMenu });
+      }}
+      >
+        <MaterialIcons name="filter-list" size={IconSize.medium} style={[Style.navBarIcon]} />
+        <Modal
+          animationType={'fade'}
+          transparent={true}
+          visible={this.state.showMenu}
+          onRequestClose={() => {
+            this.setState({ showMenu: !this.state.showMenu });
+          }}
+        >
           <View style={{
             backgroundColor: 'white',
             width: 220,
@@ -172,16 +179,13 @@ export default class DepenseCommuneNavBar extends NavBar {
             borderRadius: 5,
             borderWidth: 1,
             borderColor: Colors.greyLighter.code
-          }}>
+          }}
+          >
             {this._renderMenu()}
           </View>
         </Modal>
-
       </TouchableOpacity>
-
       {validateAction}
-
-    </View>
+    </View>);
   }
-
 }

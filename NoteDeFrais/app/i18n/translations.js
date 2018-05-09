@@ -1,9 +1,10 @@
-import I18n, { getLanguages } from 'react-native-i18n';
+import I18n, {/* getLanguages */ } from 'react-native-i18n';
 
 I18n.fallbacks = true;
 
-var moment = require('moment');
+const moment = require('moment');
 require('moment/locale/fr');
+
 moment.locale(I18n.locale);
 
 I18n.translations = {
@@ -110,11 +111,11 @@ I18n.translations = {
     Alert: {
       cancel: 'Annuler',
       warning: 'Oups',
-      network: 'Echec de la connexion au serveur. Vérifiez votre connexion internet ou réessayez plus tard.',   
+      network: 'Echec de la connexion au serveur. Vérifiez votre connexion internet ou réessayez plus tard.',
       shouldAddVehicule: 'Vous devez d\'abord ajouter un véhicule',
-      notFoundPlaces: `Impossible de mesurer de distance, l'un des lieux n'a pas été trouvé...`,
+      notFoundPlaces: 'Impossible de mesurer de distance, l\'un des lieux n\'a pas été trouvé...',
       changeOrigins: 'Modifier le départ ({{origins}})',
-      changeDestinations: `Modifier l'arrivée ({{destinations}})`,
+      changeDestinations: 'Modifier l\'arrivée ({{destinations}})',
       addOriginPlace: 'Veuillez ajouter le lieu de départ',
       addMyAddress: 'Ajouter mon adresse',
       addDestinationPlace: 'Veuillez ajouter le lieu de destination',
@@ -323,9 +324,9 @@ I18n.translations = {
       warning: 'Oups',
       network: 'Echec de la connexion au serveur. Vérifiez votre connexion internet ou réessayez plus tard.',
       shouldAddVehicule: 'Vous devez d\'abord ajouter un véhicule',
-      notFoundPlaces: `Impossible de mesurer de distance, l'un des lieux n'a pas été trouvé...`,
+      notFoundPlaces: 'Impossible de mesurer de distance, l\'un des lieux n\'a pas été trouvé...',
       changeOrigins: 'Modifier le départ ({{origins}})',
-      changeDestinations: `Modifier l'arrivée ({{destinations}})`,
+      changeDestinations: 'Modifier l\'arrivée ({{destinations}})',
       addOriginPlace: 'Veuillez ajouter le lieu de départ',
       addMyAddress: 'Ajouter mon adresse',
       addDestinationPlace: 'Veuillez ajouter le lieu de destination',
@@ -443,4 +444,4 @@ I18n.toCurrency = function (value) {
   })} ${I18n.t('devise')}`;
 };
 
-module.exports = I18n;
+export default I18n;

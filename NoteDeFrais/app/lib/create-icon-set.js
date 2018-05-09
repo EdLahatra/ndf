@@ -1,27 +1,22 @@
-import React, {
-    Component,
-    PropTypes,
-} from 'react';
-
+import React, { Component } from 'react';
 import {
-    NativeModules,
-    Platform,
-    PixelRatio,
-    processColor,
-    requireNativeComponent,
-    Text,
+  NativeModules,
+  Platform,
+  PixelRatio,
+  processColor,
+  Text,
 } from 'react-native';
-
-import PlatformHelper from './platform-helper';
-
-const NativeIconAPI = NativeModules && (NativeModules.RNVectorIconsManager || NativeModules.RNVectorIconsModule);
-
-const DEFAULT_ICON_SIZE = 12;
-const DEFAULT_ICON_COLOR = 'black';
+import PropTypes from 'prop-types';
 
 import createIconButtonComponent from 'react-native-vector-icons/lib/icon-button';
 import createTabBarItemIOSComponent from 'react-native-vector-icons/lib/tab-bar-item-ios';
 import createToolbarAndroidComponent from 'react-native-vector-icons/lib/toolbar-android';
+
+const NativeIconAPI = NativeModules
+  && (NativeModules.RNVectorIconsManager || NativeModules.RNVectorIconsModule);
+
+const DEFAULT_ICON_SIZE = 12;
+const DEFAULT_ICON_COLOR = 'black';
 
 export default function createIconSet(glyphMap, fontFamily, fontFile) {
   let fontReference = fontFamily;
@@ -31,12 +26,12 @@ export default function createIconSet(glyphMap, fontFamily, fontFile) {
   }
 
   const IconNamePropType = PropTypes.string;
-
+  const numberPropType = PropTypes.number;
   class Icon extends Component {
     static propTypes = {
       name: IconNamePropType.isRequired,
-      size: PropTypes.number,
-      color: PropTypes.string,
+      size: numberPropType,
+      color: IconNamePropType,
     };
 
     static defaultProps = {
@@ -76,14 +71,18 @@ export default function createIconSet(glyphMap, fontFamily, fontFile) {
     }
   }
 
-  let imageSourceCache = {};
+  const imageSourceCache = {};
 
   function getImageSource(name, size = DEFAULT_ICON_SIZE, color = DEFAULT_ICON_COLOR) {
     if (!NativeIconAPI) {
       if (Platform.OS === 'android') {
-        throw new Error('RNVectorIconsModule not available, did you properly integrate the module?');
+        throw new Error(
+          'RNVectorIconsModule not available, did you properly integrate the module?');
       }
-      throw new Error('RNVectorIconsManager not available, did you add the library to your project and link with libRNVectorIcons.a?');
+      throw new Error(
+        `RNVectorIconsManager not available, 
+        did you add the library to your project and link with libRNVectorIcons.a?`
+      );
     }
 
     let glyph = glyphMap[name.replace('glyphicons-', '')] || '?';
@@ -92,13 +91,13 @@ export default function createIconSet(glyphMap, fontFamily, fontFile) {
     }
 
     const proessedColor = processColor(color);
-    const cacheKey = glyph + ':' + size + ':' + proessedColor;
+    const cacheKey = `${glyph}:${size}:${proessedColor}`;
     const scale = PixelRatio.get();
 
     return new Promise((resolve, reject) => {
       const cached = imageSourceCache[cacheKey];
       if (typeof cached !== 'undefined') {
-        if (!cached || cached instanceof Error ) { reject(cached); }
+        if (!cached || cached instanceof Error) { reject(cached); }
         resolve({ uri: cached, scale });
       } else {
         NativeIconAPI.getImageForFont(fontReference, glyph, size, proessedColor, (err, image) => {
@@ -115,7 +114,8 @@ export default function createIconSet(glyphMap, fontFamily, fontFile) {
   }
 
   Icon.Button = createIconButtonComponent(Icon);
-  Icon.TabBarItem = Icon.TabBarItemIOS = createTabBarItemIOSComponent(IconNamePropType, getImageSource);
+  Icon.TabBarItem = Icon.TabBarItemIOS = createTabBarItemIOSComponent(
+    IconNamePropType, getImageSource);
   Icon.ToolbarAndroid = createToolbarAndroidComponent(IconNamePropType, getImageSource);
   Icon.getImageSource = getImageSource;
 

@@ -5,8 +5,7 @@ export const TYPES = {
   GESCAB: 'Gescab'
 };
 
-class Compte {
-
+export class Compte {
   static schema = {
     name: 'Compte',
     primaryKey: 'id',
@@ -19,7 +18,4 @@ class Compte {
       vehicules: { type: 'list', objectType: 'Identifiant' }
     }
   };
-
 }
-
-module.exports = { Compte, TYPES };

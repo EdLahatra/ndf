@@ -1,61 +1,61 @@
+import moment from 'moment';
+import _ from 'underscore';
 import RealmService from '../services/RealmService';
 import CompteSecureService from '../services/CompteSecureService';
 import ConfigurationService from '../services/ConfigurationService';
 import ApiService from '../services/ApiService';
 import Utils from '../lib/utils';
-import moment from 'moment';
-import _ from 'underscore';
 import ApiServiceAccess from '../errors/ApiServiceAccess';
 import NotFoundException from '../errors/NotFoundException';
 
 const API_PATH_CONFIG = {
-  'AxeAnalytique': {
+  AxeAnalytique: {
     apiPath: 'axesAnalytiques',
     entity: require('../schemas/AxeAnalytique')
   },
-  'BaremeKilometrique': {
+  BaremeKilometrique: {
     apiPath: 'baremesKilometriques',
     entity: require('../schemas/BaremeKilometrique')
   },
-  'CategorieDepense': {
+  CategorieDepense: {
     apiPath: 'categoriesDepenses',
     entity: require('../schemas/CategorieDepense')
   },
-  'Compte': {
+  Compte: {
     apiPath: 'comptes',
-    entity: require('../schemas/Compte')
+    entity: require('../schemas/Compte').default
   },
-  'Depense': {
+  Depense: {
     apiPath: 'depenses',
     entity: require('../schemas/Depense')
   },
-  'FichePersonnelle': {
+  FichePersonnelle: {
     apiPath: 'fichesPersonnelles',
     entity: require('../schemas/FichePersonnelle')
   },
-  'IndemniteKilometrique': {
+  IndemniteKilometrique: {
     apiPath: 'indemnitesKilometriques',
     entity: require('../schemas/IndemniteKilometrique')
   },
-  'Justificatif': {
+  Justificatif: {
     apiPath: 'justificatifs',
     entity: require('../schemas/Justificatif')
   },
-  'KilometreAnnuel': {
+  KilometreAnnuel: {
     entity: require('../schemas/KilometreAnnuel')
   },
-  'NoteDeFrais': {
+  NoteDeFrais: {
     apiPath: 'notesDeFrais',
     entity: require('../schemas/NoteDeFrais')
   },
-  'Seuil': {
+  Seuil: {
     entity: require('../schemas/Seuil')
   },
-  'ValeurAnalytique': {
+  ValeurAnalytique: {
     apiPath: 'valeursAnalytiques',
     entity: require('../schemas/ValeurAnalytique')
   },
-  'Vehicule': {
+  Vehicule: {
     apiPath: 'vehicules',
     entity: require('../schemas/Vehicule')
   }
@@ -65,12 +65,11 @@ const API_PATH_CONFIG = {
  * Service de gestion des entités
  */
 export default class EntityService {
-
   /**
    * Initialisation du service
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor (schema) {
+  constructor(schema) {
     /** @type {Object} */
     this.schema = schema;
     /** @type {RealmService.service} */
@@ -89,7 +88,7 @@ export default class EntityService {
    * Supprime l'ensemble des éléments de la liste des identifiants
    * @param {array} idList
    */
-  deleteAll (idList) {
+  deleteAll(idList) {
     idList.forEach((id) => {
       const object = this.find(id);
       if (object) {
@@ -103,7 +102,7 @@ export default class EntityService {
    * @param shouldUseApiService
    * @private
    */
-  _listen (shouldUseApiService) {
+  _listen(shouldUseApiService) {
     if (shouldUseApiService) {
       this.service.addListener('change', this._synchronise.bind(this));
     }
@@ -114,18 +113,19 @@ export default class EntityService {
    * @param shouldUseApiService
    * @private
    */
-  _removeListen (shouldUseApiService) {
+  _removeListen(shouldUseApiService) {
     if (shouldUseApiService) {
       this.service.removeAllListeners();
     }
   }
 
   /**
-   * Méthode de création d'une entité en local et de synchonisation  avec le serveur si le compte peut utiliser l'api.
+   * Méthode de création d'une entité en local et de synchonisation
+   * avec le serveur si le compte peut utiliser l'api.
    * @param body
    * @returns {string} identifiant
    */
-  create (body) {
+  create(body) {
     const shouldUseApiService = this.compteSecureService.shouldUseApiService();
     this._listen(shouldUseApiService);
 
@@ -142,11 +142,12 @@ export default class EntityService {
   }
 
   /**
-   * Méthode de mise à jour d'une entité en local et de synchonisation avec le serveur si le compte peut utiliser l'api.
+   * Méthode de mise à jour d'une entité en local et de synchonisation avec le serveur
+   * si le compte peut utiliser l'api.
    * @param body
    * @returns {string} identifiant
    */
-  update (body) {
+  update(body) {
     const shouldUseApiService = this.compteSecureService.shouldUseApiService();
     this._listen(shouldUseApiService);
 
@@ -162,12 +163,13 @@ export default class EntityService {
 
   /**
    * Méthode permettant de mettre à jour la date de depréciation sur une entitée
-   * Deux dates sont mise à jour, car pour certaines entités le serveur ne définit pas de date de dépriciation,
+   * Deux dates sont mise à jour, car pour certaines entités
+   * le serveur ne définit pas de date de dépriciation,
    * ici le fonctionnement est toujours le mêmes
    * @param data
    * @returns {Object}
    */
-  setDepreciation (data) {
+  setDepreciation(data) {
     data.depreciation = new Date();
     data._depreciation = new Date();
     return data;
@@ -179,7 +181,7 @@ export default class EntityService {
    * @param body
    * @returns {string}
    */
-  delete (body) {
+  delete(body) {
     const shouldUseApiService = this.compteSecureService.shouldUseApiService();
     this._listen(shouldUseApiService);
 
@@ -201,7 +203,7 @@ export default class EntityService {
    * @returns {*}
    * @private
    */
-  _depreciationFilter (object) {
+  _depreciationFilter(object) {
     if (object.depreciation || object._depreciation) {
       return moment(object.depreciation || object._depreciation).isAfter(moment());
     }
@@ -213,7 +215,7 @@ export default class EntityService {
    * @param id
    * @returns {Object}
    */
-  find (id) {
+  find(id) {
     const object = this.service.objects(this.schema.name).filtered(`id = "${id}"`)[0];
     if (object && this._depreciationFilter(object)) {
       return object;
@@ -226,7 +228,7 @@ export default class EntityService {
    * @param id
    * @returns {Object}
    */
-  findAndFormat (id) {
+  findAndFormat(id) {
     return this.format(this.find(id));
   }
 
@@ -235,16 +237,14 @@ export default class EntityService {
    * @param filtered
    * @returns {Array}
    */
-  findAll (filtered = null) {
+  findAll(filtered = null) {
     let all = this.service.objects(this.schema.name);
     if (filtered) {
       all = all.filtered(filtered);
     }
 
     return _.toArray(all)
-            .filter((object) => {
-              return this._depreciationFilter(object)
-            });
+      .filter(object => this._depreciationFilter(object));
   }
 
   /**
@@ -252,30 +252,26 @@ export default class EntityService {
    * @param idCompte
    * @returns {Array}
    */
-  findAllForAccount (idCompte) {
+  findAllForAccount(idCompte) {
     return this.findAll(`idCompte = "${idCompte}"`);
   }
 
-  _apiErrorCatcher (object, error) {
+  _apiErrorCatcher(object, error) {
     if (error instanceof NotFoundException) {
       // Si l'api ne trouve pas l'objet à synchroniser on la supprime localement..
-      console.log('delete object....');
+      console.log('delete object....'); // eslint-disable-line
       this.service.write(() => this.service.delete(object));
-    }
-    else if (error instanceof ApiServiceAccess) {
+    } else if (error instanceof ApiServiceAccess) {
       throw error;
-    }
-    else if (error instanceof SyntaxError) {
-      //TODO: show error
-      //Server response 500/503
-      //throw error;`
+    } else if (error instanceof SyntaxError) {
+      // TODO: show error
+      // Server response 500/503
+      // throw error;`
       return new Promise.resolve(this.find(object.id));
-    }
-    else if (error instanceof TypeError) {
+    } else if (error instanceof TypeError) {
       // No network...
       return new Promise.resolve(this.find(object.id));
     }
-
   }
 
   /**
@@ -283,9 +279,10 @@ export default class EntityService {
    * @returns Promise
    * @private
    */
-  async _synchronise () {
+  async _synchronise() {
     if (this.schema.properties._isSynchronized) {
-      const objectsToSync = RealmService.service.objects(this.schema.name).filtered('_isSynchronized = false');
+      const objectsToSync = RealmService.service.objects(this.schema.name)
+        .filtered('_isSynchronized = false');
 
       if (objectsToSync && objectsToSync.length > 0) {
         const _syncDatabase = (id) => {
@@ -295,22 +292,21 @@ export default class EntityService {
           }
         };
 
-        console.log(`--- Service synchronise ${objectsToSync.length} ${this.schema.name}(s)`);
+        console.log(`--- Service synchronise ${objectsToSync.length} ${this.schema.name}(s)`); // eslint-disable-line
         const promises = objectsToSync.map((object) => {
           const data = this.format(object);
 
           if (object.depreciation || object._depreciation) {
-            return this.apiService.delete(this.apiPath, data, [object.id]).then(() => _syncDatabase(object.id))
-                       .catch(this._apiErrorCatcher.bind(this, object));
+            return this.apiService.delete(this.apiPath, data, [object.id])
+              .then(() => _syncDatabase(object.id))
+              .catch(this._apiErrorCatcher.bind(this, object));
           }
-          console.log('---- update ', this.schema.name);
+          console.log('---- update ', this.schema.name); // eslint-disable-line
           return this.apiService.put(this.apiPath, data).then(() => _syncDatabase(object.id))
-                     .catch(this._apiErrorCatcher.bind(this, object));
-
+            .catch(this._apiErrorCatcher.bind(this, object));
         });
         return await Promise.all(promises);
       }
-
     }
     return Promise.resolve(true);
   }
@@ -318,24 +314,25 @@ export default class EntityService {
   /**
    * Méthode de merge des données.
    * Le merge consiste à synchroniser les données avec le serveur puis à les récupérer.
-   * Pour chaque entités, une date de dernière mise à jour est stocké dans le compte pour optimiser les échanges avec le serveur.
+   * Pour chaque entités, une date de dernière mise à jour est stocké
+   * dans le compte pour optimiser les échanges avec le serveur.
    * @returns Promise
    */
-  async mergeAll () {
+  async mergeAll() {
     await this._synchronise();
 
     let collection = null;
-    let lastFecthAll = this.compteSecureService.getLastFetchAll(this.schema.name);
+    const lastFecthAll = this.compteSecureService.getLastFetchAll(this.schema.name);
     const nextLastFetchAll = new Date();
     if (lastFecthAll) {
-      collection = await this.fetchAll({ derniereMiseAJour: moment(lastFecthAll).subtract(5, 'minutes').format() });
-    }
-    else {
+      collection = await this.fetchAll({
+        derniereMiseAJour: moment(lastFecthAll).subtract(5, 'minutes').format() });
+    } else {
       collection = await this.fetchAll();
     }
 
     if (collection && collection.length > 0) {
-      console.log(`--- Service mergeAll ${collection.length} ${this.schema.name}(s)`);
+      console.log(`--- Service mergeAll ${collection.length} ${this.schema.name}(s)`); // eslint-disable-line
       return await Promise.all(collection).then((elements) => {
         this.service.write(() => {
           elements.forEach((element) => {
@@ -343,15 +340,14 @@ export default class EntityService {
               element._isSynchronized = true;
               this.service.create(this.schema.name, element, true);
             } catch (e) {
-              console.log('error', e, element);
+              console.log('error', e, element); // eslint-disable-line
             }
           });
-          console.log('-------------------------------------------------------');
+          console.log('-------------------------------------------------------'); // eslint-disable-line
         });
         this.compteSecureService.setLastFetchAll(this.schema.name, nextLastFetchAll);
         return elements;
       });
-
     }
     return Promise.resolve([]);
   }
@@ -362,7 +358,7 @@ export default class EntityService {
    * @param id
    * @returns {Promise}
    */
-  async merge (id) {
+  async merge(id) {
     const object = await this.fetch(id);
     if (object) {
       return Promise.resolve(object).then((element) => {
@@ -374,29 +370,24 @@ export default class EntityService {
       });
     }
     return Promise.resolve(false);
-  };
+  }
 
   /**
    * Méthode qui permet de récupérer l'ensemble des éléments pour une entité
    * @param queryParams
    * @returns {Promise}
    */
-  async fetchAll (queryParams = { derniereMiseAJour: moment([1970, 0, 1]).format() }) {
+  async fetchAll(queryParams = { derniereMiseAJour: moment([1970, 0, 1]).format() }) {
     try {
-      return await this.apiService.get(this.apiPath, [], queryParams).then((objects) => {
-        return _.map(objects, (object) => {
-          return this.parse(object);
-
-        });
-      })
+      return await this.apiService.get(this.apiPath, [], queryParams)
+        .then(objects => _.map(objects, object => this.parse(object)));
     } catch (error) {
       if (error instanceof ApiServiceAccess) {
         throw error;
       }
-      console.log('--- FetchAll - Find in local db :', this.apiPath, error);
+      console.log('--- FetchAll - Find in local db :', this.apiPath, error); // eslint-disable-line
       return new Promise.resolve(this.findAll);
     }
-
   }
 
   /**
@@ -405,90 +396,75 @@ export default class EntityService {
    * @param queryParams
    * @returns {Promise}
    */
-  async fetch (id, queryParams = { derniereMiseAJour: moment([1970, 0, 1]).format() }) {
+  async fetch(id, queryParams = { derniereMiseAJour: moment([1970, 0, 1]).format() }) {
     return await this.apiService.get(this.apiPath, [id], queryParams)
-                     .then((object) => this.parse(object))
-                     .catch(this._apiErrorCatcher.bind(this, { id }));
+      .then(object => this.parse(object))
+      .catch(this._apiErrorCatcher.bind(this, { id }));
   }
 
   /**
-   * Méthode qui parse les élements en retour du serveur en fonction de la définition des objets realm.
+   * Méthode qui parse les élements en retour du serveur
+   * en fonction de la définition des objets realm.
    * @param object
    * @param schema
    * @returns {Object}
    */
-  parse (object, schema = this.schema) {
+  parse(object, schema = this.schema) {
     if (schema.name) {
       const properties = schema.properties;
       const keys = Object.keys(properties);
 
-      for (let key of keys) {
-
+      for (const key of keys) {
         if (object && object.hasOwnProperty(key)) {
           const value = properties[key];
-
           const type = typeof value === 'object' ? value.type : value;
 
           const objectValue = object[key];
 
           if (type === 'date' && objectValue) {
             object[key] = moment.utc(objectValue).toDate();
-          }
-          else if (type === 'int') {
+          } else if (type === 'int') {
             object[key] = objectValue ? parseInt(objectValue, 10) : 0;
-          }
-          else if (type === 'float') {
+          } else if (type === 'float') {
             object[key] = objectValue ? this.parseFloat(objectValue) : 0;
-          }
-          else if (type === 'bool') {
+          } else if (type === 'bool') {
             object[key] = objectValue === 'true';
-          }
-          else if (type === 'list') {
+          } else if (type === 'list') {
             if (value.objectType === 'Identifiant') {
               const identifiants = [];
-              for (let id of objectValue) {
+              for (const id of objectValue) {
                 identifiants.push({ id });
               }
               object[key] = identifiants;
-            }
-            else if (value.objectType) {
-
+            } else if (value.objectType) {
               const objectType = API_PATH_CONFIG[value.objectType];
               if (objectType && objectType.entity) {
                 const childSchema = objectType.entity.default.schema;
-                object[key] = _.toArray(objectValue).map((value) => {
-                  return this.parse(value, childSchema);
-                });
+                object[key] = _.toArray(objectValue).map(value => this.parse(value, childSchema));
               }
-
             }
-
-          }
-          else if (type === 'string' && typeof objectValue === 'object') {
+          } else if (type === 'string' && typeof objectValue === 'object') {
             object[key] = JSON.stringify(objectValue);
           }
-
         }
-
       }
-
     }
 
     return object;
   }
 
   /**
-   * Méthode qui formatte les élements à destination du serveur en fonction de la définition des objets realm.
+   * Méthode qui formatte les élements à destination du serveur
+   * en fonction de la définition des objets realm.
    * @param object
    * @param schema
    * @returns {Object}
    */
-  format (object, schema = this.schema) {
-
+  format(object, schema = this.schema) {
     const properties = schema.properties;
     const keys = Object.keys(properties);
     const format = {};
-    for (let key of keys) {
+    for (const key of keys) {
       if (!key.startsWith('_') && object && object.hasOwnProperty(key)) {
         const value = properties[key];
 
@@ -498,28 +474,22 @@ export default class EntityService {
 
         if (type === 'date') {
           format[key] = objectValue ? moment.utc(objectValue).format() : objectValue;
-        }
-        else if (type === 'list') {
+        } else if (type === 'list') {
           if (value.objectType === 'Identifiant') {
-            format[key] = objectValue.map((obj) => obj.id);
-          }
-          else {
+            format[key] = objectValue.map(obj => obj.id);
+          } else {
             format[key] = _.toArray(objectValue);
           }
-        }
-        else if (type === 'bool') {
+        } else if (type === 'bool') {
           format[key] = objectValue === true ? 'true' : 'false';
-        }
-        else if (type === 'float') {
+        } else if (type === 'float') {
           format[key] = objectValue ? this.parseFloat(objectValue) : 0;
-        }
-        else {
+        } else {
           format[key] = objectValue;
         }
-
       }
     }
-    return format
+    return format;
   }
 
   /**
@@ -527,11 +497,10 @@ export default class EntityService {
    * @param value
    * @returns {number}
    */
-  parseFloat (value) {
+  parseFloat(value) {
     if (value) {
       value = (Math.round(parseFloat(value) * 1000) / 1000);
     }
     return value;
   }
-
-};
+}

@@ -1,5 +1,4 @@
 export default class Regulation {
-
   static schema = {
     name: 'Regulation',
     primaryKey: 'id',
@@ -11,7 +10,6 @@ export default class Regulation {
       idVehicule: 'string',
       montantARembourser: 'float'
     }
-
   }
 }
 

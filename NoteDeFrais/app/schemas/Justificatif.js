@@ -1,5 +1,4 @@
 export default class Justificatif {
-
   static schema = {
     name: 'Justificatif',
     primaryKey: 'id',
@@ -12,5 +11,4 @@ export default class Justificatif {
       _depreciation: { type: 'date', optional: true }
     }
   }
-
 }

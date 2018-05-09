@@ -1,14 +1,10 @@
-'use strict';
-
-import React, {Component} from "react";
-import _ from "underscore";
-import {Actions} from "react-native-router-flux";
-import RealmForm from "../components/realm-form";
-import CategorieDepense from "../schemas/CategorieDepense";
-import I18n from "../i18n/translations";
-import CategorieDepenseService from "../services/CategorieDepenseService";
-import CompteSecureService from "../services/CompteSecureService";
-import {TYPE} from "../schemas/Depense";
+import _ from 'underscore';
+import { Actions } from 'react-native-router-flux';
+import RealmForm from '../components/realm-form';
+import CategorieDepense from '../schemas/CategorieDepense';
+import I18n from '../i18n/translations';
+import CategorieDepenseService from '../services/CategorieDepenseService';
+import CompteSecureService from '../services/CompteSecureService';
 
 /**
  * Page de création d'une catégorie
@@ -17,12 +13,11 @@ import {TYPE} from "../schemas/Depense";
  * @override react/Component
  */
 export default class CategorieDepenseForm extends RealmForm {
-
   /**
    * Initialisation de l'état du composant.
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     super();
     /** @type {CompteSecureService} */
     this.compteSecureService = new CompteSecureService();
@@ -33,9 +28,9 @@ export default class CategorieDepenseForm extends RealmForm {
    * @param props
    * @returns {Object}
    */
-  getStateValue (props) {
+  getStateValue() {
     const selectedAccount = this.compteSecureService.getSelectedAccount();
-    let category = _.clone(this.props.category) || { idCompte: selectedAccount.compte.id };
+    const category = _.clone(this.props.category) || { idCompte: selectedAccount.compte.id };
     return category;
   }
 
@@ -43,7 +38,7 @@ export default class CategorieDepenseForm extends RealmForm {
    * Retourne la configuration du formulaire
    * @returns {Object}
    */
-  getConfig () {
+  getConfig() {
     return { schema: CategorieDepense.schema };
   }
 
@@ -52,7 +47,7 @@ export default class CategorieDepenseForm extends RealmForm {
    * @param props
    * @returns {*}
    */
-  static getTitle (props) {
+  static getTitle(props) {
     if (props) {
       return props.category ? props.category.nom : I18n.t('categories.add');
     }
@@ -63,7 +58,7 @@ export default class CategorieDepenseForm extends RealmForm {
    * @param props
    * @returns {boolean}
    */
-  static shouldDelete (props) {
+  static shouldDelete(props) {
     if (props.category) {
       return true;
     }
@@ -78,8 +73,9 @@ export default class CategorieDepenseForm extends RealmForm {
    * @param category
    * @param props
    */
-  static delete (category, props) {
-    this.categorieDepenseService.delete(props.category, this.compteSecureService.getSelectedAccount());
+  static delete(category, props) {
+    this.categorieDepenseService.delete(
+      props.category, this.compteSecureService.getSelectedAccount());
     Actions.pop({ refresh: { refresh: props.categories } });
   }
 
@@ -88,14 +84,13 @@ export default class CategorieDepenseForm extends RealmForm {
    * @param props
    * @param formValues
    */
-  static save (props, formValues) {
+  static save(props, formValues) {
     if (formValues.id) {
-      this.categorieDepenseService.update(formValues)
-    }
-    else {
-      this.categorieDepenseService.create(formValues, this.compteSecureService.getSelectedAccount());
+      this.categorieDepenseService.update(formValues);
+    } else {
+      this.categorieDepenseService.create(
+        formValues, this.compteSecureService.getSelectedAccount());
     }
     Actions.pop({ refresh: {} });
   }
-
 }

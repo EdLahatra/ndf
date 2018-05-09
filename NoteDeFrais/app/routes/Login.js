@@ -1,23 +1,24 @@
-'use strict';
+import React, { Component } from 'react';
+import {
+  View, Text, Image, TouchableOpacity, Linking, Alert, ScrollView, InteractionManager
+} from 'react-native';
+import GoogleAnalytics from 'react-native-google-analytics-bridge';
+import { Actions } from 'react-native-router-flux';
+import Spinner from 'react-native-loading-spinner-overlay';
+import OauthServiceFactory from '../services/OauthService';
+import CompteSecureService from '../services/CompteSecureService';
+import CompteService from '../services/CompteService';
+import CompteSecure from '../schemas/CompteSecure';
+import { TYPES } from '../schemas/Compte';
+import FormStyle from '../styles/formStyle';
+import I18n from '../i18n/translations';
+import TextboxFieldFactory from '../components/textbox-field-factory';
 
-import React, {Component} from "react";
-import {View, Text, Image, TouchableOpacity, Linking, Alert, ScrollView, InteractionManager} from "react-native";
-import GoogleAnalytics from "react-native-google-analytics-bridge";
-import {Actions} from "react-native-router-flux";
-import {OauthServiceFactory} from "../services/OauthService";
-import CompteSecureService from "../services/CompteSecureService";
-import CompteService from "../services/CompteService";
-import CompteSecure from "../schemas/CompteSecure";
-import {TYPES} from "../schemas/Compte";
-import FormStyle from "../styles/formStyle";
-import I18n from "../i18n/translations";
-import TextboxFieldFactory from "../components/textbox-field-factory";
-import Spinner from "react-native-loading-spinner-overlay";
-import {Style} from "../styles/style";
-import NoteDeFrais from "../schemas/NoteDeFrais";
-import NoteDeFraisService from "../services/NoteDeFraisService";
+import { Style } from '../styles/style';
+import NoteDeFraisService from '../services/NoteDeFraisService';
 
 const t = require('tcomb-form-native');
+
 const Form = t.form.Form;
 
 /**
@@ -27,15 +28,14 @@ const Form = t.form.Form;
  * @override React~Component
  */
 export default class Login extends Component {
-
   /**
    * Initialisation de l'état du composant.
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor (props) {
+  constructor(props) {
     super(props);
     /** @type {NoteDeFrais} */
-    this.noteDeFraisService = new NoteDeFraisService();  
+    this.noteDeFraisService = new NoteDeFraisService();
     /** @type {CompteService} */
     this.compteService = new CompteService();
     /** @type {CompteSecureService} */
@@ -72,22 +72,21 @@ export default class Login extends Component {
         }
       },
     };
-
   }
 
-  onChange (value) {
+  onChange(value) {
     this.setState({ value });
   }
 
-  getConfig () {
+  getConfig() {
     return { schema: CompteSecure.schema };
   }
 
-  _onImageClick () {
+  _onImageClick() {
     Linking.openURL(ENV.config.urlSite);
   }
 
-  _focusNextInput (inputId) {
+  _focusNextInput(inputId) {
     const fields = Object.keys(this.state.options.fields);
     const currentInput = fields.indexOf(inputId);
     if (currentInput !== -1 && fields.length >= currentInput + 1) {
@@ -106,7 +105,7 @@ export default class Login extends Component {
     }
   }
 
-  _getInput (index = 0) {
+  _getInput(index = 0) {
     if (this.state && this.state.options.fields) {
       const fields = Object.keys(this.state.options.fields);
       const fieldId = fields[index];
@@ -114,42 +113,52 @@ export default class Login extends Component {
         const input = this.refs.form.getComponent(fieldId);
         if (input && input.refs) {
           if (input.refs.input && input.refs.input.props.editable !== false) {
-            return input
+            return input;
           }
         }
         return this._getInput(index + 1);
       }
-
     }
     return null;
   }
 
-  componentDidMount () {
+  componentDidMount() {
     InteractionManager.runAfterInteractions(() => {
-      GoogleAnalytics.trackScreenView(`Page de Login`);
+      GoogleAnalytics.trackScreenView('Page de Login');
       this._getInput().refs.input.focus && this._getInput().refs.input.focus();
     });
   }
 
-  render () {
-
+  render() {
     let logo = null;
 
     if (this.props.typeCompte === TYPES.COMPTACOM) {
-      logo = <Image style={{ alignSelf: 'center' }} source={require('../images/comptacom-logo-login.png')}/>;
-    }
-    else {
-      logo = <Image
-          resizeMode="center"
-          style={{ alignSelf: 'center', width: 300, height: 50 }}
-          source={require('../images/gescab-logo.png')}/>
+      logo = (<Image
+        style={{ alignSelf: 'center' }}
+        source={require('../images/comptacom-logo-login.png')}
+      />);
+    } else {
+      logo = (<Image
+        resizeMode="center"
+        style={{ alignSelf: 'center', width: 300, height: 50 }}
+        source={require('../images/gescab-logo.png')}
+      />);
     }
 
-    return <View style={{ margin: 20 }}>
+    return (<View style={{ margin: 20 }}>
 
-      <ScrollView ref='scrollView' keyboardDismissMode='on-drag' showsVerticalScrollIndicator={true}>
-        <Form ref="form" type={this.state.form} options={this.state.options} value={this.state.value}
-              onChange={this.onChange.bind(this)}/>
+      <ScrollView
+        ref="scrollView"
+        keyboardDismissMode="on-drag"
+        showsVerticalScrollIndicator={true}
+      >
+        <Form
+          ref="form"
+          type={this.state.form}
+          options={this.state.options}
+          value={this.state.value}
+          onChange={this.onChange.bind(this)}
+        />
       </ScrollView>
 
       <TouchableOpacity onPress={this.next.bind(this)}>
@@ -159,19 +168,19 @@ export default class Login extends Component {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={this._onImageClick.bind(this)}>{logo}</TouchableOpacity>
-      <Spinner visible={this.state.loading}/>
-    </View>
+      <Spinner visible={this.state.loading} />
+    </View>);
   }
 
-  async next () {
+  async next() {
     const validate = this.refs.form.validate();
 
     let compteSecureId = null;
 
     if (validate.errors.length > 0) {
+      // eslint-disable-next-line
       console.log(validate.errors);
-    }
-    else {
+    } else {
       try {
         this.setState({ loading: true });
 
@@ -182,7 +191,7 @@ export default class Login extends Component {
 
         const comptes = await this.compteService.mergeAll();
         await this.noteDeFraisService.mergeAll();
-        
+
         this.compteSecureService.attachCompte(compteSecureId, comptes[0]);
 
         this.setState({
@@ -190,42 +199,36 @@ export default class Login extends Component {
         });
 
         Actions.chargement();
-
       } catch (e) {
-
-
         if (compteSecureId) {
           const compteSecure = this.compteSecureService.find(compteSecureId);
           this.compteSecureService.delete(compteSecure);
         }
-        
-        if (e.message == "Network request failed") {
-            console.log(I18n.t("Alert.network"));
-            Alert.alert(I18n.t('Alert.warning'), I18n.t("Alert.network"), [{
-                text: I18n.t('Alert.ok'), onPress: () => {
-
-                    this.setState({ loading: false });
-                }
-            }]);
+        // eslint-disable-next-line
+        if (e.message == 'Network request failed') {
+          // eslint-disable-next-line
+          console.log(I18n.t('Alert.network'));
+          Alert.alert(I18n.t('Alert.warning'), I18n.t('Alert.network'), [{
+            text: I18n.t('Alert.ok'),
+            onPress: () => {
+              this.setState({ loading: false });
+            }
+          }]);
         } else {
-          console.log("Code d'erreur : " + e.message);
-
+          // eslint-disable-next-line
+          console.log(`Code d'erreur : ${e.message}`);
           Alert.alert(I18n.t('Alert.warning'), e.message, [{
-              text: I18n.t('Alert.ok'), onPress: () => {
-
-                  this.setState({loading: false});
-              }
+            text: I18n.t('Alert.ok'),
+            onPress: () => {
+              this.setState({ loading: false });
+            }
           }]);
         }
-
       }
-
     }
-
   }
 
-  static getTitle () {
+  static getTitle() {
     return I18n.t('login.title');
   }
-
 }

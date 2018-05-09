@@ -1,6 +1,3 @@
-'use strict';
-
-import React, { Component, } from 'react';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 
 import DepenseCommuneListe from './DepenseCommuneListe';
@@ -13,11 +10,10 @@ import NoteDeFraisService from '../services/NoteDeFraisService';
  * @override {DepenseCommuneListe}
  */
 export default class DepenseCommuneHistoriqueListe extends DepenseCommuneListe {
-
   /**
    * Méthode invoquée une fois que le DOM est chargé.
    */
-  componentDidMount () {
+  componentDidMount() {
     super.componentDidMount();
     GoogleAnalytics.trackScreenView('DepenseCommuneHistoriqueListe');
   }
@@ -27,13 +23,13 @@ export default class DepenseCommuneHistoriqueListe extends DepenseCommuneListe {
    * @param props
    * @returns {NoteDeFrais}
    */
-  static getNoteDeFrais (props) {
+  static getNoteDeFrais(props) {
     return props.noteDeFrais;
   }
 
   static noteDeFraisService = new NoteDeFraisService();
 
-  static _getElements (props) {
+  static _getElements(props) {
     const noteDeFrais = this.getNoteDeFrais(props);
     if (noteDeFrais) {
       if (props.filtre) {
@@ -41,7 +37,7 @@ export default class DepenseCommuneHistoriqueListe extends DepenseCommuneListe {
       }
       return this.noteDeFraisService.findAllDepenses(noteDeFrais);
     }
-    return []
+    return [];
   }
 
   /**
@@ -49,18 +45,17 @@ export default class DepenseCommuneHistoriqueListe extends DepenseCommuneListe {
    * @param props
    * @returns {array}
    */
-  getElements (props) {
+  getElements(props) {
     return DepenseCommuneHistoriqueListe._getElements(props);
   }
-
-  onPress (depenseCommune, isSelected = false) {
+  // eslint-disable-next-line
+  onPress(depenseCommune, isSelected = false) {
+  }
+  // eslint-disable-next-line
+  onLongPress(element, isSelected = false) { 
   }
 
-  onLongPress (element, isSelected = false) {
-  }
-
-  shouldAdd () {
+  shouldAdd() {
     return false;
   }
-
 }

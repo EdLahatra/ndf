@@ -1,4 +1,4 @@
-import EntityService  from './EntityService';
+import EntityService from './EntityService';
 import FichePersonnelle from '../schemas/FichePersonnelle';
 
 /**
@@ -6,12 +6,10 @@ import FichePersonnelle from '../schemas/FichePersonnelle';
  * @override {EntityService}
  */
 export default class FichePersonnelleService extends EntityService {
-
   /**
    * Initialisation du service
    */
-  constructor () {
+  constructor() {
     super(FichePersonnelle.schema);
   }
-
 }

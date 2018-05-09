@@ -1,5 +1,4 @@
 export default class Configuration {
-
   static schema = {
     name: 'Configuration',
     primaryKey: 'id',
@@ -9,5 +8,4 @@ export default class Configuration {
       dateOfTerms: { type: 'date', default: new Date() }
     }
   }
-
 }

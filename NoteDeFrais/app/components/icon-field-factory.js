@@ -1,13 +1,11 @@
-import React from 'react';
-
-const t = require('tcomb-form-native');
-const Component = t.form.Component;
-
 import IconField from './icon-field';
 
-export default class IconFieldFactory extends Component {
+const t = require('tcomb-form-native');
 
-  getTemplate () {
+const Component = t.form.Component;
+
+export default class IconFieldFactory extends Component {
+  getTemplate() {
     return IconField;
   }
 
@@ -26,19 +24,14 @@ export default class IconFieldFactory extends Component {
       'mode',
       'prompt',
       'itemStyle'
-    ].forEach((name) => locals[name] = this.props.options[name]);
+    ].forEach(name => locals[name] = this.props.options[name]);
 
     return locals;
   }
-
 }
 
 // as example of transformer: this is the default transformer for textboxes
 IconFieldFactory.transformer = {
-  format: (value) => {
-    return value ? value : '';
-  },
-  parse: (value) => {
-    return value;
-  }
+  format: value => value || '',
+  parse: value => value
 };

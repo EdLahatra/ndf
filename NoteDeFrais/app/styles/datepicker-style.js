@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-let style = StyleSheet.create({
+const style = StyleSheet.create({
   dateTouch: {
     width: 142
   },
@@ -19,7 +19,7 @@ let style = StyleSheet.create({
   dateInput: {
     flex: 1,
     height: 30,
-    fontSize:16,
+    fontSize: 16,
     borderWidth: 1,
     borderColor: '#aaa',
     alignItems: 'center',

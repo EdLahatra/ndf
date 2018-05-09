@@ -1,9 +1,5 @@
-'use strict';
-
-import React, { Component, } from 'react';
-
+import React, { Component } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { View } from 'react-native-animatable';
 import { Actions, } from 'react-native-router-flux';
@@ -23,12 +19,11 @@ import VehiculeService from '../services/VehiculeService';
  * @override React~Component
  */
 export default class NavBar extends Component {
-
   /**
    * Initialisation de l'état du composant.
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     super();
     /** @type {CategorieDepenseService} */
     this.categorieDepenseService = new CategorieDepenseService();
@@ -49,7 +44,7 @@ export default class NavBar extends Component {
    * @param props
    * @returns {boolean} true
    */
-  shouldDelete (props) {
+  shouldDelete() {
     return true;
   }
 
@@ -57,7 +52,7 @@ export default class NavBar extends Component {
    * Méthode qui supprime l'ensemble des éléments sélectionnés
    * @param selected
    */
-  deleteAll (selected) {
+  deleteAll(selected) {
     const ndf = this.props.noteDeFrais;
     const all = Object.keys(selected);
 
@@ -77,7 +72,7 @@ export default class NavBar extends Component {
    * Retour le titre de la NavBar
    * @returns {*}
    */
-  getTitle () {
+  getTitle() {
     return this.props.title;
   }
 
@@ -85,7 +80,7 @@ export default class NavBar extends Component {
    * Affirme la présence d'un menu
    * @returns {boolean}
    */
-  hasMenu () {
+  hasMenu() {
     return true;
   }
 
@@ -93,54 +88,51 @@ export default class NavBar extends Component {
    * Affirme si des éléments sont sélectionnés
    * @returns {boolean}
    */
-  hasSelected () {
-    return this.props.selected && Object.values(this.props.selected).filter((value)=> value === true).length > 0;
+  hasSelected() {
+    return this.props.selected
+      && Object.values(this.props.selected).filter(value => value === true).length > 0;
   }
 
   /**
    * Rendu graphique lorsque des éléments sont sélectionés
    * @returns React~Component
    */
-  renderWhenSelected () {
-
+  renderWhenSelected() {
     const hasSelected = this.hasSelected();
-
     const deleteIcon = this.shouldDelete(this.props) && hasSelected ?
-        <TouchableOpacity onPress={this.deleteAll.bind(this, this.props.selected)}>
-          <MaterialIcons name="delete" size={IconSize.medium} style={Style.navBarIcon}/>
-        </TouchableOpacity> : null;
+      (<TouchableOpacity onPress={this.deleteAll.bind(this, this.props.selected)}>
+        <MaterialIcons name="delete" size={IconSize.medium} style={Style.navBarIcon} />
+      </TouchableOpacity>) : null;
 
     const menuAction = this.hasMenu() ?
-        <TouchableOpacity onPress={()=> Actions.refresh({
-          key: 'drawer',
-          open: value => !value,
-          onCloseStart: ()=> Actions.refresh({ selected: {} })
-        })}>
-          <MaterialIcons name="menu" size={IconSize.medium} style={[Style.navBarIcon]}/>
-        </TouchableOpacity>
-        : <TouchableOpacity onPress={()=> {
-      if (hasSelected) {
-        Actions.refresh({ selected: {} })
-      }
-      else {
-        Actions.pop();
-      }
-    }}>
-      <MaterialIcons name="arrow-back" size={IconSize.medium} style={Colors.white.color()}/>
-    </TouchableOpacity>;
-
+      (<TouchableOpacity onPress={() => Actions.refresh({
+        key: 'drawer',
+        open: value => !value,
+        onCloseStart: () => Actions.refresh({ selected: {} })
+      })}
+      >
+        <MaterialIcons name="menu" size={IconSize.medium} style={[Style.navBarIcon]} />
+      </TouchableOpacity>)
+      : (<TouchableOpacity onPress={() => {
+        if (hasSelected) {
+          Actions.refresh({ selected: {} });
+        } else {
+          Actions.pop();
+        }
+      }}
+      >
+        <MaterialIcons name="arrow-back" size={IconSize.medium} style={Colors.white.color()} />
+      </TouchableOpacity>);
     const title = hasSelected ? Object.keys(this.props.selected).length : this.getTitle();
-
     const backgroundColor = hasSelected ? Colors.greyDarker.background() : null;
-
-    return <View style={[Style.navBar, backgroundColor]}>
+    return (<View style={[Style.navBar, backgroundColor]}>
 
       {menuAction}
 
       <Text style={[Style.navBarTitle, { flex: 1 }]}>{title}</Text>
 
       {deleteIcon}
-    </View>
+    </View>);
   }
 
   /**
@@ -148,28 +140,22 @@ export default class NavBar extends Component {
    *
    * @return react~Component
    */
-  render () {
-
+  render() {
     if (this.hasSelected()) {
       return this.renderWhenSelected();
     }
-
-    return <View style={Style.navBar}>
-
-      <TouchableOpacity onPress={()=> Actions.refresh({
+    return (<View style={Style.navBar}>
+      <TouchableOpacity onPress={() => Actions.refresh({
         key: 'drawer',
         open: value => !value,
-        onCloseStart: ()=> Actions.refresh({ selected: {} })
-      })}>
-        <MaterialIcons name="menu" size={IconSize.medium} style={[Style.navBarIcon]}/>
+        onCloseStart: () => Actions.refresh({ selected: {} })
+      })}
+      >
+        <MaterialIcons name="menu" size={IconSize.medium} style={[Style.navBarIcon]} />
       </TouchableOpacity>
-
       <View style={[Style.flexRowCenter, Style.label]}>
         <Text style={[Style.labelText]}>{this.getTitle()}</Text>
       </View>
-
-
-    </View>
+    </View>);
   }
-
 }

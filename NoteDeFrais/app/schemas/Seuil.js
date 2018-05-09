@@ -1,5 +1,4 @@
 export default class Seuil {
-
   static schema = {
     name: 'Seuil',
     properties: {
@@ -8,7 +7,6 @@ export default class Seuil {
       fixe: { type: 'float' },
       puissanceFiscale: { type: 'int' },
     }
-
   }
 }
 

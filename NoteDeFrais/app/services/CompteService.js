@@ -1,7 +1,6 @@
 import Utils from '../lib/utils';
-
-import { Compte, TYPES } from '../schemas/Compte';
-import FichePersonnelle  from '../schemas/FichePersonnelle';
+import { Compte } from '../schemas/Compte';
+import FichePersonnelle from '../schemas/FichePersonnelle';
 import EntityService from './EntityService';
 import FichePersonnelleService from './FichePersonnelleService';
 
@@ -10,22 +9,21 @@ import FichePersonnelleService from './FichePersonnelleService';
  * @override {EntityService}
  */
 export default class CompteService extends EntityService {
-
   /**
    * Initialisation du service
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     super(Compte.schema);
     /** @type {FichePersonnelleService} */
     this.fichePersonnelleService = new FichePersonnelleService();
   }
 
-  create () {
+  create() {
     throw new Error('Not implemented');
   }
 
-  createOrUpdateFichePersonnelle (compte, { nom, prenom, email }) {
+  createOrUpdateFichePersonnelle(compte, { nom, prenom, email }) {
     let id = null;
     if (compte.idFichePersonnelle) {
       id = compte.idFichePersonnelle;
@@ -38,9 +36,7 @@ export default class CompteService extends EntityService {
           email
         }, true);
       });
-
-    }
-    else {
+    } else {
       id = Utils.uuid();
 
       this.service.write(() => {
@@ -53,11 +49,9 @@ export default class CompteService extends EntityService {
         });
 
         compte.idFichePersonnelle = id;
-
       });
     }
 
     return id;
   }
-
 }

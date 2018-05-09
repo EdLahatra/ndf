@@ -1,39 +1,40 @@
-import EntityService from "./EntityService";
-import Depense from "../schemas/Depense";
-import JustificatifService from "./JustificatifService";
-import Utils from "../lib/utils";
-import _ from "underscore";
+import _ from 'underscore';
+
+import EntityService from './EntityService';
+import Depense from '../schemas/Depense';
+import JustificatifService from './JustificatifService';
+import Utils from '../lib/utils';
+
 
 /**
  * Service de gestion des depenses
  * @override {EntityService}
  */
 export default class DepenseService extends EntityService {
-
   /**
    * Initialisation du service
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     super(Depense.schema);
     /** @type {JustificatifService} */
     this.justificatifService = new JustificatifService();
   }
 
-  _computeHT ({ montantARembourser, tva }) {
+  _computeHT({ montantARembourser, tva }) {
     if (montantARembourser && tva) {
       return this.parseFloat(montantARembourser - tva);
     }
     return 0;
   }
 
-  setDepreciation (data) {
+  setDepreciation(data) {
     data._depreciation = new Date();
     return data;
   }
 
-  deleteAll (idList, ndf) {
-    idList.forEach((id)=> {
+  deleteAll(idList, ndf) {
+    idList.forEach((id) => {
       const object = this.find(id);
       if (object) {
         this.delete(object, ndf);
@@ -41,16 +42,16 @@ export default class DepenseService extends EntityService {
     });
   }
 
-  delete (body, ndf) {
-    const depensesList = _.toArray(ndf.depenses).filter((ik) => ik.id !== body.id);
+  delete(body, ndf) {
+    const depensesList = _.toArray(ndf.depenses).filter(ik => ik.id !== body.id);
 
-    const justificatifsId = _.toArray(body.justificatifs).map((jus)=>jus.id);
+    const justificatifsId = _.toArray(body.justificatifs).map(jus => jus.id);
     this.justificatifService.deleteAll(justificatifsId);
 
-    this.service.write(()=> {
+    this.service.write(() => {
       ndf.depenses = [];
       if (depensesList) {
-        depensesList.forEach((ik)=> {
+        depensesList.forEach((ik) => {
           ndf.depenses.push({ id: ik.id });
         });
       }
@@ -58,8 +59,7 @@ export default class DepenseService extends EntityService {
     super.delete(body);
   }
 
-  update (body) {
-
+  update(body) {
     const data = _.clone(body);
 
     data.ht = this._computeHT(body);
@@ -69,8 +69,7 @@ export default class DepenseService extends EntityService {
       let id = justificatif.id;
       if (id) {
         this.justificatifService.update(justificatif);
-      }
-      else {
+      } else {
         id = this.justificatifService.create(justificatif);
       }
       return { id };
@@ -78,8 +77,7 @@ export default class DepenseService extends EntityService {
     return super.update(data);
   }
 
-  create (body, ndf) {
-
+  create(body, ndf) {
     body.id = Utils.uuid();
     body.idNoteDeFrais = ndf.id;
     body.idCompte = ndf.idCompte;
@@ -107,11 +105,11 @@ export default class DepenseService extends EntityService {
     return body.id;
   }
 
-  computeTVA (categorieDepense, value) {
+  computeTVA(categorieDepense, value) {
     if (categorieDepense && categorieDepense.tva) {
-      const taux = 1 + this.parseFloat(categorieDepense.tva) / 100;
+      const taux = 1 + (this.parseFloat(categorieDepense.tva) / 100);
       const ttc = this.parseFloat(value);
-      if (ttc || categorieDepense.tva == 0) {
+      if (ttc || categorieDepense.tva === 0) {
         const tva = ttc - (ttc / taux);
         return this.parseFloat(tva);
       }
@@ -119,5 +117,4 @@ export default class DepenseService extends EntityService {
     }
     return null;
   }
-
 }

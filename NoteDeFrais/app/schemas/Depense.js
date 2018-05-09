@@ -1,7 +1,6 @@
-import I18n from "../i18n/translations";
+import I18n from '../i18n/translations';
 
 export default class Depense {
-
   static schema = {
     name: 'Depense',
     primaryKey: 'id',
@@ -20,8 +19,7 @@ export default class Depense {
       id: { type: 'string' },
       _isSynchronized: { type: 'bool', default: true },
       _depreciation: { type: 'date', optional: true }
-    }
-    ,
+    },
     _form: {
       secure: {
         justificatifs: {},
@@ -29,7 +27,9 @@ export default class Depense {
         date: {},
         montantARembourser: { icon: 'ttc', iconEnd: `${I18n.t('devise')}` },
         tva: { icon: 'tva', iconEnd: `${I18n.t('devise')}` },
-        valeursAnalytiques: { icon: 'label', type: 'string', api: 'axesAnalytiques', optional: true }
+        valeursAnalytiques: {
+          icon: 'label', type: 'string', api: 'axesAnalytiques', optional: true
+        }
       },
       autonome: {
         justificatifs: {},
@@ -41,5 +41,4 @@ export default class Depense {
 
     }
   };
-
 }

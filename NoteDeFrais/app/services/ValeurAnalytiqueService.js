@@ -1,4 +1,4 @@
-import EntityService  from './EntityService';
+import EntityService from './EntityService';
 import ValeurAnalytique from '../schemas/ValeurAnalytique';
 
 /**
@@ -6,12 +6,10 @@ import ValeurAnalytique from '../schemas/ValeurAnalytique';
  * @override {EntityService}
  */
 export default class ValeurAnalytiqueService extends EntityService {
-
   /**
    * Initialisation du service
    */
-  constructor () {
+  constructor() {
     super(ValeurAnalytique.schema);
   }
-
 }

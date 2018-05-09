@@ -4,8 +4,7 @@ const TYPES = [
   'Motocyclette'
 ];
 
-class Vehicule {
-
+export default class Vehicule {
   static schema = {
     name: 'Vehicule',
     primaryKey: 'id',
@@ -19,7 +18,7 @@ class Vehicule {
       derniereModification: { type: 'date', optional: true },
       depreciation: { type: 'date', optional: true },
       id: { type: 'string' },
-      idCompte: { type: 'string', optional:true },
+      idCompte: { type: 'string', optional: true },
       _isSynchronized: { type: 'bool', default: true }
     },
     _form: {
@@ -31,7 +30,4 @@ class Vehicule {
       idCompte: { hidden: true },
     }
   };
-
 }
-
-export default Vehicule;

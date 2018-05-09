@@ -1,26 +1,19 @@
-import React from 'react';
-
-const t = require('tcomb-form-native');
-const Component = t.form.Component;
+import _ from 'underscore';
 
 import ImageField from './image-field';
 
-import _ from 'underscore';
+const t = require('tcomb-form-native');
+
+const Component = t.form.Component;
 
 export default class ImageFieldFactory extends Component {
-
-  getTemplate () {
+  getTemplate() {
     return ImageField;
   }
-
 }
 
 // as example of transformer: this is the default transformer for textboxes
 ImageFieldFactory.transformer = {
-  format: (value) => {
-    return value ? _.toArray(value) : [];
-  },
-  parse: (value) => {
-    return value;
-  }
+  format: value => value ? _.toArray(value) : [],
+  parse: value => value
 };

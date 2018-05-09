@@ -1,34 +1,32 @@
-import {StyleSheet, PixelRatio} from "react-native";
-import PlatformHelper from "../lib/platform-helper";
+import { StyleSheet, PixelRatio } from 'react-native';
+import PlatformHelper from '../lib/platform-helper';
 
 const NAVBAR_HEIGHT = 54;
 
-class Color {
-
-  constructor (code) {
+export class Color {
+  constructor(code) {
     this.code = code;
   }
 
-  background () {
+  background() {
     return { backgroundColor: this.code };
   }
 
-  color () {
+  color() {
     return { color: this.code };
   }
 
-  toString () {
+  toString() {
     return this.code;
   }
-
 }
 
-const Colors = {
+export const Colors = {
   red: new Color('#f44336'),
   redGoogle: new Color('#db3236'),
   white: new Color('#ffffff'),
   yellowGreen: new Color('yellowgreen'),
-  blue: new Color('#03A9F4'), //00bfff
+  blue: new Color('#03A9F4'), // 00bfff
   blueFacebook: new Color('#3b5998'),
   black: new Color('black'),
   greyLighter: new Color('#eee'),
@@ -38,15 +36,14 @@ const Colors = {
   orange: new Color('#FFA726')
 };
 
-const IconSize = {
+export const IconSize = {
   small: 20,
   medium: 30,
   large: 42,
   xxlarge: 120
 };
 
-const Style = StyleSheet.create({
-
+export const Style = StyleSheet.create({
   flex: {
     flex: 1,
   },
@@ -227,7 +224,7 @@ const Style = StyleSheet.create({
   buttonAbovePrevious: {
     position: 'absolute',
     right: 15,
-    bottom: IconSize.medium / 2 - 10
+    bottom: IconSize.medium / 2 - 10 // eslint-disable-line
   },
 
   buttonAction2: {
@@ -421,7 +418,7 @@ const Style = StyleSheet.create({
     backgroundColor: '#C9C9CE',
     maxHeight: 45,
     height: 45,
-    minHeight:45,
+    minHeight: 45,
     borderTopColor: '#7e7e7e',
     borderBottomColor: '#b5b5b5',
     borderTopWidth: 1 / PixelRatio.get(),
@@ -454,11 +451,3 @@ const Style = StyleSheet.create({
   },
 
 });
-
-module.exports = {
-  Style,
-  IconSize,
-  Colors
-};
-
-export default Style;

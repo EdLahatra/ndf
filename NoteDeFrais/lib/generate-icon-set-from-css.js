@@ -1,33 +1,34 @@
 /**
  * @providesModule generateIconSetFromCss
  */
-'use strict';
-var _ = require('lodash');
-var fs = require('fs');
+// const _ = require('lodash');
+import _ from 'lodash';
+
+const fs = require('fs');
 
 function extractGlyphMapFromCss(files, selectorPattern) {
-  var styleRulePattern = '(\\.[A-Za-z0-9_.:, \\n\\t-]+)\\{[^}]*content: ?["\\\']\\\\([a-fA-F0-9]+)["\\\'][^}]*\\}';
-  var allStyleRules = new RegExp(styleRulePattern, 'g');
-  var singleStyleRules = new RegExp(styleRulePattern);
-  var allSelectors = new RegExp(selectorPattern, 'g');
-  var singleSelector = new RegExp(selectorPattern);
+  const styleRulePattern = '(\\.[A-Za-z0-9_.:, \\n\\t-]+)\\{[^}]*content: ?["\\\']\\\\([a-fA-F0-9]+)["\\\'][^}]*\\}';
+  const allStyleRules = new RegExp(styleRulePattern, 'g');
+  const singleStyleRules = new RegExp(styleRulePattern);
+  const allSelectors = new RegExp(selectorPattern, 'g');
+  const singleSelector = new RegExp(selectorPattern);
 
-  var glyphMap = {};
-  if(typeof files === 'string') {
+  const glyphMap = {};
+  if (typeof files === 'string') {
     files = [files];
   }
 
-  files.forEach(function(fileName) {
-    var contents = fs.readFileSync(fileName, { encoding: 'utf8' });
-    var rules = contents.match(allStyleRules);
-    if(rules) {
-      rules.forEach(function(rule) {
-        var ruleParts = rule.match(singleStyleRules);
-        var charCode = parseInt(ruleParts[2], 16);
-        var selectors = ruleParts[1].match(allSelectors);
-        if(selectors) {
-          selectors.forEach(function(selector) {
-            var name = selector.match(singleSelector)[1];
+  files.forEach((fileName) => {
+    const contents = fs.readFileSync(fileName, { encoding: 'utf8' });
+    const rules = contents.match(allStyleRules);
+    if (rules) {
+      rules.forEach((rule) => {
+        const ruleParts = rule.match(singleStyleRules);
+        const charCode = parseInt(ruleParts[2], 16);
+        const selectors = ruleParts[1].match(allSelectors);
+        if (selectors) {
+          selectors.forEach((selector) => {
+            const name = selector.match(singleSelector)[1];
             glyphMap[name] = charCode;
           });
         }
@@ -35,22 +36,23 @@ function extractGlyphMapFromCss(files, selectorPattern) {
     }
   });
   return glyphMap;
-};
+}
 
 function escapeRegExp(str) {
-  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+  // eslint-disable-next-line
+  return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');
 }
 
 function generateIconSetFromCss(cssFiles, selectorPrefix, template, data) {
-  var glyphMap = extractGlyphMapFromCss(cssFiles, escapeRegExp(selectorPrefix) + '([A-Za-z0-9_-]+):before');
-  var content = JSON.stringify(glyphMap, null, '  ');
-  if(template) {
-    var compiled = _.template(template);
+  const glyphMap = extractGlyphMapFromCss(cssFiles, `${escapeRegExp(selectorPrefix)}([A-Za-z0-9_-]+):before`);
+  let content = JSON.stringify(glyphMap, null, '  ');
+  if (template) {
+    const compiled = _.template(template);
     data = data || {};
     data.glyphMap = content;
     content = compiled(data);
   }
   return content;
-};
+}
 
 module.exports = generateIconSetFromCss;

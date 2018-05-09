@@ -1,1 +1,1 @@
-module.exports = window.fetch;
+export default window.fetch;

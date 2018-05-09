@@ -1,9 +1,8 @@
-'use strict';
-
 import React, { Component } from 'react';
 import { Alert, View } from 'react-native';
-
-import { Actions, } from 'react-native-router-flux';
+import GoogleAnalytics from 'react-native-google-analytics-bridge';
+import Spinner from 'react-native-loading-spinner-overlay';
+import { Actions } from 'react-native-router-flux';
 
 import DepenseService from '../services/DepenseService';
 import IndemniteKilometriqueService from '../services/IndemniteKilometriqueService';
@@ -17,9 +16,6 @@ import NoteDeFraisService from '../services/NoteDeFraisService';
 import VehiculeService from '../services/VehiculeService';
 import AxeAnalytiqueService from '../services/AxeAnalytiqueService';
 import ValeurAnalytiqueService from '../services/ValeurAnalytiqueService';
-import GoogleAnalytics from 'react-native-google-analytics-bridge';
-
-import Spinner from 'react-native-loading-spinner-overlay';
 
 import I18n from '../i18n/translations';
 /**
@@ -29,12 +25,11 @@ import I18n from '../i18n/translations';
  * @override react/Component
  */
 export default class Chargement extends Component {
-
   /**
    * Initialisation de l'état du composant.
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
    */
-  constructor () {
+  constructor() {
     super();
 
     /** @type {CompteSecureService} */
@@ -66,15 +61,14 @@ export default class Chargement extends Component {
     /** @type {Object} */
     this.state = {
       loading: true
-    }
+    };
   }
 
   /**
    * Méthode invoquée une fois que le DOM est chargée.
    * En fonction du compte on charge les données ou simplement les barêmes kilométriques
    */
-  async componentDidMount () {
-
+  async componentDidMount() {
     GoogleAnalytics.trackScreenView('Chargement');
 
     const compteSecure = this.compteSecureService.getSelectedAccount();
@@ -85,7 +79,6 @@ export default class Chargement extends Component {
         await Promise.all([
           this.categorieDepenseService.mergeAll(compteSecure),
           this.compteService.mergeAll(),
-
           this.noteDeFraisService.mergeAll(),
           this.depenseService.mergeAll(),
           this.indemniteKilometriqueService.mergeAll(),
@@ -101,8 +94,7 @@ export default class Chargement extends Component {
         this.setState({ loading: false });
         Alert.alert(I18n.t('Alert.warning'), e.message, [{ text: I18n.t('Alert.ok') }]);
       }
-    }
-    else {
+    } else {
       try {
         await this.baremeKilometriqueService.mergeAll();
       } catch (e) {
@@ -111,7 +103,9 @@ export default class Chargement extends Component {
       }
     }
 
-    const noteDeFrais = this.noteDeFraisService.find(this.noteDeFraisService.findEnCours(compteSecure.compte));
+    const noteDeFrais = this.noteDeFraisService.find(
+      this.noteDeFraisService.findEnCours(compteSecure.compte)
+    );
     Actions.depenseCommuneListe({ noteDeFrais });
   }
 
@@ -122,10 +116,9 @@ export default class Chargement extends Component {
    * @function render
    * @return react~Component
    */
-  render () {
-    return <View>
-      <Spinner visible={this.state.loading}/>
-    </View>
+  render() {
+    return (<View>
+      <Spinner visible={this.state.loading} />
+    </View>);
   }
-
 }

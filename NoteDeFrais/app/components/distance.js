@@ -1,8 +1,7 @@
-import { Alert } from 'react-native';
+import _ from 'underscore';
 
 import ENV from '../config/environment';
 import I18n from '../i18n/translations';
-import _ from 'underscore';
 
 const conversionKey = {
   m: {
@@ -16,13 +15,11 @@ const conversionKey = {
 };
 
 export default class Distance {
-
-  static convert (distance, from = 'm', to = 'km') {
+  static convert(distance, from = 'm', to = 'km') {
     return distance * conversionKey[from][to];
   }
 
-  static compute (origins, destinations) {
-
+  static compute(origins, destinations) {
     const params = {
       key: ENV.DistanceMatrix.key,
       origins,
@@ -31,28 +28,23 @@ export default class Distance {
       units: I18n.t('distanceMatrix.units')
     };
 
-    const queryParams = _.map(params, (v, k) => {
-      return encodeURIComponent(k) + '=' + encodeURIComponent(v);
-    }).join('&');
-
+    const queryParams = _.map(params, (v, k) =>
+      `${encodeURIComponent(k)}=${encodeURIComponent(v)}`).join('&');
     const self = this;
 
     return fetch(ENV.DistanceMatrix.url + queryParams, {
       method: 'GET'
     }).then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         return response.json();
       }
-      else throw new Error('Something went wrong on api server!');
-    }).then(function ({ rows }) {
+      throw new Error('Something went wrong on api server!');
+    }).then(({ rows }) => {
       const element = rows[0].elements[0];
       if (element.status === 'NOT_FOUND') {
         throw new Error(element.status);
       }
       return self.convert(element.distance.value);
-
     });
-
   }
-
 }
