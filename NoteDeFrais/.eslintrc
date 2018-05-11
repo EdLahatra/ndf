@@ -1,19 +1,96 @@
 {
-  "parser": "babel-eslint",
-  "plugins": [
-    "react",
-    "react-native"
-  ],
-  "parserOptions": {
-    "ecmaFeatures": {
-      "jsx": true,
-      "sourceType": "module"
-    }
+  "extends": "eslint-config-airbnb",
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
   },
   "rules": {
-    "react-native/no-unused-styles": 2,
-    "react-native/split-platform-components": 2,
-    "react-native/no-inline-styles": 0,
-    "react-native/no-color-literals": 0
+    "max-len": [
+      "error",
+      100,
+      2,
+      {
+        "ignoreComments": false,
+        "ignoreStrings": false,
+        "ignoreTemplateLiterals": false
+      }
+    ],
+    "camelcase": 0,
+    "comma-dangle": 0,
+    "guard-for-in": 1,
+    "import/default": 0,
+    "import/extensions": 0,
+    "import/no-duplicates": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/named": 0,
+    "import/namespace": 0,
+    "import/no-unresolved": 0,
+    "import/no-named-as-default": 2,
+    "indent": [2, 2, {
+      "SwitchCase": 1
+    }],
+    "jsx-a11y/interactive-supports-focus": 1,
+    "no-alert": 1,
+    "no-console": 2,
+    "no-unused-vars": 2,
+    "no-use-before-define": ["error", {
+      "functions": false
+    }],
+    "react/jsx-boolean-value": 0,
+    "react/jsx-filename-extension": 0,
+    "react/no-multi-comp": 0,
+    "global-require": 0,
+    "react/prop-types": "off",
+    "no-confusing-arrow": "off",
+    "react/sort-comp": "off",
+    "no-undef": "off",
+    "react/require-default-props": "off",
+    "new-cap": "off",
+    "react/prefer-stateless-function": "off",
+    "react/no-string-refs": "off",
+    "consistent-return": "off",
+    "class-methods-use-this": "off",
+    "no-return-assign": "off",
+    "react/jsx-no-bind": "off",
+    "react/no-array-index-key": "off",
+    "no-param-reassign": "off",
+    "no-empty-function": "off",
+    "no-unused-expressions": "off",
+    "no-nested-ternary": "off",
+    "no-multi-assign": "off",
+    "no-restricted-syntax": "off",
+    "no-plusplus": "off",
+    "prefer-rest-params": "off",
+    "no-return-await": "off",
+    "no-shadow": "off",
+    "no-prototype-builtins": "off",
+    "react/no-did-mount-set-state": "off",
+    "array-callback-return": "off",
+    "no-underscore-dangle": "off",
+    "react/forbid-prop-types": "off"
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "plugins": [
+    "react", "import"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules", "src"]
+    }
+  },
+  "globals": {
+    "__DEVELOPMENT__": true,
+    "__CLIENT__": true,
+    "__SERVER__": true,
+    "__DISABLE_SSR__": true,
+    "__DEVTOOLS__": true,
+    "webpackIsomorphicTools": true
   }
 }

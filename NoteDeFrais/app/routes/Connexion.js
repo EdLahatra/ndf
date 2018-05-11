@@ -126,8 +126,6 @@ export default class Connexion extends Component {
         await GoogleSignin.configure(
           {
             scopes: ['https://www.googleapis.com/auth/drive.readonly'],
-            // iosClientId: '519286638345-kg3fd0pv8ou19qc0ridhecob7qb06d29.apps.googleusercontent.com',
-            // webClientId: '519286638345-iqupvlcp25fhoi3cluivfm1r5psa1cpq.apps.googleusercontent.com',
             iosClientId: ENV.GoogleSignin.iosClientId,
             webClientId: ENV.GoogleSignin.webClientId,
             offlineAccess: true,

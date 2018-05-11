@@ -370,7 +370,7 @@ export default class RealmForm extends Component {
       if (!this.state.offline) {
         return axios.get(query(text))
           .then(res => this.setState({ dataSource: res.data.predictions }))
-          .catch(() => this.setState({ dataSource }));
+          .catch(() => this.setState({ dataSource: [] }));
       }
       return this.setState({ dataSource: countries.filter(key => key.name.includes(text)) });
     } catch (error) {

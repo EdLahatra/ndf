@@ -5,7 +5,7 @@ import {
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import { Actions } from 'react-native-router-flux';
 import Spinner from 'react-native-loading-spinner-overlay';
-import { OauthServiceFactory } from '../services/OauthService';
+import OauthServiceFactory from '../services/OauthService';
 import CompteSecureService from '../services/CompteSecureService';
 import CompteService from '../services/CompteService';
 import CompteSecure from '../schemas/CompteSecure';
@@ -16,6 +16,8 @@ import TextboxFieldFactory from '../components/textbox-field-factory';
 
 import { Style } from '../styles/style';
 import NoteDeFraisService from '../services/NoteDeFraisService';
+
+import ENV from '../config/environment';
 
 const t = require('tcomb-form-native');
 
@@ -186,7 +188,6 @@ export default class Login extends Component {
 
         const values = this.refs.form.getValue();
 
-        // const oauthService = OauthServiceFactory.getInstance(this.props.typeCompte);        // const oauthService = OauthServiceFactory.getInstance(this.props.typeCompte);
         const oauthService = OauthServiceFactory(this.props.typeCompte);
         compteSecureId = await oauthService.authenticate(values);
 

@@ -1,5 +1,4 @@
 import _ from 'underscore';
-import React from 'react';
 
 import CompteSecureService from './CompteSecureService';
 import Logger from '../lib/Logger';
@@ -11,7 +10,7 @@ const Keychain = require('react-native-keychain');
 /**
  * Service de gestion de l'authentification
  */
-export class OauthService {
+class OauthService {
   /**
    * Initialisation du service
    * Initialisation de l'ensemble des services utiles pour le chargement des données.
@@ -84,23 +83,12 @@ export class OauthService {
   }
 }
 
-export const OauthServiceFactory = (typeCompte) => {
+const OauthServiceFactory = (typeCompte) => {
   const _services = {};
   if (typeof _services[typeCompte] === 'undefined') {
     _services[typeCompte] = new OauthService(typeCompte);
   }
   return _services[typeCompte];
-/* const _services = {};
+};
 
-  return {
-    getInstance(typeCompte){
-      if (typeof _services[typeCompte] === 'undefined') {
-        _services[typeCompte] = new OauthService(typeCompte);
-      }
-      return _services[typeCompte];
-    }
-  }; */
-
-}
-
-// export default OauthServiceFactory;
+export default OauthServiceFactory;

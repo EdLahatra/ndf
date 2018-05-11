@@ -17,7 +17,7 @@ const environment = {
 
   GoogleSignin: {
     iosClientId: '307360444785-tstscmkaktt7a408jk0lbv2csjh3pgf8.apps.googleusercontent.com',
-    webClientId: '307360444785-lk9ialac31h0bvc4kl3ftec1p0vd0a71.apps.googleusercontent.com'
+    webClientId: '521942746637-oip7hn70v4jcre370lhiejprlfn4al14.apps.googleusercontent.com'
   },
 
   Autonome: {

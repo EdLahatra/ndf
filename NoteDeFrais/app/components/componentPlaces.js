@@ -405,7 +405,8 @@ export default class GooglePlacesAutocomplete extends Component {
             if (this._isMounted === true) {
               let results = [];
               if (this.props.nearbyPlacesAPI === 'GoogleReverseGeocoding') {
-                results = this._filterResultsByTypes(responseJSON, this.props.filterReverseGeocodingByTypes);
+                results = this._filterResultsByTypes(
+                  responseJSON, this.props.filterReverseGeocodingByTypes);
               } else {
                 results = responseJSON.results;
               }
@@ -487,7 +488,7 @@ export default class GooglePlacesAutocomplete extends Component {
       request.open(
         'GET',
         `https://maps.googleapis.com/maps/api/place/autocomplete/json?&input=
-          ${encodeURIComponent(text)}&${Qs.stringify(this.props.query)}`
+          ${encodeURIComponent(text)}&${Qs.stringify(this.props.query)}`,
       );
       if (this.props.query.origin !== null) {
         request.setRequestHeader('Referer', this.props.query.origin);
@@ -526,7 +527,7 @@ export default class GooglePlacesAutocomplete extends Component {
   _getRowLoader() {
     return (
       <ActivityIndicator
-        animating={true}
+        animating
         size="small"
       />
     );
@@ -543,7 +544,7 @@ export default class GooglePlacesAutocomplete extends Component {
           { flex: 1 },
           defaultStyles.description,
           this.props.styles.description,
-          rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {}
+          rowData.isPredefinedPlace ? this.props.styles.predefinedPlacesDescription : {},
         ]}
         numberOfLines={1}
       >
@@ -577,7 +578,7 @@ export default class GooglePlacesAutocomplete extends Component {
       style={{ flex: 1 }}
       scrollEnabled={this.props.isRowScrollable}
       keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
-      horizontal={true}
+      horizontal
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
@@ -590,7 +591,7 @@ export default class GooglePlacesAutocomplete extends Component {
           style={[
             defaultStyles.row,
             this.props.styles.row,
-            rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {}
+            rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {},
           ]}
         >
           {this._renderRowData(rowData)}
@@ -633,7 +634,7 @@ export default class GooglePlacesAutocomplete extends Component {
         style={[
           defaultStyles.row,
           defaultStyles.poweredContainer,
-          this.props.styles.poweredContainer
+          this.props.styles.poweredContainer,
         ]}
       >
         <Image

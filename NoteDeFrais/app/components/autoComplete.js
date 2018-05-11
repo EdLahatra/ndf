@@ -6,12 +6,16 @@ import {
   TouchableHighlight,
   ScrollView,
   FlatList,
-  Dimensions
+  Dimensions,
+  NetInfo,
+  TouchableOpacity,
 } from 'react-native';
-import PropTypes from 'prop-types';
+import axios from 'axios';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { IconSize, Style, Colors } from '../styles/style';
 
-import { Style } from '../styles/style';
 import { countries } from '../lib/countries';
+import { query, details } from '../lib/requette';
 
 const WINDOW = Dimensions.get('window');
 
@@ -24,36 +28,63 @@ export default class Select extends Component {
     super(props);
     this.state = {
       value: this.props.locals && this.props.locals.value ? this.props.locals.value : '',
-      dataSource: []
+      dataSource: [],
+      offline: false,
     };
   }
 
-  _handleChangeText = (value) => {
-    this.setState({ value });
+  handleConnectionChange = isConnected => this.setState({ offline: !isConnected });
+
+  componentDidMount() {
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
+    NetInfo.isConnected.fetch().done(isConnected => this.setState({ offline: !isConnected }));
   }
 
-  _onChangeText = (value) => {
-    this._handleChangeText(value);
-    return this.setState({ dataSource: countries.filter(key => key.name.includes(value)) });
+  componentWillUnmount() {
+    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectionChange);
+  }
+
+  _handleChangeText = value => this.setState({ value });
+
+  _onChangeText(value, placeholder) {
+    this.setState({ value });
+    if (!this.state.offline && placeholder !== 'Pays') {
+      axios.get(query(value))
+        .then(res => this.setState({ dataSource: res.data.predictions }))
+        .catch(() => this.setState({ dataSource: [] }));
+    }
+    if (placeholder === 'Pays') {
+      this.setState({ dataSource: countries.filter(key => key.name.includes(value)) });
+    }
   }
 
   _renderRow = (rowData = {}) => (
     <ScrollView
       style={{ flex: 1 }}
-      horizontal={true}
+      horizontal
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
     >
       <TouchableHighlight
         style={{ width: WINDOW.width, marginTop: 40 }}
-        onPress={() => this.setState({ value: rowData.name, dataSource: [] })}
+        onPress={() => this.onSelect(rowData)}
       >
         <View>
-          <Text>{rowData.name} </Text>
+          <Text>{rowData.name || rowData.description} </Text>
         </View>
       </TouchableHighlight>
     </ScrollView>
   )
+
+  onSelect = (rowData) => {
+    this.setState({ value: rowData.name || rowData.description, dataSource: [] });
+    if (rowData.place_id && !this.state.offline) {
+      axios.get(details(rowData.place_id))
+        .then(() => {
+          // this.setState({ value: res.data.result.geometry.location.lat.toString() });
+        }).catch(() => this.setState({ dataSource: [] }));
+    }
+  }
 
   _getFlatList = () => {
     const keyGenerator = () => (
@@ -69,6 +100,7 @@ export default class Select extends Component {
         />
       );
     }
+
     return null;
   }
 
@@ -103,9 +135,54 @@ export default class Select extends Component {
     const help = locals.help ? <Text style={helpBlockStyle}>{locals.help}</Text> : null;
     const error = locals.hasError && locals.error ?
       <Text accessibilityLiveRegion="polite" style={errorBlockStyle}>{locals.error}</Text> : null;
+    let icon = null;
+    if (locals.icon) {
+      if (MaterialIcons.glyphMap[locals.icon]) {
+        icon = (<MaterialIcons
+          name={locals.icon}
+          size={IconSize.medium}
+          style={[Colors.greyDarker.color(), { marginRight: 5 }]}
+        />);
+      } else {
+        icon = (<Text style={[Style.iconText, { marginRight: 5 }]}>
+          {locals.icon.toUpperCase()}</Text>);
+      }
+    }
+
+    let iconEnd = <Text style={[Style.iconText, { marginHorizontal: 15 }]} />;
+    if (locals.iconEnd) {
+      if (MaterialIcons.glyphMap[locals.iconEnd]) {
+        iconEnd = (<TouchableOpacity onPress={locals.openModal}>
+          <MaterialIcons
+            name={locals.iconEnd}
+            size={IconSize.medium}
+            style={[Colors.greyDarker.color(), { marginHorizontal: 5 }]}
+          />
+        </TouchableOpacity>);
+      } else {
+        iconEnd = (<Text
+          style={[Style.iconText, {
+            marginLeft: 10,
+            marginRight: 15,
+          }]}
+        >{locals.iconEnd.toUpperCase()}</Text>);
+      }
+    }
+
+    if (locals.api === 'places') {
+      iconEnd = (<TouchableOpacity onPress={locals.onCallApi}>
+        <MaterialIcons
+          name="my-location"
+          size={IconSize.medium}
+          style={[Colors.greyDarker.color(), { marginHorizontal: 5 }]}
+        />
+      </TouchableOpacity>);
+    }
+
     return (
       <View style={[Style.formRow, Style.inline, formGroupStyle]}>
         {label}
+        {icon}
         <TextInput
           accessibilityLabel={locals.accessibilityLabel}
           ref="input"
@@ -138,7 +215,7 @@ export default class Select extends Component {
           selectionState={locals.selectionState}
           onChangeText={(value) => {
             locals.onChange(value);
-            this._onChangeText(value);
+            this._onChangeText(value, locals.placeholder);
           }}
           onChange={locals.onChange}
           placeholder={locals.placeholder}
@@ -146,6 +223,7 @@ export default class Select extends Component {
           value={this.state.value}
         />
         {locals.renderModal}
+        {iconEnd}
         {help}
         {error}
         {this._getFlatList()}
@@ -153,7 +231,3 @@ export default class Select extends Component {
     );
   }
 }
-
-Select.propTypes = {
-  locals: PropTypes.any,
-};

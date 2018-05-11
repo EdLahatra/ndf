@@ -304,7 +304,10 @@ export default {
               || propertyValue.type === 'int'
             )
           ) {
-            if (property === 'pays') {
+            if (
+              property === 'pays' || property === '_depart'
+              || property === 'lieu' || property === 'ville'
+            ) {
               fieldsOptions[property].factory = AutoComplete;
             } else {
               fieldsOptions[property].factory = TextboxFieldFactory;

@@ -14,9 +14,9 @@ export default class Textbox extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     const should = (
       nextState.value !== this.state.value ||
-        nextState.hasError !== this.state.hasError ||
-        nextProps.options !== this.props.options ||
-        nextProps.type !== this.props.type
+      nextState.hasError !== this.state.hasError ||
+      nextProps.options !== this.props.options ||
+      nextProps.type !== this.props.type
     );
     return should;
   }
