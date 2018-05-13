@@ -15,7 +15,8 @@ import CompteSecureService from '../services/CompteSecureService';
 import Logger from '../lib/Logger';
 import ENV from '../config/environment';
 
-const FBSDK = require('react-native-fbsdk');
+import FBSDK from '../../modules/react-native-fbsdk';
+// const FBSDK = require('react-native-fbsdk');
 
 const { LoginManager, GraphRequest, GraphRequestManager } = FBSDK;
 
