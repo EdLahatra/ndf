@@ -365,7 +365,7 @@ DatePicker.propTypes = {
   duration: PropTypes.number,
   confirmBtnText: PropTypes.string,
   cancelBtnText: PropTypes.string,
-  customStyles: PropTypes.obj,
+  customStyles: PropTypes.object,
   showIcon: PropTypes.bool,
   disabled: PropTypes.bool,
   onDateChange: PropTypes.func,

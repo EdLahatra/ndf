@@ -3,7 +3,6 @@ package com.notedefrais;
 import android.app.Activity;
 import android.content.Intent;
 import com.facebook.react.ReactActivity;
-import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import com.idehub.GoogleAnalyticsBridge.GoogleAnalyticsBridgePackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import co.apptailor.googlesignin.RNGoogleSigninPackage;

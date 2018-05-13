@@ -34,6 +34,7 @@ export default class BaremeKilometriqueService extends EntityService {
       return this.findByTypeVehicule(typeVehicule, mDate.subtract(1, 'year').toDate());
     }
     mDate;
+
     return baremes[0];
   }
 

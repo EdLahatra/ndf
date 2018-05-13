@@ -7,14 +7,7 @@ import {
   findNodeHandle,
   TouchableOpacity,
   InteractionManager,
-  Dimensions,
-  PixelRatio,
-  StyleSheet,
-  FlatList,
-  NetInfo,
-  TouchableHighlight
 } from 'react-native';
-import axios from 'axios';
 import { Actions, } from 'react-native-router-flux';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
@@ -25,74 +18,11 @@ import FormStyle from '../styles/formStyle';
 import PlatformHelper from '../lib/platform-helper';
 import utils from '../lib/utils';
 
-import { countries } from '../lib/countries';
-import { query } from '../lib/requette';
-
 const t = require('tcomb-form-native');
 
 const Form = t.form.Form;
 
 let currentForm;
-
-const WINDOW = Dimensions.get('window');
-
-const defaultStyles = {
-  container: {
-    flex: 1,
-  },
-  textInputContainer: {
-    backgroundColor: '#C9C9CE',
-    height: 44,
-    borderTopColor: '#7e7e7e',
-    borderBottomColor: '#b5b5b5',
-    borderTopWidth: 1 / PixelRatio.get(),
-    borderBottomWidth: 1 / PixelRatio.get(),
-    flexDirection: 'row',
-  },
-  textInput: {
-    backgroundColor: '#FFFFFF',
-    height: 28,
-    borderRadius: 5,
-    paddingTop: 4.5,
-    paddingBottom: 4.5,
-    paddingLeft: 10,
-    paddingRight: 10,
-    marginTop: 7.5,
-    marginLeft: 8,
-    marginRight: 8,
-    fontSize: 15,
-    flex: 1,
-  },
-  poweredContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-  },
-  powered: {},
-  listView: {
-    // flex: 1,
-  },
-  row: {
-    padding: 13,
-    height: 44,
-    flexDirection: 'row',
-  },
-  separator: {
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: '#c8c7cc',
-  },
-  description: {},
-  loader: {
-    // flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    height: 20,
-  },
-  androidLoader: {
-    marginRight: -15,
-  },
-};
-
 
 /**
  * Composant permetant d'automatiser la création de formulaire basée sur
@@ -145,9 +75,6 @@ export default class RealmForm extends Component {
         fields: null
       },
       form: null,
-      text: '',
-      dataSource: [],
-      offline: false,
     };
   }
 
@@ -158,16 +85,6 @@ export default class RealmForm extends Component {
       currentForm = this.refs.form;
       this._getInput().refs.input.focus && this._getInput().refs.input.focus();
     });
-    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
-    NetInfo.isConnected.fetch().done(isConnected => this.setState({ offline: !isConnected }));
-  }
-
-  componentWillUnmount() {
-    NetInfo.isConnected.removeEventListener('connectionChange', this.handleConnectionChange);
-  }
-
-  handleConnectionChange = (isConnected) => {
-    this.setState({ offline: !isConnected });
   }
 
   componentWillReceiveProps(props) {
@@ -364,68 +281,6 @@ export default class RealmForm extends Component {
     </View>);
   }
 
-  async _onChangeText(text) {
-    this.setState({ text });
-    try {
-      if (!this.state.offline) {
-        return axios.get(query(text))
-          .then(res => this.setState({ dataSource: res.data.predictions }))
-          .catch(() => this.setState({ dataSource: [] }));
-      }
-      return this.setState({ dataSource: countries.filter(key => key.name.includes(text)) });
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
-  }
-
-  _renderRow = (rowData = {}) => (
-    <ScrollView
-      style={{ flex: 1 }}
-      scrollEnabled={this.props.isRowScrollable}
-      keyboardShouldPersistTaps={this.props.keyboardShouldPersistTaps}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-    >
-      <TouchableHighlight
-        style={{ width: WINDOW.width, marginTop: 40 }}
-        onPress={() => this.setState({ text: rowData.name || rowData.description, dataSource: [] })}
-        underlayColor={this.props.listUnderlayColor || '#c8c7cc'}
-      >
-        <View
-          style={[
-            defaultStyles.row,
-            rowData.isPredefinedPlace ? this.props.styles.specialItemRow : {}
-          ]}
-        >
-          <Text>{ rowData.name || rowData.description} </Text>
-        </View>
-      </TouchableHighlight>
-    </ScrollView>
-  )
-
-  _getFlatList = () => {
-    const keyGenerator = () => (
-      Math.random().toString(36).substr(2, 10)
-    );
-    if (this.state.dataSource && this.state.dataSource.length > 0) {
-      return (
-        <FlatList
-          style={[defaultStyles.listView]}
-          data={this.state.dataSource}
-          keyExtractor={keyGenerator}
-          extraData={[this.state.dataSource, this.props]}
-          // ItemSeparatorComponent={this._renderSeparator}
-          renderItem={({ item }) => this._renderRow(item)}
-          // ListFooterComponent={this._renderPoweredLogo}
-          // {...this.props}
-        />
-      );
-    }
-    return null;
-  }
-
   /**
    * Méthode éxécuté lors du rendu du composant.
    *
@@ -435,21 +290,6 @@ export default class RealmForm extends Component {
   render() {
     if (this.state.form && this.state.options) {
       return (<View style={Style.containerWithNavBar}>
-        { /* <TextInput
-          ref="textInput"
-          returnKeyType={this.props.returnKeyType}
-          autoFocus={this.props.autoFocus}
-          style={[Style.input]}
-          value={this.state.text}
-          placeholder={'pays'}
-
-          placeholderTextColor={this.props.placeholderTextColor}
-          // onFocus={onFocus ? () => { this._onFocus(); onFocus(); } : this._onFocus}
-          clearButtonMode="while-editing"
-          underlineColorAndroid={this.props.underlineColorAndroid}
-          onChangeText={text => this._onChangeText(text)}
-        />
-        {/* this._getFlatList() */ }
         <ScrollView ref="scrollView" scrollEnabled={true} showsVerticalScrollIndicator={true}>
           <Form
             ref="form"

@@ -51,9 +51,7 @@ export default class VehiculeService extends EntityService {
     return ka;
   }
 
-  getAnnee(date) {
-    return parseInt(moment(date).format('YYYY'), 10);
-  }
+  getAnnee = date => parseInt(moment(date).format('YYYY'), 10);
 
   create(body) {
     const shouldUseApiService = this.compteSecureService.shouldUseApiService();

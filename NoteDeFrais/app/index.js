@@ -1,8 +1,9 @@
 import React, { Component, } from 'react';
-import { Navigator } from 'react-native-deprecated-custom-components';
 
 import { Actions, Scene, Router, ActionConst, Route } from 'react-native-router-flux';
 import GoogleAnalytics from 'react-native-google-analytics-bridge';
+
+import { Navigator } from '../modules/react-native-deprecated-custom-components';
 
 import ENV from './config/environment';
 import Presentation from './routes/Presentation';
@@ -24,7 +25,7 @@ import DepenseCommuneNavBar from './components/DepenseCommuneNavBar';
 import NavBar from './components/NavBar';
 import I18n from './i18n/translations';
 
-// import PlaceAutocomplete from './components/place-autocomplete';
+import PlaceAutocomplete from './components/place-autocomplete';
 import ValeursAnalytiquesAutocomplete from './components/valeursAnalytiques-autocomplete';
 import DrawerSideMenu from './components/drawer-side-menu';
 
@@ -91,12 +92,12 @@ const scenes = Actions.create(
         <Scene key="vehiculeForm" component={VehiculeForm} />
         <Scene key="fichePersonnelleForm" component={FichePersonnelleForm} />
         <Scene key="indemniteKilometriqueForm" component={IndemniteKilometriqueForm} />
-        {/* <Scene
+        <Scene
           key="placeAutocomplete"
           component={PlaceAutocomplete}
           direction="vertical"
           hideNavBar={true}
-        /> */}
+        />
         <Scene
           key="valeursAnalytiquesAutocomplete"
           component={ValeursAnalytiquesAutocomplete}

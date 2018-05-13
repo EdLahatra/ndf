@@ -265,7 +265,8 @@ export default class NoteDeFraisService extends EntityService {
       if (totalAfterValidation !== totalBeforeValidation) {
         const previousBareme = this.baremeKilometriqueService.findByTypeVehicule(vehicule.typeVehicule, new Date());
         const previousSeuil = this.baremeKilometriqueService.findSeuil(previousBareme, vehicule.puissanceFiscale, kilometrage);
-        const nextSeuil = this.baremeKilometriqueService.findSeuil(previousBareme, vehicule.puissanceFiscale, kilometrageAfterValidation);
+        const nextSeuil = this.baremeKilometriqueService.findSeuil(
+          previousBareme, vehicule.puissanceFiscale, kilometrageAfterValidation);
 
         const previousTotal = this.parseFloat(kilometrage * previousSeuil.variable) + previousSeuil.fixe;
         const nextTotal = this.parseFloat(kilometrage * nextSeuil.variable) + nextSeuil.fixe;

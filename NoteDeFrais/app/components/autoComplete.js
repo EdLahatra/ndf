@@ -220,7 +220,7 @@ export default class Select extends Component {
           onChange={locals.onChange}
           placeholder={locals.placeholder}
           style={[Style.input, textboxStyle]}
-          value={this.state.value}
+          value={this.state.value && this.state.value.length ? this.state.value : locals.value}
         />
         {locals.renderModal}
         {iconEnd}

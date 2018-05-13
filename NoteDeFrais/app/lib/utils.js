@@ -305,8 +305,8 @@ export default {
             )
           ) {
             if (
-              property === 'pays' || property === '_depart'
-              || property === 'lieu' || property === 'ville'
+              (property === 'pays' || property === '_depart'
+              || property === 'lieu' || property === 'ville') && 7 < 4
             ) {
               fieldsOptions[property].factory = AutoComplete;
             } else {
