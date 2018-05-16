@@ -15,19 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "591258947190-hd8ng5dj6rgiot4uard06gh6r1nd9a7c.apps.googleusercontent.com",
-          "client_type": 3
+          "client_id": "591258947190-k44dlc3k5si2ak4gep9ktdm3hoaku4sa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.notedefrais",
+            "certificate_hash": "3366b4f4f40b1fc4ed1a5c49311e8bffebb5f61b"
+          }
         },
         {
-          "client_id": "591258947190-at5gt4nj70ndhlplru876h1van0uvriv.apps.googleusercontent.com",
+          "client_id": "591258947190-d8bs3702653q4l5qtlvv2kv5r5cr7e4l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDNflmt1QHZWSIjU9-HOtkuA4CeqjqNpNs"
-        }
-      ],
+      "api_key": [{ "current_key": "AIzaSyCep5faRvTDWK92dpILTNfq_bi07fKkirk" }],
       "services": {
         "analytics_service": {
           "status": 1
@@ -36,7 +36,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "591258947190-hd8ng5dj6rgiot4uard06gh6r1nd9a7c.apps.googleusercontent.com",
+              "client_id": "591258947190-d8bs3702653q4l5qtlvv2kv5r5cr7e4l.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

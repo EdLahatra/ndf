@@ -128,7 +128,7 @@ export default class Connexion extends Component {
           {
             scopes: ['https://www.googleapis.com/auth/drive.readonly'],
             iosClientId: ENV.GoogleSignin.iosClientId,
-            webClientId: ENV.GoogleSignin.webClientId,
+            webClientId: '591258947190-d8bs3702653q4l5qtlvv2kv5r5cr7e4l.apps.googleusercontent.com',
             offlineAccess: true,
             hostedDomain: '',
             forceConsentPrompt: true,
