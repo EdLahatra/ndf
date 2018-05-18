@@ -38,10 +38,7 @@ export default class VehiculeListe extends ListEdit {
     Actions.refresh({ selected: {} });
   }
 
-  getElements() {
-    return this.vehiculeService.findAllForAccount(
-      this.compteSecureService.getSelectedAccount().compte.id);
-  }
+  getElements = () => this.vehiculeService.findAllForAccount(this.compteSecureService.getSelectedAccount().compte.id);
 
   async componentDidMount() {
     GoogleAnalytics.trackScreenView('VehiculeListe');
@@ -55,9 +52,7 @@ export default class VehiculeListe extends ListEdit {
     }
   }
 
-  shouldComponentUpdate() {
-    return true;
-  }
+  shouldComponentUpdate = () => true;
 
   add() {
     Actions.vehiculeForm({ account: this.compteSecureService.getSelectedAccount().compte });

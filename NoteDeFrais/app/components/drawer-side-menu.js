@@ -356,10 +356,7 @@ class SideMenu extends Component {
     </View>);
   }
 
-  _getAccountIcon() {
-    return this.state.isAccountsDisplayed ? 'arrow-drop-up' : 'arrow-drop-down';
-  }
-
+  _getAccountIcon = () => this.state.isAccountsDisplayed ? 'arrow-drop-up' : 'arrow-drop-down';
 
   /**
    * Méthode éxécuté lors du rendu du composant.
@@ -432,5 +429,3 @@ export default class DrawerSideMenu extends Component {
     );
   }
 }
-
-// default { SideMenu, DrawerSideMenu };

@@ -62,17 +62,11 @@ export default class FichePersonnelleForm extends RealmForm {
   static fichePersonnelleService = new FichePersonnelleService();
   static compteService = new CompteService();
 
-  static hasMenu() {
-    return true;
-  }
+  static hasMenu = () => true;
 
-  static shouldDelete() {
-    return false;
-  }
+  static shouldDelete = () => false;
 
-  static getTitle() {
-    return I18n.t('identity.title');
-  }
+  static getTitle = () => I18n.t('identity.title');
 
   static save(props, formValues) {
     if (formValues.id) {

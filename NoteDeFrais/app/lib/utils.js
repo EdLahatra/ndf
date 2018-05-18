@@ -342,12 +342,3 @@ export default {
   }
 
 };
-
-/*
-module.exports.FloatTransformer = FloatTransformer;
-module.exports.TextboxFieldFactory = TextboxFieldFactory;
-module.exports.IconFieldFactory = IconFieldFactory;
-module.exports.SelectFieldFactory = SelectFieldFactory;
-module.exports.DatepickerFieldFactory = DatepickerFieldFactory;
-module.exports.ImageFieldFactory = ImageFieldFactory;
-*/

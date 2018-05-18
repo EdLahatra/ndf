@@ -79,12 +79,7 @@ export default class DepenseCommuneForm extends RealmForm {
    * @param props
    * @returns {boolean}
    */
-  static shouldDelete(props) {
-    if (props.depenseCommune) {
-      return true;
-    }
-    return false;
-  }
+  static shouldDelete = props => props.depenseCommune
 
   /**
    * Méthode qui recalcule la TVA applicable au montant à rembourser
@@ -129,9 +124,7 @@ export default class DepenseCommuneForm extends RealmForm {
     };
   }
 
-  static getTitle(props) {
-    return props.category.nom;
-  }
+  static getTitle = props => props.category ? props.category.nom : null;
 
   static compteSecureService = new CompteSecureService();
   static depenseService = new DepenseService();

@@ -173,20 +173,13 @@ export default class IndemniteKilometriqueForm extends RealmForm {
     };
   }
 
-  static getTitle(props) {
-    return props.category.nom;
-  }
+  static getTitle = props => props.category.nom;
 
   static compteSecureService = new CompteSecureService();
   static indemniteKilometriqueService = new IndemniteKilometriqueService();
   static noteDeFraisService = new NoteDeFraisService();
 
-  static shouldDelete(props) {
-    if (props.depenseCommune) {
-      return true;
-    }
-    return false;
-  }
+  static shouldDelete = props => props.depenseCommune;
 
   static delete(depenseCommune) {
     const selectedAccount = this.compteSecureService.getSelectedAccount();

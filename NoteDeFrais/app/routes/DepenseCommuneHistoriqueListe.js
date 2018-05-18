@@ -45,9 +45,8 @@ export default class DepenseCommuneHistoriqueListe extends DepenseCommuneListe {
    * @param props
    * @returns {array}
    */
-  getElements(props) {
-    return DepenseCommuneHistoriqueListe._getElements(props);
-  }
+  getElements = props => DepenseCommuneHistoriqueListe._getElements(props);
+
   // eslint-disable-next-line
   onPress(depenseCommune, isSelected = false) {
   }
@@ -55,7 +54,5 @@ export default class DepenseCommuneHistoriqueListe extends DepenseCommuneListe {
   onLongPress(element, isSelected = false) { 
   }
 
-  shouldAdd() {
-    return false;
-  }
+  shouldAdd = () => false;
 }

@@ -230,7 +230,5 @@ export default class Login extends Component {
     }
   }
 
-  static getTitle() {
-    return I18n.t('login.title');
-  }
+  static getTitle = () => I18n.t('login.title');
 }

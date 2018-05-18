@@ -15,9 +15,7 @@ const conversionKey = {
 };
 
 export default class Distance {
-  static convert(distance, from = 'm', to = 'km') {
-    return distance * conversionKey[from][to];
-  }
+  static convert = (distance, from = 'm', to = 'km') => distance * conversionKey[from][to];
 
   static compute(origins, destinations) {
     const params = {

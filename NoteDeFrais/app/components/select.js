@@ -103,14 +103,10 @@ class Select extends Component {
     return <Text style={[Style.input, this.props.textboxStyle]}>{this._getText(value)}</Text>;
   }
 
-  _getText(value) {
-    return this.props.options.filter(o => o.value === value).map(o => o.text)[0];
-  }
+  _getText = value => this.props.options.filter(o => o.value === value).map(o => o.text)[0];
 
   onValuePicked({ value }) {
-    this.setState({
-      value
-    });
+    this.setState({ value });
     this.valuePicked();
   }
 

@@ -47,23 +47,14 @@ export default class CategorieDepenseForm extends RealmForm {
    * @param props
    * @returns {*}
    */
-  static getTitle(props) {
-    if (props) {
-      return props.category ? props.category.nom : I18n.t('categories.add');
-    }
-  }
+  static getTitle = props => props && props.category ? props.category.nom : I18n.t('categories.add');
 
   /**
    * Méthode qui vérifie la possibilité de supprimer un instance en fonction du contexte
    * @param props
    * @returns {boolean}
    */
-  static shouldDelete(props) {
-    if (props.category) {
-      return true;
-    }
-    return false;
-  }
+  static shouldDelete = props => props.category;
 
   static categorieDepenseService = new CategorieDepenseService();
   static compteSecureService = new CompteSecureService();

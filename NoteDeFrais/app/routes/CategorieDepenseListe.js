@@ -51,17 +51,13 @@ export default class CategorieDepenseListe extends ListEdit {
    * Méthode qui permet de vérifier la possibilité de supprimer une catégorie de dépense
    * @returns {*}
    */
-  static shouldDelete() {
-    return new CompteSecureService().shouldManageCategories();
-  }
+  static shouldDelete = () => new CompteSecureService().shouldManageCategories();
 
   /**
    * Méthode qui permet de vérifier la possibilité d'ajouter une catégorie de dépense
    * @returns {*}
    */
-  shouldAdd() {
-    return this.compteSecureService.shouldManageCategories();
-  }
+  shouldAdd = () => this.compteSecureService.shouldManageCategories();
 
   /**
    * Méthode qui retoure la liste des éléments à afficher dans la liste

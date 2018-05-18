@@ -44,9 +44,7 @@ export default class NavBar extends Component {
    * @param props
    * @returns {boolean} true
    */
-  shouldDelete() {
-    return true;
-  }
+  shouldDelete = () => true;
 
   /**
    * Méthode qui supprime l'ensemble des éléments sélectionnés

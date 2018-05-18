@@ -26,16 +26,9 @@ export default class VehiculeForm extends RealmForm {
 
   static vehiculeService = new VehiculeService();
 
-  static getTitle(props) {
-    return props.vehicule ? props.vehicule.nom : I18n.t('account.addCar');
-  }
+  static getTitle = props => props.vehicule ? props.vehicule.nom : I18n.t('account.addCar');
 
-  static shouldDelete(props) {
-    if (props.car) {
-      return true;
-    }
-    return false;
-  }
+  static shouldDelete = props => props.car;
 
   static delete(formValues, props) {
     this.vehiculeService.delete(formValues);

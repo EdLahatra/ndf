@@ -37,9 +37,7 @@ export default class NoteDeFraisListe extends ListEdit {
    * Méthode pour empêcher la suppression
    * @returns {boolean} false
    */
-  static shouldDelete() {
-    return false;
-  }
+  static shouldDelete = () => false;
 
   static renderNavigationBar() {
     return (<View style={Style.navBar}>
@@ -72,14 +70,10 @@ export default class NoteDeFraisListe extends ListEdit {
     );
   }
 
-  shouldAdd() {
-    return false;
-  }
+  shouldAdd = () => false;
 
-  getElements() {
-    return this.noteDeFraisService.findAllForAccountAndStatus(
-      this.compteSecureService.getSelectedAccount().compte.id, this.props.statut);
-  }
+  getElements = () => this.noteDeFraisService.findAllForAccountAndStatus(
+    this.compteSecureService.getSelectedAccount().compte.id, this.props.statut);
 
   async onRefresh() {
     if (this.compteSecureService.shouldUseApiService()) {
@@ -96,9 +90,8 @@ export default class NoteDeFraisListe extends ListEdit {
   onPress(noteDeFrais) {
     Actions.depenseCommuneHistoriqueListe({ noteDeFrais });
   }
-  _formatDate(date) {
-    return moment(date).format('DD/MM/YYYY');
-  }
+  _formatDate = date => moment(date).format('DD/MM/YYYY');
+
   _renderRowContent(element) {
     const depenseCommuneList = this.noteDeFraisService.findAllDepenses(element);
     const firstDate = this.noteDeFraisService.getFirstDepenseCommuneDate(depenseCommuneList);

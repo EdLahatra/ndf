@@ -225,12 +225,3 @@ export default class Connexion extends Component {
       </View>);
   }
 }
-
-/*
- <TouchableOpacity onPress={this.login.bind(this, TYPES.GESCAB)}>
- <Image
- resizeMode="center"
- style={{ width: 300, height: 50 }}
- source={require('../images/gescab-logo.png')}/>
- </TouchableOpacity>
- */

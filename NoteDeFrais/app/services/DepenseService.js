@@ -21,12 +21,8 @@ export default class DepenseService extends EntityService {
     this.justificatifService = new JustificatifService();
   }
 
-  _computeHT({ montantARembourser, tva }) {
-    if (montantARembourser && tva) {
-      return this.parseFloat(montantARembourser - tva);
-    }
-    return 0;
-  }
+  _computeHT = ({ montantARembourser, tva }) => montantARembourser && tva
+    ? this.parseFloat(montantARembourser - tva) : 0
 
   setDepreciation(data) {
     data._depreciation = new Date();

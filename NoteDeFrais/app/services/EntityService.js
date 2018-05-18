@@ -203,12 +203,8 @@ export default class EntityService {
    * @returns {*}
    * @private
    */
-  _depreciationFilter(object) {
-    if (object.depreciation || object._depreciation) {
-      return moment(object.depreciation || object._depreciation).isAfter(moment());
-    }
-    return true;
-  }
+  _depreciationFilter = object => object.depreciation || object._depreciation
+    ? moment(object.depreciation || object._depreciation).isAfter(moment()) : true;
 
   /**
    * Méthode de recherche par identifiant en base de données
@@ -228,9 +224,7 @@ export default class EntityService {
    * @param id
    * @returns {Object}
    */
-  findAndFormat(id) {
-    return this.format(this.find(id));
-  }
+  findAndFormat = id => this.format(this.find(id));
 
   /**
    * Méthode qui retourne l'ensemble des entités
@@ -243,8 +237,7 @@ export default class EntityService {
       all = all.filtered(filtered);
     }
 
-    return _.toArray(all)
-      .filter(object => this._depreciationFilter(object));
+    return _.toArray(all).filter(object => this._depreciationFilter(object));
   }
 
   /**
@@ -252,9 +245,7 @@ export default class EntityService {
    * @param idCompte
    * @returns {Array}
    */
-  findAllForAccount(idCompte) {
-    return this.findAll(`idCompte = "${idCompte}"`);
-  }
+  findAllForAccount = idCompte => this.findAll(`idCompte = "${idCompte}"`);
 
   _apiErrorCatcher(object, error) {
     if (error instanceof NotFoundException) {
@@ -497,10 +488,5 @@ export default class EntityService {
    * @param value
    * @returns {number}
    */
-  parseFloat(value) {
-    if (value) {
-      value = (Math.round(parseFloat(value) * 1000) / 1000);
-    }
-    return value;
-  }
+  parseFloat = value => value ? (Math.round(parseFloat(value) * 1000) / 1000) : null;
 }

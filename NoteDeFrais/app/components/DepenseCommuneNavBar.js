@@ -45,16 +45,13 @@ export default class DepenseCommuneNavBar extends NavBar {
     this.validate = this.validate.bind(this);
   }
 
-  _getChecked(filtre) {
-    if (this.state.filtre === filtre) {
-      return (<MaterialIcons
-        name="check"
-        size={IconSize.small}
-        style={Colors.yellowGreen.color()}
-      />);
-    }
-    return null;
-  }
+  _getChecked = filtre => this.state.filtre === filtre
+    ? <MaterialIcons
+      name="check"
+      size={IconSize.small}
+      style={Colors.yellowGreen.color()}
+    /> : null;
+
 
   _renderMenu() {
     return FILTRES.map(filtre => (<TouchableOpacity

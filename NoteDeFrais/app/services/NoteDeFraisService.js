@@ -45,25 +45,18 @@ export default class NoteDeFraisService extends EntityService {
     throw new Error('Delete is not possible on ', this.schema.name);
   }
 
-  findAllDepenses(noteDeFrais) {
-    return this.findAllAutresDepenses(noteDeFrais)
-      .concat(this.findAllIndemnitesKilometriques(noteDeFrais))
-      .concat(this.findAllRegulation(noteDeFrais))
-      .sort((a, b) => moment(a.date).isBefore(moment(b.date)) ? 1 : -1);
-  }
+  findAllDepenses = noteDeFrais => this.findAllAutresDepenses(noteDeFrais)
+    .concat(this.findAllIndemnitesKilometriques(noteDeFrais))
+    .concat(this.findAllRegulation(noteDeFrais))
+    .sort((a, b) => moment(a.date).isBefore(moment(b.date)) ? 1 : -1);
 
-  findAllIndemnitesKilometriquesWithRegulation(noteDeFrais) {
-    return this.findAllIndemnitesKilometriques(noteDeFrais)
-      .concat(this.findAllRegulation(noteDeFrais))
-      .sort((a, b) => moment(a.date).isBefore(moment(b.date)) ? 1 : -1);
-  }
+  findAllIndemnitesKilometriquesWithRegulation = noteDeFrais => this.findAllIndemnitesKilometriques(noteDeFrais)
+    .concat(this.findAllRegulation(noteDeFrais))
+    .sort((a, b) => moment(a.date).isBefore(moment(b.date)) ? 1 : -1);
 
-  _findAllDepenses(noteDeFrais, type, service) {
-    if (noteDeFrais) {
-      return _.toArray(noteDeFrais[type]).map(({ id }) => service.find(id)).filter(value => value !== null);
-    }
-    return [];
-  }
+  _findAllDepenses = (noteDeFrais, type, service) => noteDeFrais
+    ? _.toArray(noteDeFrais[type]).map(({ id }) => service.find(id)).filter(value => value !== null)
+    : [];
 
   async envoiNoteDeFrais(ndf, compte) {
     const body = this.format(ndf);
@@ -119,7 +112,8 @@ export default class NoteDeFraisService extends EntityService {
     const currentElements = elements.filter(element => element.statut === STATUTS.inProgress.key);
     if (currentElements && currentElements.length > 0) {
       const currentNdf = currentElements[0];
-      const filter = `id != "${currentNdf.id}" AND statut="${STATUTS.inProgress.key}" AND idCompte="${currentNdf.idCompte}"`;
+      const filter =
+      `id != "${currentNdf.id}" AND statut="${STATUTS.inProgress.key}" AND idCompte="${currentNdf.idCompte}"`;
       const ndfToMerge = this.service.objects(this.schema.name).filtered(filter);
 
       _.toArray(ndfToMerge).forEach((ndf) => {
@@ -139,25 +133,20 @@ export default class NoteDeFraisService extends EntityService {
     return elements;
   }
 
-  findAllIndemnitesKilometriques(noteDeFrais) {
-    return this._findAllDepenses(noteDeFrais, 'indemnitesKilometriques', this.indemniteKilometriqueService);
-  }
+  findAllIndemnitesKilometriques = noteDeFrais =>
+    this._findAllDepenses(noteDeFrais, 'indemnitesKilometriques', this.indemniteKilometriqueService);
 
-  findAllAutresDepenses(noteDeFrais) {
-    return this._findAllDepenses(noteDeFrais, 'depenses', this.depenseService);
-  }
+  findAllAutresDepenses = noteDeFrais => this._findAllDepenses(noteDeFrais, 'depenses', this.depenseService);
 
-  findAllRegulation(noteDeFrais) {
-    if (noteDeFrais) {
-      return _.toArray(this.service.objects('Regulation').filtered(`idNoteDeFrais = "${noteDeFrais.id}"`));
-    }
-    return [];
-  }
+  findAllRegulation = noteDeFrais => noteDeFrais
+    ? _.toArray(this.service.objects('Regulation').filtered(`idNoteDeFrais = "${noteDeFrais.id}"`))
+    : [];
 
   findEnCours(compte) {
     const _idsToRemove = compte.noteDeFrais.map(ndf => `id != "${ndf.id}"`);
     const filterIdsToRemove = _idsToRemove && _idsToRemove.length > 0 ? `AND (${_idsToRemove.join(' AND ')})` : '';
-    const ndfToRemove = this.service.objects(this.schema.name).filtered(`idCompte = "${compte.id}" ${filterIdsToRemove}`);
+    const ndfToRemove = this.service.objects(this.schema.name)
+      .filtered(`idCompte = "${compte.id}" ${filterIdsToRemove}`);
     this.service.write(() => {
       this.service.delete(ndfToRemove);
     });
@@ -183,17 +172,12 @@ export default class NoteDeFraisService extends EntityService {
     return id;
   }
 
-  getTotalDistance(ikList) {
-    return this.getSum(ikList, 'distance');
-  }
+  getTotalDistance = ikList => this.getSum(ikList, 'distance');
 
-  getTotalDepenses(depenseCommuneList) {
-    return this.getSum(depenseCommuneList);
-  }
+  getTotalDepenses = depenseCommuneList => this.getSum(depenseCommuneList);
 
-  getSum(depenseCommuneList, property = 'montantARembourser') {
-    return this.parseFloat(_.reduce(depenseCommuneList, (memo, num) => memo + this.parseFloat(num[property]), 0));
-  }
+  getSum = (depenseCommuneList, property = 'montantARembourser') =>
+    this.parseFloat(_.reduce(depenseCommuneList, (memo, num) => memo + this.parseFloat(num[property]), 0));
 
   validate(compte, ndfEnCours) {
     const fichePersonnelle = this.fichePersonnelleService.findAndFormat(compte.idFichePersonnelle);
@@ -256,7 +240,8 @@ export default class NoteDeFraisService extends EntityService {
 
       const computedIkList = _.map(ikList, (ik) => {
         const bareme = this.baremeKilometriqueService.findByTypeVehicule(vehicule.typeVehicule, ik.date);
-        const seuil = this.baremeKilometriqueService.findSeuil(bareme, vehicule.puissanceFiscale, kilometrageAfterValidation);
+        const seuil = this.baremeKilometriqueService.findSeuil(
+          bareme, vehicule.puissanceFiscale, kilometrageAfterValidation);
         return { montantARembourser: this.parseFloat(ik.distance * seuil.variable) };
       });
 
@@ -264,11 +249,13 @@ export default class NoteDeFraisService extends EntityService {
 
       if (totalAfterValidation !== totalBeforeValidation) {
         const previousBareme = this.baremeKilometriqueService.findByTypeVehicule(vehicule.typeVehicule, new Date());
-        const previousSeuil = this.baremeKilometriqueService.findSeuil(previousBareme, vehicule.puissanceFiscale, kilometrage);
+        const previousSeuil = this.baremeKilometriqueService.findSeuil(
+          previousBareme, vehicule.puissanceFiscale, kilometrage);
         const nextSeuil = this.baremeKilometriqueService.findSeuil(
           previousBareme, vehicule.puissanceFiscale, kilometrageAfterValidation);
 
-        const previousTotal = this.parseFloat(kilometrage * previousSeuil.variable) + previousSeuil.fixe;
+        const previousTotal = this.parseFloat(
+          kilometrage * previousSeuil.variable) + previousSeuil.fixe;
         const nextTotal = this.parseFloat(kilometrage * nextSeuil.variable) + nextSeuil.fixe;
         // eslint-disable-next-line
         const montantARembourser = this.parseFloat(totalAfterValidation - totalBeforeValidation + nextTotal - previousTotal);
@@ -287,7 +274,8 @@ export default class NoteDeFraisService extends EntityService {
           // Mise à jour du vehicule
           kilometreAnnuel.kilometrage = kilometrageAfterValidation;
           vehicule.derniereModification = new Date();
-          const totalIndemnitesKilometriquesApresRegulation = this.parseFloat(totalIndemnitesKilometriques + montantARembourser);
+          const totalIndemnitesKilometriquesApresRegulation = this.parseFloat(
+            totalIndemnitesKilometriques + montantARembourser);
           this.service.create(this.schema.name, {
             id: ndf.id,
             totalIndemnitesKilometriques: totalIndemnitesKilometriquesApresRegulation
@@ -332,17 +320,12 @@ export default class NoteDeFraisService extends EntityService {
     return rapport;
   }
 
-  findAllForAccountAndStatus(idCompte, statut) {
-    return this.service.objects(this.schema.name).filtered(`statut="${statut}" AND idCompte="${idCompte}"`);
-  }
+  findAllForAccountAndStatus = (idCompte, statut) =>
+    this.service.objects(this.schema.name).filtered(`statut="${statut}" AND idCompte="${idCompte}"`);
 
-  getFirstDepenseCommuneDate(depenseCommuneList) {
-    if (depenseCommuneList && depenseCommuneList.length) {
-      const sortedList = _.sortBy(depenseCommuneList, 'date');
-      return sortedList[0].date;
-    }
-    return null;
-  }
+  getFirstDepenseCommuneDate = depenseCommuneList => depenseCommuneList && depenseCommuneList.length
+    ? _.sortBy(depenseCommuneList, 'date')[0].date
+    : null
 
   getLastDepenseCommuneDate(depenseCommuneList) {
     if (depenseCommuneList && depenseCommuneList[0]) {

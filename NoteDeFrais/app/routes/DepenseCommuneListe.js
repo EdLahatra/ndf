@@ -134,10 +134,8 @@ export default class DepenseCommuneListe extends ListEdit {
    * @param idCategorieDepense
    * @returns {CategorieDepense}
    */
-  getCategorieDepense({ idCategorieDepense }) {
-    return this.categorieDepenseService.find(idCategorieDepense)
-      || this.categorieDepenseService.getIndemniteKilometriqueCategorie();
-  }
+  getCategorieDepense = ({ idCategorieDepense }) => this.categorieDepenseService.find(idCategorieDepense)
+    || this.categorieDepenseService.getIndemniteKilometriqueCategorie();
 
   async _sync() {
     if (this.syncIteration < 2) {

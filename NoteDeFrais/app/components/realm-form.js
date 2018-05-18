@@ -235,17 +235,11 @@ export default class RealmForm extends Component {
     }
   }
 
-  static getTitle() {
-    return 'Realm form...';
-  }
+  static getTitle = () => 'Realm form...';
 
-  static shouldDelete() {
-    return true;
-  }
+  static shouldDelete = () => true;
 
-  static hasMenu() {
-    return false;
-  }
+  static hasMenu = () => false;
 
   static renderNavigationBar(props) {
     const deleteAction = this.shouldDelete(props)
@@ -288,8 +282,9 @@ export default class RealmForm extends Component {
    * @return react~Component
    */
   render() {
+    let result = null;
     if (this.state.form && this.state.options) {
-      return (<View style={Style.containerWithNavBar}>
+      result = (<View style={Style.containerWithNavBar}>
         <ScrollView ref="scrollView" scrollEnabled={true} showsVerticalScrollIndicator={true}>
           <Form
             ref="form"
@@ -302,7 +297,6 @@ export default class RealmForm extends Component {
         </ScrollView>
       </View>);
     }
-
-    return null;
+    return result;
   }
 }

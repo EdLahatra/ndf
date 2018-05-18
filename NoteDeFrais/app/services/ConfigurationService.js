@@ -11,9 +11,7 @@ export default class ConfigurationService {
     this.id = 'Configuration';
   }
 
-  getConfiguration() {
-    return this.realm.objects(Configuration.schema.name).filtered(`id="${this.id}"`)[0];
-  }
+  getConfiguration = () => this.realm.objects(Configuration.schema.name).filtered(`id="${this.id}"`)[0];
 
   hasAcceptedTermsOfUse() {
     const Configuration = this.getConfiguration();

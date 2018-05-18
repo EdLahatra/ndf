@@ -41,9 +41,7 @@ export default class CategorieDepenseSelection extends Component {
      * Méthode pour définir le titre de la NavBar
      * @returns {*}
      */
-  static getTitle() {
-    return I18n.t('categories.title');
-  }
+  static getTitle = () => I18n.t('categories.title');
 
   /**
      * Initialisation de l'état du composant.

@@ -26,12 +26,7 @@ export default class IndemniteKilometriqueService extends EntityService {
     this.compteSecureService = new CompteSecureService();
   }
 
-  parseTaux(value) {
-    if (value) {
-      value = parseFloat(value).toFixed(3);
-    }
-    return value;
-  }
+  parseTaux = value => value ? parseFloat(value).toFixed(3) : undefined;
 
   _computeMontantARembourser({ idVehicule, distance, date }) {
     const vehicule = this.vehiculeService.find(idVehicule);

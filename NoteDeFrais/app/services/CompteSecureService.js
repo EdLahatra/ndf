@@ -30,13 +30,9 @@ export default class CompteSecureService {
     this.db = RealmService.service;
   }
 
-  find(id) {
-    return this.findAll().filter(compteSecure => compteSecure.id === id)[0];
-  }
+  find = id => this.findAll().filter(compteSecure => compteSecure.id === id)[0];
 
-  findAll() {
-    return _.toArray(this.db.objects(CompteSecure.schema.name));
-  }
+  findAll = () => _.toArray(this.db.objects(CompteSecure.schema.name));
 
   _unsetSelectedAccounts() {
     const allSelected = this.db.objects(CompteSecure.schema.name).filtered('isSelected = true');
@@ -268,13 +264,9 @@ export default class CompteSecureService {
     return true;
   }
 
-  _lastFetchAllKey(name) {
-    return `lastFetchAll${name}`;
-  }
+  _lastFetchAllKey = name => `lastFetchAll${name}`;
 
-  getLastFetchAll(name) {
-    return this.getSelectedAccount()[this._lastFetchAllKey(name)];
-  }
+  getLastFetchAll = name => this.getSelectedAccount()[this._lastFetchAllKey(name)];
 
   setLastFetchAll(name, date) {
     this.db.write(() => {
