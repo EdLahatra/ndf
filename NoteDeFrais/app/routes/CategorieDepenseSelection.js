@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-  ScrollView,
-  TouchableOpacity
-} from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
@@ -134,7 +129,7 @@ export default class CategorieDepenseSelection extends Component {
           >
             {
               categories.map((category) => {
-                if (category.depreciation === undefined) {
+                if (category.depreciation == undefined) { // eslint-disable-line
                   if (category.icone.indexOf('glyphicons') !== 0) {
                     category.icon =
                       <FontAwesome name={category.icone} size={IconSize.large} />;

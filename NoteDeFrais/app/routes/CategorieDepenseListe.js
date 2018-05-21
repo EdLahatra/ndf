@@ -63,10 +63,8 @@ export default class CategorieDepenseListe extends ListEdit {
    * Méthode qui retoure la liste des éléments à afficher dans la liste
    * @returns {*}
    */
-  getElements() {
-    return this.categorieDepenseService.findAllForAccount(
-      this.compteSecureService.getSelectedAccount().compte.id);
-  }
+  getElements = () => this.categorieDepenseService
+    .findAllForAccount(this.compteSecureService.getSelectedAccount().compte.id);
 
   /**
    * Méthode pour rafraîchir les données
